@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fishing Effort Heatmap</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a1628;
+            color: #e0e6ed;
+        }
+        .controls {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            background: rgba(17, 34, 64, 0.95);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #1e4976;
+            min-width: 220px;
+        }
+        .controls h3 {
+            color: #4fc3f7;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+        .controls label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: #90a4ae;
+        }
+        .controls select, .controls input[type="range"] {
+            width: 100%;
+            padding: 0.3rem;
+            background: #1a3a5c;
+            border: 1px solid #2e5a8a;
+            color: #e0e6ed;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+        }
+        .controls button {
+            width: 100%;
+            padding: 0.5rem;
+            background: #4fc3f7;
+            color: #0a1628;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .controls button:hover { background: #29b6f6; }
+        #map { width: 100vw; height: 100vh; }
+        .back-link {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1000;
+            background: rgba(17, 34, 64, 0.95);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: 1px solid #1e4976;
+            color: #4fc3f7;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .back-link:hover { background: #1a3a5c; }
+        .loading-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 22, 40, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            font-size: 1.2rem;
+        }
+        .loading-overlay.hidden { display: none; }
+        .stats {
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+            z-index: 1000;
+            background: rgba(17, 34, 64, 0.95);
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            border: 1px solid #1e4976;
+            font-size: 0.8rem;
+            color: #90a4ae;
+        }
+        /* Detail panel */
+        .detail-panel {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            background: rgba(17, 34, 64, 0.97);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #1e4976;
+            min-width: 300px;
+            max-width: 400px;
+            max-height: 50vh;
+            overflow-y: auto;
+            display: none;
+        }
+        .detail-panel.active { display: block; }
+        .detail-panel h3 {
+            color: #4fc3f7;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .detail-panel .close-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: none;
+            border: none;
+            color: #78909c;
+            cursor: pointer;
+            font-size: 1.2rem;
+            width: auto;
+            padding: 0.2rem 0.5rem;
+        }
+        .detail-panel table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.75rem;
+        }
+        .detail-panel th, .detail-panel td {
+            padding: 0.3rem 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid #1e4976;
+        }
+        .detail-panel th { color: #4fc3f7; }
+        .detail-panel td { color: #b0bec5; }
+        .detail-panel .total-row td {
+            color: #4fc3f7;
+            font-weight: 600;
+            border-top: 2px solid #2e5a8a;
+        }
+        .click-hint {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 500;
+            background: rgba(17, 34, 64, 0.9);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #78909c;
+            pointer-events: none;
+            transition: opacity 0.5s;
+        }
+        .click-hint.hidden { opacity: 0; }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-link">← Back</a>
+
+    <div class="controls">
+        <h3>Fishing Effort Heatmap</h3>
+        <label>Year:
+            <select id="year-select">
+                <option value="2024" selected>2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+            </select>
+        </label>
+        <label>Heat radius:
+            <input type="range" id="radius-slider" min="5" max="35" value="18"
+                   oninput="document.getElementById('radius-val').textContent = this.value; updateHeatRadius()">
+            <span id="radius-val">18</span>px
+        </label>
+        <label>Heat intensity:
+            <input type="range" id="intensity-slider" min="0.1" max="1.0" step="0.05" value="0.5"
+                   oninput="document.getElementById('intensity-val').textContent = this.value; updateHeatRadius()">
+            <span id="intensity-val">0.5</span>
+        </label>
+        <button onclick="loadData()">Update Map</button>
+        <p style="font-size: 0.7rem; color: #546e7a; margin-top: 0.8rem;">
+            Click on the map to inspect the fishing breakdown at that location.
+        </p>
+    </div>
+
+    <div class="loading-overlay" id="loading">Loading fishing effort data...</div>
+    <div class="click-hint" id="click-hint">Click anywhere on the map to see fishing details</div>
+    <div class="stats" id="stats"></div>
+
+    <div class="detail-panel" id="detail-panel">
+        <button class="close-btn" onclick="closeDetail()">×</button>
+        <h3 id="detail-title">Cell Detail</h3>
+        <div id="detail-content"></div>
+    </div>
+
+    <div id="map"></div>
+
+    <script>
+        const map = L.map('map').setView([5, 100], 3);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap &copy; CARTO',
+            subdomains: 'abcd',
+            maxZoom: 12
+        }).addTo(map);
+
+        let heatLayer = null;
+        let gridLayer = L.layerGroup().addTo(map);
+        let rawData = [];
+
+        async function loadData() {
+            const year = document.getElementById('year-select').value;
+            document.getElementById('loading').classList.remove('hidden');
+
+            try {
+                const response = await fetch(`/api/fleet/heatmap?year=${year}`);
+                rawData = await response.json();
+
+                renderHeat();
+
+                document.getElementById('stats').innerHTML =
+                    `<b>${rawData.length.toLocaleString()}</b> grid cells | Year: ${year}`;
+
+                // Hide hint after first load
+                setTimeout(() => {
+                    document.getElementById('click-hint').classList.add('hidden');
+                }, 3000);
+
+            } catch (err) {
+                console.error(err);
+                alert('Error loading data. Is the Flask server running?');
+            } finally {
+                document.getElementById('loading').classList.add('hidden');
+            }
+        }
+
+        function renderHeat() {
+            const radius = parseInt(document.getElementById('radius-slider').value);
+            const intensity = parseFloat(document.getElementById('intensity-slider').value);
+
+            if (heatLayer) map.removeLayer(heatLayer);
+
+            const maxHours = Math.max(...rawData.map(d => d.fishing_hours));
+            const heatData = rawData.map(d => [
+                d.lat + 0.5,
+                d.lon + 0.5,
+                (d.fishing_hours / maxHours)
+            ]);
+
+            heatLayer = L.heatLayer(heatData, {
+                radius: radius,
+                blur: Math.round(radius * 0.7),
+                maxZoom: 10,
+                max: intensity,
+                gradient: {
+                    0.0: 'rgba(0,0,30,0)',
+                    0.1: '#001166',
+                    0.25: '#0055cc',
+                    0.4: '#0099ff',
+                    0.55: '#33ccff',
+                    0.7: '#ffcc00',
+                    0.85: '#ff6600',
+                    1.0: '#ff0000'
+                }
+            }).addTo(map);
+        }
+
+        function updateHeatRadius() {
+            if (rawData.length > 0) renderHeat();
+        }
+
+        // Click-to-inspect: show what's in a grid cell
+        map.on('click', async function(e) {
+            const lat = Math.round(e.latlng.lat);
+            const lon = Math.round(e.latlng.lng);
+            const year = document.getElementById('year-select').value;
+
+            // Show the clicked cell on map
+            gridLayer.clearLayers();
+            const bounds = [[lat - 0.5, lon - 0.5], [lat + 0.5, lon + 0.5]];
+            L.rectangle(bounds, {
+                color: '#4fc3f7',
+                weight: 2,
+                fillOpacity: 0.1,
+                dashArray: '5 5'
+            }).addTo(gridLayer);
+
+            // Find this cell in our loaded data
+            const cellData = rawData.find(d => d.lat === lat && d.lon === lon);
+
+            const panel = document.getElementById('detail-panel');
+            const title = document.getElementById('detail-title');
+            const content = document.getElementById('detail-content');
+
+            title.textContent = `Cell: ${lat}°, ${lon}° (Year: ${year})`;
+
+            if (!cellData) {
+                content.innerHTML = '<p style="color: #78909c;">No fishing activity recorded in this cell.</p>';
+                panel.classList.add('active');
+                return;
+            }
+
+            // Try to get detailed breakdown from API
+            try {
+                const res = await fetch(`/api/fleet/cell_detail?year=${year}&lat=${lat}&lon=${lon}`);
+                if (res.ok) {
+                    const detail = await res.json();
+                    if (detail.error) {
+                        // Fallback: show just the total
+                        content.innerHTML = `
+                            <p><b>Total fishing hours:</b> ${Math.round(cellData.fishing_hours).toLocaleString()}</p>
+                            <p style="color: #546e7a; font-size: 0.75rem; margin-top: 0.5rem;">
+                                Run convert_to_parquet.py again to enable flag/gear breakdown.
+                            </p>
+                        `;
+                    } else {
+                        // Sort by fishing hours descending
+                        detail.sort((a, b) => b.fishing_hours - a.fishing_hours);
+                        const top20 = detail.slice(0, 20);
+                        const totalHours = detail.reduce((s, d) => s + d.fishing_hours, 0);
+                        const totalVessels = detail.reduce((s, d) => s + d.mmsi_present, 0);
+
+                        let html = `
+                            <p style="margin-bottom: 0.8rem;">
+                                <b>Total:</b> ${Math.round(totalHours).toLocaleString()} fishing hours |
+                                ${totalVessels.toLocaleString()} vessel-visits |
+                                ${detail.length} flag/gear combos
+                            </p>
+                            <table>
+                                <thead>
+                                    <tr><th>Flag</th><th>Gear Type</th><th>Hours</th><th>Vessels</th></tr>
+                                </thead>
+                                <tbody>
+                        `;
+                        top20.forEach(row => {
+                            html += `<tr>
+                                <td>${row.flag || '?'}</td>
+                                <td>${row.geartype}</td>
+                                <td>${Math.round(row.fishing_hours).toLocaleString()}</td>
+                                <td>${row.mmsi_present.toLocaleString()}</td>
+                            </tr>`;
+                        });
+                        if (detail.length > 20) {
+                            html += `<tr class="total-row"><td colspan="4">... and ${detail.length - 20} more</td></tr>`;
+                        }
+                        html += '</tbody></table>';
+                        content.innerHTML = html;
+                    }
+                } else {
+                    content.innerHTML = `<p><b>Total fishing hours:</b> ${Math.round(cellData.fishing_hours).toLocaleString()}</p>`;
+                }
+            } catch (err) {
+                content.innerHTML = `<p><b>Total fishing hours:</b> ${Math.round(cellData.fishing_hours).toLocaleString()}</p>`;
+            }
+
+            panel.classList.add('active');
+        });
+
+        function closeDetail() {
+            document.getElementById('detail-panel').classList.remove('active');
+            gridLayer.clearLayers();
+        }
+
+        // Load initial data
+        loadData();
+    </script>
+</body>
+</html>

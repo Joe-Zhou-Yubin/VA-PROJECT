@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIS Disabling Events - Where Vessels Go Dark</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a1628;
+            color: #e0e6ed;
+        }
+        .controls {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            background: rgba(17, 34, 64, 0.95);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #1e4976;
+            min-width: 220px;
+        }
+        .controls h3 { color: #ff6b6b; margin-bottom: 0.8rem; font-size: 0.9rem; }
+        .controls label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: #90a4ae;
+        }
+        .controls select, .controls input {
+            width: 100%;
+            padding: 0.4rem;
+            background: #1a3a5c;
+            border: 1px solid #2e5a8a;
+            color: #e0e6ed;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+        }
+        .controls button {
+            width: 100%;
+            padding: 0.5rem;
+            background: #ff6b6b;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .controls button:hover { background: #ee5a5a; }
+        .controls .toggle-btn {
+            background: #2e5a8a;
+            font-size: 0.8rem;
+        }
+        .controls .toggle-btn.active { background: #4fc3f7; color: #0a1628; }
+        #map { width: 100vw; height: 100vh; }
+        .back-link {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1000;
+            background: rgba(17, 34, 64, 0.95);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: 1px solid #1e4976;
+            color: #4fc3f7;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .back-link:hover { background: #1a3a5c; }
+        .legend {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            background: rgba(17, 34, 64, 0.95);
+            padding: 0.8rem;
+            border-radius: 6px;
+            border: 1px solid #1e4976;
+            font-size: 0.75rem;
+        }
+        .legend .item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.3rem;
+        }
+        .legend .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .stats {
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+            z-index: 1000;
+            background: rgba(17, 34, 64, 0.95);
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            border: 1px solid #1e4976;
+            font-size: 0.8rem;
+            color: #90a4ae;
+        }
+        .loading-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 22, 40, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            font-size: 1.2rem;
+        }
+        .loading-overlay.hidden { display: none; }
+        /* Override cluster colors for dark theme */
+        .marker-cluster-small {
+            background-color: rgba(255, 107, 107, 0.4) !important;
+        }
+        .marker-cluster-small div {
+            background-color: rgba(255, 107, 107, 0.7) !important;
+            color: #fff !important;
+        }
+        .marker-cluster-medium {
+            background-color: rgba(255, 170, 0, 0.4) !important;
+        }
+        .marker-cluster-medium div {
+            background-color: rgba(255, 170, 0, 0.7) !important;
+            color: #fff !important;
+        }
+        .marker-cluster-large {
+            background-color: rgba(255, 0, 0, 0.4) !important;
+        }
+        .marker-cluster-large div {
+            background-color: rgba(255, 0, 0, 0.7) !important;
+            color: #fff !important;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-link">← Back</a>
+
+    <div class="controls">
+        <h3>AIS Disabling Events</h3>
+        <label>Min gap duration (hours):
+            <input type="range" id="min-hours" min="12" max="120" value="24" step="6"
+                   oninput="document.getElementById('hours-val').textContent = this.value">
+            <span id="hours-val">24</span>h
+        </label>
+        <label>Flag state (optional):
+            <input type="text" id="flag-filter" placeholder="e.g. CHN, ESP, TWN">
+        </label>
+        <label>Max events:
+            <select id="limit-select">
+                <option value="1000">1,000</option>
+                <option value="3000" selected>3,000</option>
+                <option value="5000">5,000</option>
+            </select>
+        </label>
+        <button onclick="loadData()">Load Events</button>
+        <button class="toggle-btn" id="toggle-arcs" onclick="toggleArcs()">Toggle Arcs</button>
+    </div>
+
+    <div class="legend">
+        <div class="item"><div class="dot" style="background:#ff4444"></div> Signal lost location</div>
+        <div class="item"><div class="dot" style="background:#44ff88"></div> Signal returned location</div>
+        <div class="item" style="color:#ffaa00">— Path while dark (arc)</div>
+    </div>
+
+    <div class="stats" id="stats">Loading...</div>
+    <div class="loading-overlay" id="loading">Loading AIS disabling data...</div>
+    <div id="map"></div>
+
+    <script>
+        const map = L.map('map').setView([10, 0], 3);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap &copy; CARTO',
+            subdomains: 'abcd',
+            maxZoom: 15
+        }).addTo(map);
+
+        let clusterGroup = L.markerClusterGroup({
+            maxClusterRadius: 50,
+            spiderfyOnMaxZoom: true,
+            showCoverageOnHover: false,
+            disableClusteringAtZoom: 8
+        });
+        map.addLayer(clusterGroup);
+
+        let arcsLayer = L.layerGroup().addTo(map);
+        let showArcs = true;
+
+        function toggleArcs() {
+            showArcs = !showArcs;
+            const btn = document.getElementById('toggle-arcs');
+            if (showArcs) {
+                map.addLayer(arcsLayer);
+                btn.classList.add('active');
+            } else {
+                map.removeLayer(arcsLayer);
+                btn.classList.remove('active');
+            }
+        }
+
+        function getGapColor(hours) {
+            if (hours >= 72) return '#ff0000';
+            if (hours >= 48) return '#ff4400';
+            if (hours >= 24) return '#ff8800';
+            return '#ffcc00';
+        }
+
+        async function loadData() {
+            const minHours = document.getElementById('min-hours').value;
+            const flag = document.getElementById('flag-filter').value.trim();
+            const limit = document.getElementById('limit-select').value;
+
+            let url = `/api/disabling/events?min_hours=${minHours}&limit=${limit}`;
+            if (flag) url += `&flag=${flag}`;
+
+            document.getElementById('loading').classList.remove('hidden');
+            clusterGroup.clearLayers();
+            arcsLayer.clearLayers();
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                console.log(`Received ${data.length} events`);
+
+                let plotted = 0;
+                data.forEach(event => {
+                    const startLat = parseFloat(event.gap_start_lat);
+                    const startLon = parseFloat(event.gap_start_lon);
+                    const endLat = parseFloat(event.gap_end_lat);
+                    const endLon = parseFloat(event.gap_end_lon);
+
+                    // Skip if coordinates are not valid numbers
+                    if (isNaN(startLat) || isNaN(startLon)) return;
+
+                    const color = getGapColor(event.gap_hours);
+                    const radius = Math.min(4 + (event.gap_hours / 24), 10);
+
+                    // Gap start marker (red/orange)
+                    const startMarker = L.circleMarker([startLat, startLon], {
+                        radius: radius,
+                        color: color,
+                        fillColor: color,
+                        fillOpacity: 0.8,
+                        weight: 1
+                    }).bindPopup(`
+                        <div style="font-family: sans-serif; font-size: 13px;">
+                        <b style="color: ${color};">AIS Signal Lost</b><br>
+                        <b>MMSI:</b> ${event.mmsi}<br>
+                        <b>Flag:</b> ${event.flag || 'Unknown'}<br>
+                        <b>Type:</b> ${event.vessel_class || 'Unknown'}<br>
+                        <b>Gap duration:</b> ${event.gap_hours.toFixed(1)} hours<br>
+                        <b>From shore:</b> ${Math.round((event.gap_start_distance_from_shore_m || 0) / 1000)} km<br>
+                        <b>Position:</b> ${startLat.toFixed(3)}, ${startLon.toFixed(3)}
+                        </div>
+                    `);
+
+                    clusterGroup.addLayer(startMarker);
+
+                    // Arc line to end point (if valid end coordinates)
+                    if (!isNaN(endLat) && !isNaN(endLon)) {
+                        const arc = L.polyline(
+                            [[startLat, startLon], [endLat, endLon]],
+                            {
+                                color: '#ffaa00',
+                                weight: 1.5,
+                                opacity: 0.3,
+                                dashArray: '5 5'
+                            }
+                        );
+                        arcsLayer.addLayer(arc);
+                    }
+
+                    plotted++;
+                });
+
+                document.getElementById('stats').innerHTML =
+                    `<b>${plotted.toLocaleString()}</b> events plotted | Min gap: ${minHours}h` +
+                    (flag ? ` | Flag: ${flag.toUpperCase()}` : '') +
+                    `<br><span style="color:#ff8800">●</span> Size = gap duration`;
+
+            } catch (err) {
+                console.error('Error:', err);
+                document.getElementById('stats').textContent = 'Error loading data. Check console.';
+            } finally {
+                document.getElementById('loading').classList.add('hidden');
+            }
+        }
+
+        // Initial load
+        document.getElementById('toggle-arcs').classList.add('active');
+        loadData();
+    </script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fishing Trends & Rankings</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a1628;
+            color: #e0e6ed;
+            padding: 1.5rem;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .header h1 { color: #4fc3f7; font-size: 1.5rem; }
+        .back-link {
+            color: #4fc3f7;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.4rem 0.8rem;
+            border: 1px solid #1e4976;
+            border-radius: 4px;
+        }
+        .back-link:hover { background: #1a3a5c; }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .chart-card {
+            background: #112240;
+            border: 1px solid #1e4976;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        .chart-card h2 {
+            font-size: 1rem;
+            color: #90a4ae;
+            margin-bottom: 1rem;
+        }
+        .chart-card canvas {
+            max-height: 350px;
+        }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        .controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .controls select, .controls input {
+            padding: 0.4rem 0.8rem;
+            background: #1a3a5c;
+            border: 1px solid #2e5a8a;
+            color: #e0e6ed;
+            border-radius: 4px;
+        }
+        .controls label {
+            font-size: 0.85rem;
+            color: #78909c;
+        }
+        @media (max-width: 900px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Fishing Trends & Rankings</h1>
+        <a href="/" class="back-link">← Back</a>
+    </div>
+
+    <div class="controls">
+        <label>Year:
+            <select id="year-select" onchange="loadAll()">
+                <option value="2024" selected>2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="grid">
+        <div class="chart-card">
+            <h2>Top 15 Fishing Nations (by fishing hours)</h2>
+            <canvas id="flagChart"></canvas>
+        </div>
+
+        <div class="chart-card">
+            <h2>Fishing Hours by Gear Type</h2>
+            <canvas id="gearChart"></canvas>
+        </div>
+
+        <div class="chart-card full-width">
+            <h2>Monthly Fishing Effort Trend (Global)</h2>
+            <canvas id="trendChart"></canvas>
+        </div>
+
+        <div class="chart-card full-width">
+            <h2>AIS Disabling Events by Flag State</h2>
+            <canvas id="disablingChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const COLORS = [
+            '#4fc3f7', '#ff6b6b', '#ffd93d', '#6bcb77', '#a855f7',
+            '#f97316', '#06b6d4', '#ec4899', '#84cc16', '#f43f5e',
+            '#8b5cf6', '#14b8a6', '#eab308', '#ef4444', '#22c55e'
+        ];
+
+        let flagChart, gearChart, trendChart, disablingChart;
+
+        function createChart(ctx, type, labels, datasets, options = {}) {
+            return new Chart(ctx, {
+                type,
+                data: { labels, datasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { labels: { color: '#90a4ae' } }
+                    },
+                    scales: type !== 'doughnut' ? {
+                        x: { ticks: { color: '#78909c' }, grid: { color: '#1e4976' } },
+                        y: { ticks: { color: '#78909c' }, grid: { color: '#1e4976' } }
+                    } : undefined,
+                    ...options
+                }
+            });
+        }
+
+        async function loadFlagChart() {
+            const year = document.getElementById('year-select').value;
+            const res = await fetch(`/api/fleet/by_flag?year=${year}&n=15`);
+            const data = await res.json();
+
+            const labels = data.map(d => d.flag);
+            const values = data.map(d => Math.round(d.fishing_hours));
+
+            if (flagChart) flagChart.destroy();
+            flagChart = createChart(
+                document.getElementById('flagChart'), 'bar',
+                labels,
+                [{
+                    label: 'Fishing Hours',
+                    data: values,
+                    backgroundColor: COLORS.slice(0, labels.length),
+                    borderWidth: 0
+                }],
+                { indexAxis: 'y', plugins: { legend: { display: false } } }
+            );
+        }
+
+        async function loadGearChart() {
+            const year = document.getElementById('year-select').value;
+            const res = await fetch(`/api/fleet/by_gear?year=${year}`);
+            const data = await res.json();
+
+            const labels = data.map(d => d.geartype);
+            const values = data.map(d => Math.round(d.fishing_hours));
+
+            if (gearChart) gearChart.destroy();
+            gearChart = createChart(
+                document.getElementById('gearChart'), 'doughnut',
+                labels,
+                [{
+                    data: values,
+                    backgroundColor: COLORS.slice(0, labels.length),
+                    borderWidth: 0
+                }]
+            );
+        }
+
+        async function loadTrendChart() {
+            const res = await fetch('/api/fleet/trend');
+            const data = await res.json();
+
+            const labels = data.map(d => d.date);
+            const values = data.map(d => Math.round(d.fishing_hours));
+
+            if (trendChart) trendChart.destroy();
+            trendChart = createChart(
+                document.getElementById('trendChart'), 'line',
+                labels,
+                [{
+                    label: 'Global Fishing Hours',
+                    data: values,
+                    borderColor: '#4fc3f7',
+                    backgroundColor: 'rgba(79, 195, 247, 0.1)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 1
+                }],
+                { plugins: { legend: { display: false } } }
+            );
+        }
+
+        async function loadDisablingChart() {
+            const res = await fetch('/api/disabling/by_flag?n=15');
+            const data = await res.json();
+
+            const labels = data.map(d => d.flag || 'Unknown');
+            const values = data.map(d => d.event_count);
+
+            if (disablingChart) disablingChart.destroy();
+            disablingChart = createChart(
+                document.getElementById('disablingChart'), 'bar',
+                labels,
+                [{
+                    label: 'Disabling Events',
+                    data: values,
+                    backgroundColor: '#ff6b6b',
+                    borderWidth: 0
+                }],
+                { plugins: { legend: { display: false } } }
+            );
+        }
+
+        async function loadAll() {
+            try {
+                await Promise.all([
+                    loadFlagChart(),
+                    loadGearChart(),
+                    loadTrendChart(),
+                    loadDisablingChart()
+                ]);
+            } catch (err) {
+                console.error(err);
+                alert('Error loading data. Is the Flask server running?');
+            }
+        }
+
+        loadAll();
+    </script>
+</body>
+</html>

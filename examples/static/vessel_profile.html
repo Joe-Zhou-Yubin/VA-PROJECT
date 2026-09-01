@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vessel Profile Search</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a1628;
+            color: #e0e6ed;
+            padding: 1.5rem;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .header h1 { color: #4fc3f7; font-size: 1.5rem; }
+        .back-link {
+            color: #4fc3f7;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.4rem 0.8rem;
+            border: 1px solid #1e4976;
+            border-radius: 4px;
+        }
+        .back-link:hover { background: #1a3a5c; }
+        .search-bar {
+            background: #112240;
+            border: 1px solid #1e4976;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+        .search-bar input {
+            flex: 1;
+            padding: 0.6rem 1rem;
+            background: #1a3a5c;
+            border: 1px solid #2e5a8a;
+            color: #e0e6ed;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+        .search-bar button {
+            padding: 0.6rem 1.5rem;
+            background: #4fc3f7;
+            color: #0a1628;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .search-bar button:hover { background: #29b6f6; }
+        .hint {
+            color: #78909c;
+            font-size: 0.8rem;
+            padding: 0 1rem;
+        }
+        .results-list {
+            background: #112240;
+            border: 1px solid #1e4976;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            max-height: 240px;
+            overflow-y: auto;
+            display: none;
+        }
+        .results-list.active { display: block; }
+        .result-item {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #1e4976;
+            cursor: pointer;
+            display: grid;
+            grid-template-columns: 120px 1fr 100px 100px;
+            gap: 1rem;
+            font-size: 0.85rem;
+        }
+        .result-item:hover { background: #1a3a5c; }
+        .result-item:last-child { border-bottom: none; }
+        .result-item .mmsi { color: #4fc3f7; font-family: monospace; }
+        .result-item .name { color: #e0e6ed; }
+        .result-item .flag { color: #ffaa00; }
+        .result-item .type { color: #78909c; font-size: 0.75rem; }
+        .profile {
+            display: none;
+        }
+        .profile.active { display: block; }
+        .vessel-card {
+            background: linear-gradient(135deg, #112240 0%, #1a3a5c 100%);
+            border: 1px solid #1e4976;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .vessel-card h2 {
+            color: #4fc3f7;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .vessel-card .meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        .vessel-card .meta-item {
+            background: rgba(10, 22, 40, 0.5);
+            padding: 0.6rem 0.8rem;
+            border-radius: 6px;
+            border-left: 3px solid #4fc3f7;
+        }
+        .vessel-card .meta-item .label {
+            font-size: 0.7rem;
+            color: #78909c;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .vessel-card .meta-item .value {
+            font-size: 0.95rem;
+            color: #e0e6ed;
+            margin-top: 0.2rem;
+        }
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .chart-card {
+            background: #112240;
+            border: 1px solid #1e4976;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        .chart-card h3 {
+            font-size: 1rem;
+            color: #90a4ae;
+            margin-bottom: 1rem;
+        }
+        .chart-card canvas { max-height: 300px; }
+        .full-width { grid-column: 1 / -1; }
+        @media (max-width: 900px) { .charts-grid { grid-template-columns: 1fr; } }
+
+        .risk-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        .risk-high { background: rgba(255, 68, 68, 0.2); color: #ff4444; }
+        .risk-med { background: rgba(255, 170, 0, 0.2); color: #ffaa00; }
+        .risk-low { background: rgba(79, 195, 247, 0.2); color: #4fc3f7; }
+
+        /* D3 radar chart styles */
+        .radar-axis line, .radar-axis path { stroke: #2e5a8a; }
+        .radar-axis text { fill: #90a4ae; font-size: 11px; }
+        .radar-grid { fill: none; stroke: #1e4976; stroke-dasharray: 2 2; }
+        .radar-area { fill: #ff6b6b; fill-opacity: 0.3; stroke: #ff6b6b; stroke-width: 2; }
+        .radar-point { fill: #ff6b6b; }
+
+        .placeholder {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #546e7a;
+        }
+        .placeholder h2 { font-size: 1.5rem; color: #78909c; margin-bottom: 0.5rem; }
+        .quick-examples {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .quick-examples button {
+            padding: 0.4rem 0.8rem;
+            background: #1a3a5c;
+            border: 1px solid #2e5a8a;
+            color: #4fc3f7;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        .quick-examples button:hover { background: #2e5a8a; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Vessel Profile Search</h1>
+        <a href="/" class="back-link">← Back</a>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Enter MMSI (e.g. 412331234) or ship name" 
+               onkeydown="if (event.key === 'Enter') search()">
+        <button onclick="search()">Search</button>
+        <span class="hint">Search by MMSI or vessel name</span>
+    </div>
+
+    <div class="results-list" id="results"></div>
+
+    <div class="placeholder" id="placeholder">
+        <h2>🔍 Search a vessel to see its risk profile</h2>
+        <p>Explore individual vessel behavior across all years of data.</p>
+        <div class="quick-examples">
+            <button onclick="quickSearch('CHN')">Random Chinese vessel</button>
+            <button onclick="quickSearch('ESP')">Random Spanish vessel</button>
+            <button onclick="quickSearch('TWN')">Random Taiwanese vessel</button>
+            <button onclick="quickSearchIUU()">Highest risk vessel</button>
+        </div>
+    </div>
+
+    <div class="profile" id="profile">
+        <div class="vessel-card">
+            <h2 id="vessel-name">
+                <span id="vessel-name-text"></span>
+                <span class="risk-badge" id="risk-badge"></span>
+            </h2>
+            <div id="vessel-subtitle" style="color: #78909c; font-size: 0.9rem;"></div>
+            <div class="meta" id="vessel-meta"></div>
+        </div>
+
+        <div class="charts-grid">
+            <div class="chart-card">
+                <h3>Risk Indicator Profile (Latest Year)</h3>
+                <svg id="radar-chart"></svg>
+            </div>
+            <div class="chart-card">
+                <h3>Encounters by Year</h3>
+                <canvas id="encounters-chart"></canvas>
+            </div>
+            <div class="chart-card full-width">
+                <h3>Activity Timeline (Hours & Voyages)</h3>
+                <canvas id="activity-chart"></canvas>
+            </div>
+            <div class="chart-card full-width">
+                <h3>AIS Gaps & Suspicious Behavior Over Time</h3>
+                <canvas id="gaps-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let charts = { encounters: null, activity: null, gaps: null };
+
+        async function search() {
+            const q = document.getElementById('search-input').value.trim();
+            if (!q) return;
+
+            const res = await fetch(`/api/iuu/search?q=${encodeURIComponent(q)}`);
+            const results = await res.json();
+            const list = document.getElementById('results');
+
+            if (results.length === 0) {
+                list.innerHTML = '<div class="result-item" style="color: #ff6b6b;">No vessels found.</div>';
+                list.classList.add('active');
+                return;
+            }
+
+            if (results.length === 1) {
+                loadVessel(results[0].mmsi);
+                list.classList.remove('active');
+                return;
+            }
+
+            list.innerHTML = results.map(v => `
+                <div class="result-item" onclick="loadVessel(${v.mmsi})">
+                    <span class="mmsi">${v.mmsi}</span>
+                    <span class="name">${v.ais_shipname || v.registry_shipname || '<em style="color:#546e7a">Unnamed</em>'}</span>
+                    <span class="flag">${v.best_flag || '?'}</span>
+                    <span class="type">${v.vessel_class || '?'}</span>
+                </div>
+            `).join('');
+            list.classList.add('active');
+        }
+
+        async function loadVessel(mmsi) {
+            const res = await fetch(`/api/iuu/vessel/${mmsi}`);
+            if (!res.ok) {
+                alert('Vessel not found');
+                return;
+            }
+            const history = await res.json();
+
+            document.getElementById('placeholder').style.display = 'none';
+            document.getElementById('profile').classList.add('active');
+            document.getElementById('results').classList.remove('active');
+
+            renderVesselCard(history);
+            renderRadar(history[history.length - 1]);
+            renderEncountersChart(history);
+            renderActivityChart(history);
+            renderGapsChart(history);
+        }
+
+        function computeRisk(v) {
+            return (v.disabling_over_12_hours || 0)
+                + (v.disabling_over_24_hours || 0) * 2
+                + (v.number_iuu_listed_encounters || 0) * 3
+                + (v.number_forced_labor_encounters || 0) * 3
+                + (v.number_previously_iuu_listed_encounters || 0) * 2
+                + Math.min(v.overlap_hours_multinames || 0, 100) / 10
+                + (v.iuu_listed || 0) * 5;
+        }
+
+        function renderVesselCard(history) {
+            const latest = history[history.length - 1];
+            const name = latest.ais_shipname || latest.registry_shipname || 'Unnamed Vessel';
+            const risk = computeRisk(latest);
+
+            document.getElementById('vessel-name-text').textContent = name;
+            document.getElementById('vessel-subtitle').innerHTML =
+                `MMSI: <b>${latest.mmsi}</b> · IMO: <b>${latest.registry_imo || latest.ais_imo || '?'}</b> · Data years: ${history[0].year} → ${latest.year}`;
+
+            const badge = document.getElementById('risk-badge');
+            if (risk > 15) {
+                badge.textContent = `HIGH RISK (${risk.toFixed(1)})`;
+                badge.className = 'risk-badge risk-high';
+            } else if (risk > 5) {
+                badge.textContent = `MEDIUM RISK (${risk.toFixed(1)})`;
+                badge.className = 'risk-badge risk-med';
+            } else {
+                badge.textContent = `LOW RISK (${risk.toFixed(1)})`;
+                badge.className = 'risk-badge risk-low';
+            }
+
+            const meta = document.getElementById('vessel-meta');
+            meta.innerHTML = `
+                <div class="meta-item"><div class="label">Flag</div><div class="value">${latest.best_flag || '?'}</div></div>
+                <div class="meta-item"><div class="label">Vessel Type</div><div class="value">${latest.vessel_class || '?'}</div></div>
+                <div class="meta-item"><div class="label">Callsign</div><div class="value">${latest.ais_callsign || latest.registry_callsign || '?'}</div></div>
+                <div class="meta-item"><div class="label">Top Port</div><div class="value">${latest.top_port || '?'}</div></div>
+                <div class="meta-item"><div class="label">Port State</div><div class="value">${latest.top_port_state || '?'}</div></div>
+                <div class="meta-item"><div class="label">IUU Listed</div><div class="value">${latest.iuu_listed ? '<span style="color:#ff4444">YES</span>' : 'No'}</div></div>
+            `;
+        }
+
+        function renderRadar(vessel) {
+            const dims = [
+                { key: 'disabling_over_12_hours', label: 'AIS Gaps 12h+', max: 20 },
+                { key: 'disabling_over_24_hours', label: 'AIS Gaps 24h+', max: 10 },
+                { key: 'number_encounters', label: 'Encounters', max: 50 },
+                { key: 'number_iuu_listed_encounters', label: 'IUU Encounters', max: 5 },
+                { key: 'number_forced_labor_encounters', label: 'Forced Labor Enc.', max: 3 },
+                { key: 'overlap_hours_multinames', label: 'Spoofing (h)', max: 100 },
+                { key: 'gaps_count', label: 'Total Gaps', max: 500 },
+                { key: 'number_voyages', label: 'Voyages', max: 20 }
+            ];
+
+            const size = 300;
+            const margin = 60;
+            const radius = size / 2 - margin;
+            const cx = size / 2, cy = size / 2;
+
+            d3.select('#radar-chart').selectAll('*').remove();
+
+            const svg = d3.select('#radar-chart')
+                .attr('viewBox', `0 0 ${size} ${size}`)
+                .style('width', '100%').style('height', 'auto');
+
+            // Grid rings
+            [0.25, 0.5, 0.75, 1].forEach(pct => {
+                svg.append('circle')
+                    .attr('cx', cx).attr('cy', cy)
+                    .attr('r', radius * pct)
+                    .attr('class', 'radar-grid');
+            });
+
+            // Axes
+            dims.forEach((d, i) => {
+                const angle = (Math.PI * 2 * i / dims.length) - Math.PI / 2;
+                const x2 = cx + radius * Math.cos(angle);
+                const y2 = cy + radius * Math.sin(angle);
+                svg.append('line')
+                    .attr('x1', cx).attr('y1', cy)
+                    .attr('x2', x2).attr('y2', y2)
+                    .attr('class', 'radar-axis');
+
+                const lx = cx + (radius + 20) * Math.cos(angle);
+                const ly = cy + (radius + 20) * Math.sin(angle);
+                svg.append('text')
+                    .attr('x', lx).attr('y', ly)
+                    .attr('text-anchor', 'middle')
+                    .attr('dominant-baseline', 'middle')
+                    .attr('class', 'radar-axis')
+                    .style('font-size', '10px')
+                    .text(d.label);
+            });
+
+            // Data polygon
+            const points = dims.map((d, i) => {
+                const val = Math.min((vessel[d.key] || 0) / d.max, 1);
+                const angle = (Math.PI * 2 * i / dims.length) - Math.PI / 2;
+                return [
+                    cx + radius * val * Math.cos(angle),
+                    cy + radius * val * Math.sin(angle)
+                ];
+            });
+
+            svg.append('polygon')
+                .attr('points', points.map(p => p.join(',')).join(' '))
+                .attr('class', 'radar-area');
+
+            points.forEach(p => {
+                svg.append('circle')
+                    .attr('cx', p[0]).attr('cy', p[1])
+                    .attr('r', 3)
+                    .attr('class', 'radar-point');
+            });
+        }
+
+        function chartOptions(showLegend = true) {
+            return {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: { legend: { labels: { color: '#90a4ae' }, display: showLegend } },
+                scales: {
+                    x: { ticks: { color: '#78909c' }, grid: { color: '#1e4976' } },
+                    y: { ticks: { color: '#78909c' }, grid: { color: '#1e4976' } }
+                }
+            };
+        }
+
+        function renderEncountersChart(history) {
+            const labels = history.map(v => v.year);
+            const totalEnc = history.map(v => v.number_encounters || 0);
+            const iuuEnc = history.map(v => v.number_iuu_listed_encounters || 0);
+            const flEnc = history.map(v => v.number_forced_labor_encounters || 0);
+
+            if (charts.encounters) charts.encounters.destroy();
+            charts.encounters = new Chart(document.getElementById('encounters-chart'), {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [
+                        { label: 'Total Encounters', data: totalEnc, backgroundColor: '#4fc3f7' },
+                        { label: 'IUU-listed Encounters', data: iuuEnc, backgroundColor: '#ff6b6b' },
+                        { label: 'Forced Labor Encounters', data: flEnc, backgroundColor: '#ffaa00' }
+                    ]
+                },
+                options: chartOptions()
+            });
+        }
+
+        function renderActivityChart(history) {
+            const labels = history.map(v => v.year);
+            const hours = history.map(v => v.hours || 0);
+            const voyages = history.map(v => v.number_voyages || 0);
+
+            if (charts.activity) charts.activity.destroy();
+            charts.activity = new Chart(document.getElementById('activity-chart'), {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [
+                        { label: 'AIS Hours', data: hours, backgroundColor: '#4fc3f7', yAxisID: 'y' },
+                        { label: 'Voyages', data: voyages, type: 'line',
+                          borderColor: '#ffaa00', backgroundColor: 'rgba(255,170,0,0.2)',
+                          yAxisID: 'y1', tension: 0.3 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { labels: { color: '#90a4ae' } } },
+                    scales: {
+                        x: { ticks: { color: '#78909c' }, grid: { color: '#1e4976' } },
+                        y: { position: 'left', ticks: { color: '#4fc3f7' }, grid: { color: '#1e4976' },
+                             title: { display: true, text: 'Hours', color: '#4fc3f7' } },
+                        y1: { position: 'right', ticks: { color: '#ffaa00' }, grid: { display: false },
+                              title: { display: true, text: 'Voyages', color: '#ffaa00' } }
+                    }
+                }
+            });
+        }
+
+        function renderGapsChart(history) {
+            const labels = history.map(v => v.year);
+            const gaps = history.map(v => v.gaps_count || 0);
+            const dis12 = history.map(v => v.disabling_over_12_hours || 0);
+            const dis24 = history.map(v => v.disabling_over_24_hours || 0);
+            const spoof = history.map(v => v.overlap_hours_multinames || 0);
+
+            if (charts.gaps) charts.gaps.destroy();
+            charts.gaps = new Chart(document.getElementById('gaps-chart'), {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [
+                        { label: 'Total AIS Gaps', data: gaps, borderColor: '#4fc3f7', backgroundColor: 'rgba(79,195,247,0.1)', tension: 0.3, fill: true },
+                        { label: 'Suspected Disabling 12h+', data: dis12, borderColor: '#ffaa00', tension: 0.3 },
+                        { label: 'Suspected Disabling 24h+', data: dis24, borderColor: '#ff6b6b', tension: 0.3 },
+                        { label: 'Identity Spoofing Hours', data: spoof, borderColor: '#a855f7', tension: 0.3, borderDash: [5, 5] }
+                    ]
+                },
+                options: chartOptions()
+            });
+        }
+
+        async function quickSearch(flag) {
+            // Grab a random vessel with that flag from top risk
+            const res = await fetch(`/api/iuu/top_risk?year=2024&n=100`);
+            const data = await res.json();
+            const filtered = data.filter(v => v.best_flag === flag);
+            if (filtered.length === 0) {
+                alert(`No vessels found for flag ${flag}`);
+                return;
+            }
+            const pick = filtered[Math.floor(Math.random() * filtered.length)];
+            loadVessel(pick.mmsi);
+        }
+
+        async function quickSearchIUU() {
+            const res = await fetch('/api/iuu/top_risk?year=2024&n=1');
+            const data = await res.json();
+            if (data.length > 0) loadVessel(data[0].mmsi);
+        }
+    </script>
+</body>
+</html>

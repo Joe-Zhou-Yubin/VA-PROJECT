@@ -1,0 +1,38 @@
+# --- Large datasets (see datasets/SUMMARY.md for download instructions) ---
+datasets/**/*.csv
+datasets/**/*.zip
+datasets/fleet-monthly/2020/
+datasets/fleet-monthly/2021/
+datasets/fleet-monthly/2022/
+datasets/fleet-monthly/2023/
+datasets/fleet-monthly/2024/
+
+# --- Generated parquet files (regenerate with convert_to_parquet.py) ---
+examples/data/
+*.parquet
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- IDE / editor ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Flask ---
+instance/
+.flaskenv

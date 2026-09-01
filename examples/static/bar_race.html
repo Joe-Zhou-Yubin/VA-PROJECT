@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fishing Nations - Animated Bar Chart Race</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a1628;
+            color: #e0e6ed;
+            padding: 1.5rem;
+            min-height: 100vh;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .header h1 { color: #4fc3f7; font-size: 1.5rem; }
+        .back-link {
+            color: #4fc3f7;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.4rem 0.8rem;
+            border: 1px solid #1e4976;
+            border-radius: 4px;
+        }
+        .back-link:hover { background: #1a3a5c; }
+        .description {
+            color: #78909c;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+        .controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+            background: #112240;
+            border: 1px solid #1e4976;
+            border-radius: 8px;
+            padding: 0.8rem 1.2rem;
+            flex-wrap: wrap;
+        }
+        .controls button {
+            padding: 0.5rem 1.2rem;
+            background: #4fc3f7;
+            color: #0a1628;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            min-width: 80px;
+        }
+        .controls button:hover { background: #29b6f6; }
+        .controls button.pause { background: #ff6b6b; color: #fff; }
+        .controls button.pause:hover { background: #ee5a5a; }
+        .controls label { font-size: 0.85rem; color: #78909c; }
+        .controls select, .controls input[type="range"] {
+            padding: 0.3rem;
+            background: #1a3a5c;
+            border: 1px solid #2e5a8a;
+            color: #e0e6ed;
+            border-radius: 4px;
+        }
+        .date-display {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4fc3f7;
+            margin-left: auto;
+            font-variant-numeric: tabular-nums;
+        }
+        #chart-container {
+            background: #112240;
+            border: 1px solid #1e4976;
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+        }
+        .bar { transition: none; }
+        .bar-label {
+            fill: #e0e6ed;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: monospace;
+        }
+        .bar-value {
+            fill: #4fc3f7;
+            font-size: 12px;
+            font-variant-numeric: tabular-nums;
+        }
+        .axis text { fill: #78909c; font-size: 11px; }
+        .axis line, .axis path { stroke: #1e4976; }
+        .grid-line { stroke: #1e4976; stroke-dasharray: 2 2; }
+        .timeline-slider {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            color: #78909c;
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+        }
+        .story-annotation {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 107, 107, 0.1);
+            border-left: 3px solid #ff6b6b;
+            padding: 0.6rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #ff8888;
+            max-width: 280px;
+            display: none;
+        }
+        .story-annotation.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Fishing Nations - Bar Chart Race</h1>
+        <a href="/" class="back-link">← Back</a>
+    </div>
+
+    <p class="description">
+        Animated ranking of top fishing nations by monthly AIS-observed fishing hours (2020–2024).
+        Watch how positions shift over time as seasons change and fleets expand or contract.
+    </p>
+
+    <div class="controls">
+        <button id="play-btn" onclick="togglePlay()">▶ Play</button>
+        <button onclick="reset()">↺ Reset</button>
+        <label>Speed:
+            <select id="speed-select" onchange="updateSpeed()">
+                <option value="1500">Slow</option>
+                <option value="800" selected>Normal</option>
+                <option value="400">Fast</option>
+                <option value="150">Very Fast</option>
+            </select>
+        </label>
+        <label>Top N:
+            <select id="topn-select" onchange="loadData()">
+                <option value="10">10</option>
+                <option value="15" selected>15</option>
+                <option value="20">20</option>
+            </select>
+        </label>
+        <div class="date-display" id="date-display">—</div>
+    </div>
+
+    <div id="chart-container">
+        <div class="story-annotation" id="annotation"></div>
+        <svg id="race-chart"></svg>
+        <input type="range" id="timeline-slider" class="timeline-slider" min="0" max="0" value="0"
+               oninput="pauseAndSeek(this.value)">
+        <div class="progress-info">
+            <span id="progress-current">—</span>
+            <span id="progress-total">—</span>
+        </div>
+    </div>
+
+    <script>
+        let raceData = [];
+        let currentIndex = 0;
+        let playing = false;
+        let intervalId = null;
+        let speed = 800;
+
+        const COLORS = {
+            CHN: '#e63946', TWN: '#f77f00', KOR: '#fcbf49', JPN: '#eae2b7',
+            ESP: '#ffd60a', RUS: '#e63946', ITA: '#2a9d8f', FRA: '#264653',
+            NOR: '#a8dadc', USA: '#457b9d', GBR: '#e63946', ISL: '#1d3557',
+            IDN: '#06d6a0', VNM: '#118ab2', PHL: '#ffd166', MYS: '#f4a261',
+            IND: '#ef476f', PAN: '#e63946', LBR: '#ff6b6b', SGP: '#a855f7',
+            NLD: '#f77f00', GHA: '#06d6a0', PER: '#ef476f'
+        };
+
+        function colorFor(flag) {
+            return COLORS[flag] || d3.interpolateSpectral(Math.random());
+        }
+
+        async function loadData() {
+            const topN = document.getElementById('topn-select').value;
+            const res = await fetch(`/api/fleet/race?top_n=${topN}`);
+            raceData = await res.json();
+            currentIndex = 0;
+            document.getElementById('timeline-slider').max = raceData.length - 1;
+            document.getElementById('progress-total').textContent = `${raceData.length} months (${raceData[0].date} → ${raceData[raceData.length - 1].date})`;
+            renderFrame(0);
+        }
+
+        function renderFrame(idx) {
+            currentIndex = idx;
+            const frame = raceData[idx];
+            if (!frame) return;
+
+            document.getElementById('date-display').textContent = frame.date;
+            document.getElementById('progress-current').textContent = `Frame ${idx + 1} / ${raceData.length}`;
+            document.getElementById('timeline-slider').value = idx;
+
+            // Story annotations for interesting periods
+            const annotation = document.getElementById('annotation');
+            if (frame.date.startsWith('2020')) {
+                annotation.textContent = 'COVID-19 impact: many fleets reduced operations';
+                annotation.classList.add('active');
+            } else if (frame.date >= '2022-03' && frame.date <= '2022-12') {
+                annotation.textContent = 'Global fuel price shocks & Ukraine conflict effects';
+                annotation.classList.add('active');
+            } else {
+                annotation.classList.remove('active');
+            }
+
+            const container = document.getElementById('chart-container');
+            const width = Math.max(container.clientWidth - 60, 700);
+            const barHeight = 32;
+            const nBars = Math.min(frame.flags.length, 15);
+            const height = nBars * (barHeight + 8) + 60;
+            const margin = { top: 20, right: 100, bottom: 40, left: 80 };
+
+            let svg = d3.select('#race-chart')
+                .attr('width', width)
+                .attr('height', height);
+
+            const innerWidth = width - margin.left - margin.right;
+            const innerHeight = height - margin.top - margin.bottom;
+
+            let g = svg.select('.race-g');
+            if (g.empty()) {
+                g = svg.append('g').attr('class', 'race-g')
+                    .attr('transform', `translate(${margin.left},${margin.top})`);
+                g.append('g').attr('class', 'x-axis')
+                    .attr('transform', `translate(0, 0)`);
+                g.append('g').attr('class', 'bars');
+            }
+
+            const topFlags = frame.flags.slice(0, nBars);
+            const maxVal = topFlags[0].hours || 1;
+
+            const x = d3.scaleLinear().domain([0, maxVal * 1.1]).range([0, innerWidth]);
+            const y = d3.scaleBand()
+                .domain(topFlags.map((_, i) => i))
+                .range([0, innerHeight])
+                .padding(0.15);
+
+            // X axis
+            const xAxis = d3.axisTop(x).ticks(6).tickFormat(d => d3.format('.2s')(d));
+            g.select('.x-axis').transition().duration(speed * 0.5).call(xAxis);
+
+            // Grid lines
+            g.selectAll('.grid-line').remove();
+            g.selectAll('.grid-line')
+                .data(x.ticks(6))
+                .join('line')
+                .attr('class', 'grid-line')
+                .attr('x1', d => x(d)).attr('x2', d => x(d))
+                .attr('y1', 0).attr('y2', innerHeight);
+
+            const t = svg.transition().duration(speed * 0.8).ease(d3.easeLinear);
+
+            const bars = g.select('.bars').selectAll('g.bar-group')
+                .data(topFlags, d => d.flag);
+
+            const barsEnter = bars.enter().append('g')
+                .attr('class', 'bar-group')
+                .attr('transform', (d, i) => `translate(0, ${innerHeight + 30})`);
+
+            barsEnter.append('rect')
+                .attr('class', 'bar')
+                .attr('x', 0).attr('y', 0)
+                .attr('height', y.bandwidth())
+                .attr('width', 0)
+                .attr('rx', 3)
+                .attr('fill', d => colorFor(d.flag));
+
+            barsEnter.append('text')
+                .attr('class', 'bar-label')
+                .attr('x', -8).attr('y', y.bandwidth() / 2)
+                .attr('text-anchor', 'end')
+                .attr('dominant-baseline', 'middle')
+                .text(d => d.flag);
+
+            barsEnter.append('text')
+                .attr('class', 'bar-value')
+                .attr('x', 0).attr('y', y.bandwidth() / 2)
+                .attr('dominant-baseline', 'middle');
+
+            // Update all
+            const merged = bars.merge(barsEnter);
+            merged.transition(t)
+                .attr('transform', (d, i) => `translate(0, ${y(i)})`);
+
+            merged.select('rect').transition(t)
+                .attr('width', d => x(d.hours))
+                .attr('height', y.bandwidth());
+
+            merged.select('.bar-label').transition(t)
+                .attr('y', y.bandwidth() / 2);
+
+            merged.select('.bar-value').transition(t)
+                .attr('x', d => x(d.hours) + 6)
+                .attr('y', y.bandwidth() / 2)
+                .tween('text', function(d) {
+                    const node = this;
+                    const prev = +node.dataset.prev || 0;
+                    const target = d.hours;
+                    const interp = d3.interpolateNumber(prev, target);
+                    return function(tt) {
+                        const v = interp(tt);
+                        node.dataset.prev = v;
+                        node.textContent = d3.format('.2s')(v);
+                    };
+                });
+
+            bars.exit()
+                .transition(t)
+                .attr('transform', `translate(0, ${innerHeight + 30})`)
+                .style('opacity', 0)
+                .remove();
+        }
+
+        function togglePlay() {
+            playing = !playing;
+            const btn = document.getElementById('play-btn');
+            if (playing) {
+                btn.textContent = '❚❚ Pause';
+                btn.classList.add('pause');
+                intervalId = setInterval(advance, speed);
+            } else {
+                btn.textContent = '▶ Play';
+                btn.classList.remove('pause');
+                clearInterval(intervalId);
+            }
+        }
+
+        function advance() {
+            if (currentIndex >= raceData.length - 1) {
+                togglePlay();  // stop
+                return;
+            }
+            renderFrame(currentIndex + 1);
+        }
+
+        function reset() {
+            if (playing) togglePlay();
+            renderFrame(0);
+        }
+
+        function updateSpeed() {
+            speed = +document.getElementById('speed-select').value;
+            if (playing) {
+                clearInterval(intervalId);
+                intervalId = setInterval(advance, speed);
+            }
+        }
+
+        function pauseAndSeek(val) {
+            if (playing) togglePlay();
+            renderFrame(+val);
+        }
+
+        window.addEventListener('resize', () => renderFrame(currentIndex));
+
+        loadData();
+    </script>
+</body>
+</html>

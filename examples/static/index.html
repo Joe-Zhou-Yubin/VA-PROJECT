@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GFW Fishing Analytics - Visual Explorations</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a1628;
+            color: #e0e6ed;
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #0d2137 0%, #1a3a5c 50%, #0d2137 100%);
+            padding: 3rem 3rem 2.5rem;
+            border-bottom: 1px solid #1e4976;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(79, 195, 247, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 30%, rgba(255, 107, 107, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .header-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
+        .header .badge {
+            display: inline-block;
+            background: rgba(79, 195, 247, 0.15);
+            color: #4fc3f7;
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(79, 195, 247, 0.3);
+        }
+        .header h1 {
+            font-size: 2.4rem;
+            color: #e0e6ed;
+            margin-bottom: 0.6rem;
+            line-height: 1.1;
+        }
+        .header h1 .accent { color: #4fc3f7; }
+        .header p {
+            color: #90a4ae;
+            font-size: 1.05rem;
+            max-width: 700px;
+            line-height: 1.5;
+        }
+        .stats-bar {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 1.8rem;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            border-left: 2px solid #4fc3f7;
+            padding-left: 1rem;
+        }
+        .stat-item .num {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #4fc3f7;
+        }
+        .stat-item .label {
+            font-size: 0.75rem;
+            color: #78909c;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        main { max-width: 1200px; margin: 0 auto; padding: 3rem; }
+        .section { margin-bottom: 3rem; }
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .section-title .num-badge {
+            width: 32px;
+            height: 32px;
+            background: #4fc3f7;
+            color: #0a1628;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .section-title h2 {
+            font-size: 1.4rem;
+            color: #e0e6ed;
+        }
+        .section-title .subtitle {
+            color: #78909c;
+            font-size: 0.85rem;
+            margin-left: 0.5rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.2rem;
+        }
+        .card {
+            background: linear-gradient(135deg, #112240 0%, #142850 100%);
+            border: 1px solid #1e4976;
+            border-radius: 12px;
+            padding: 1.4rem;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            opacity: 0.7;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+        .card .icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+        }
+        .card h3 {
+            font-size: 1.05rem;
+            color: #e0e6ed;
+            margin-bottom: 0.5rem;
+        }
+        .card p {
+            color: #90a4ae;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        .card .tech {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        .card .tech span {
+            background: rgba(30, 73, 118, 0.6);
+            color: #90a4ae;
+            padding: 0.2rem 0.55rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            border: 1px solid rgba(46, 90, 138, 0.5);
+        }
+        .card .cta {
+            position: absolute;
+            top: 1.4rem;
+            right: 1.4rem;
+            color: var(--accent);
+            font-size: 1.2rem;
+            opacity: 0.6;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .card:hover .cta {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+        .card.geo { --accent: #4fc3f7; }
+        .card.analytical { --accent: #ffaa00; }
+        .card.interactive { --accent: #a855f7; }
+        .card.disabling { --accent: #ff6b6b; }
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: #546e7a;
+            font-size: 0.8rem;
+            border-top: 1px solid #1e4976;
+            margin-top: 3rem;
+        }
+        .footer a { color: #4fc3f7; text-decoration: none; }
+        @media (max-width: 700px) {
+            .header, main { padding: 2rem 1.5rem; }
+            .header h1 { font-size: 1.8rem; }
+            .stats-bar { gap: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <span class="badge">IS428 Visual Analytics · Project</span>
+            <h1>Tracking the <span class="accent">Global Fishing Fleet</span></h1>
+            <p>
+                Interactive visual analytics of Global Fishing Watch AIS data (2020–2024).
+                Explore fishing patterns, uncover suspicious vessel behavior, and identify
+                illegal fishing risk indicators across the world's oceans.
+            </p>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="num">695M+</div>
+                    <div class="label">Fishing Hours</div>
+                </div>
+                <div class="stat-item">
+                    <div class="num">192K+</div>
+                    <div class="label">Unique Vessels</div>
+                </div>
+                <div class="stat-item">
+                    <div class="num">55K</div>
+                    <div class="label">AIS Disabling Events</div>
+                </div>
+                <div class="stat-item">
+                    <div class="num">166K</div>
+                    <div class="label">Global Anchorages</div>
+                </div>
+                <div class="stat-item">
+                    <div class="num">8</div>
+                    <div class="label">Visualizations</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- Geographic Section -->
+        <section class="section">
+            <div class="section-title">
+                <div class="num-badge">1</div>
+                <h2>Geographic Explorations</h2>
+                <span class="subtitle">Where is the world fishing?</span>
+            </div>
+            <div class="grid">
+                <a class="card geo" href="/static/heatmap.html">
+                    <span class="cta">→</span>
+                    <span class="icon">🌊</span>
+                    <h3>Fishing Effort Heatmap</h3>
+                    <p>Global fishing intensity as a heat map with click-to-inspect detail showing flag state and gear breakdown per grid cell.</p>
+                    <div class="tech">
+                        <span>Leaflet</span><span>leaflet.heat</span><span>OpenStreetMap</span>
+                    </div>
+                </a>
+
+                <a class="card disabling" href="/static/disabling_map.html">
+                    <span class="cta">→</span>
+                    <span class="icon">📡</span>
+                    <h3>AIS Disabling Events</h3>
+                    <p>Where vessels "go dark" — clustered map of suspected AIS disabling events, colored by gap duration, with arc trajectories.</p>
+                    <div class="tech">
+                        <span>Leaflet</span><span>MarkerCluster</span><span>Arcs</span>
+                    </div>
+                </a>
+
+                <a class="card geo" href="/static/country_map.html">
+                    <span class="cta">→</span>
+                    <span class="icon">🗺️</span>
+                    <h3>Country Choropleth</h3>
+                    <p>World map colored by fishing hours, AIS disabling events, or IUU risk indicators. Compare nations at a glance.</p>
+                    <div class="tech">
+                        <span>Leaflet</span><span>GeoJSON</span><span>D3 color scales</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Analytical Section -->
+        <section class="section">
+            <div class="section-title">
+                <div class="num-badge">2</div>
+                <h2>Analytical Dashboards</h2>
+                <span class="subtitle">Rankings, distributions, and correlations</span>
+            </div>
+            <div class="grid">
+                <a class="card analytical" href="/static/trends.html">
+                    <span class="cta">→</span>
+                    <span class="icon">📈</span>
+                    <h3>Trends & Rankings</h3>
+                    <p>Multi-panel dashboard: top fishing nations, gear type mix, monthly trends, and AIS disabling by flag state.</p>
+                    <div class="tech">
+                        <span>Chart.js</span><span>Bar</span><span>Line</span><span>Doughnut</span>
+                    </div>
+                </a>
+
+                <a class="card disabling" href="/static/iuu_risk.html">
+                    <span class="cta">→</span>
+                    <span class="icon">⚠️</span>
+                    <h3>IUU Risk Profiles</h3>
+                    <p>Parallel coordinates chart of vessel risk indicators: AIS gaps, IUU encounters, forced labor links, identity spoofing.</p>
+                    <div class="tech">
+                        <span>D3.js</span><span>Parallel Coords</span><span>Table</span>
+                    </div>
+                </a>
+
+                <a class="card analytical" href="/static/sunburst.html">
+                    <span class="cta">→</span>
+                    <span class="icon">🎯</span>
+                    <h3>Fleet Composition Sunburst</h3>
+                    <p>Hierarchical breakdown of global fleet by nation and gear type. Zoomable rings reveal each country's fishing profile.</p>
+                    <div class="tech">
+                        <span>D3.js</span><span>Sunburst</span><span>Zoomable</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Interactive Section -->
+        <section class="section">
+            <div class="section-title">
+                <div class="num-badge">3</div>
+                <h2>Interactive Deep Dives</h2>
+                <span class="subtitle">Drill into individual vessels and animated stories</span>
+            </div>
+            <div class="grid">
+                <a class="card interactive" href="/static/vessel_profile.html">
+                    <span class="cta">→</span>
+                    <span class="icon">🔍</span>
+                    <h3>Vessel Profile Search</h3>
+                    <p>Search any vessel by MMSI or name. See radar chart of risk indicators, encounter timeline, and multi-year activity history.</p>
+                    <div class="tech">
+                        <span>D3 Radar</span><span>Chart.js Timeline</span><span>Live Search</span>
+                    </div>
+                </a>
+
+                <a class="card interactive" href="/static/bar_race.html">
+                    <span class="cta">→</span>
+                    <span class="icon">🏁</span>
+                    <h3>Bar Chart Race</h3>
+                    <p>Animated monthly ranking of top fishing nations across 5 years. Play, pause, scrub through time with speed control.</p>
+                    <div class="tech">
+                        <span>D3.js</span><span>Animation</span><span>Timeline</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <div class="footer">
+            <p>
+                Data: <a href="https://globalfishingwatch.org" target="_blank">Global Fishing Watch</a>
+                (CC BY-NC 4.0)
+                · Fleet effort v3.0, IUU Risk Insights v1, Welch et al. 2022 AIS disabling
+            </p>
+            <p style="margin-top: 0.5rem;">
+                IS428 Visual Analytics for Business Intelligence · Singapore Management University
+            </p>
+        </div>
+    </main>
+</body>
+</html>

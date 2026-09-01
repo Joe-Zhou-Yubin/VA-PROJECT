@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Choropleth - Fishing Activity by Nation</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a1628;
+            color: #e0e6ed;
+        }
+        .controls {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            background: rgba(17, 34, 64, 0.97);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #1e4976;
+            min-width: 260px;
+        }
+        .controls h3 { color: #4fc3f7; margin-bottom: 0.8rem; font-size: 0.9rem; }
+        .controls label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            color: #90a4ae;
+        }
+        .controls select {
+            width: 100%;
+            padding: 0.4rem;
+            background: #1a3a5c;
+            border: 1px solid #2e5a8a;
+            color: #e0e6ed;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+        }
+        .metric-tabs {
+            display: flex;
+            gap: 0.3rem;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .metric-tabs button {
+            flex: 1;
+            padding: 0.4rem 0.6rem;
+            background: #1a3a5c;
+            border: 1px solid #2e5a8a;
+            color: #90a4ae;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            min-width: 80px;
+        }
+        .metric-tabs button.active {
+            background: #4fc3f7;
+            color: #0a1628;
+            border-color: #4fc3f7;
+            font-weight: 600;
+        }
+        #map { width: 100vw; height: 100vh; background: #0a1628; }
+        .back-link {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1000;
+            background: rgba(17, 34, 64, 0.95);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: 1px solid #1e4976;
+            color: #4fc3f7;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .back-link:hover { background: #1a3a5c; }
+        .loading-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 22, 40, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            font-size: 1.2rem;
+        }
+        .loading-overlay.hidden { display: none; }
+        .legend {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            background: rgba(17, 34, 64, 0.95);
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            border: 1px solid #1e4976;
+            font-size: 0.75rem;
+            min-width: 200px;
+        }
+        .legend h4 { color: #4fc3f7; margin-bottom: 0.5rem; font-size: 0.8rem; }
+        .legend .scale {
+            display: flex;
+            height: 12px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 0.4rem;
+        }
+        .legend .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            color: #90a4ae;
+            font-size: 0.7rem;
+        }
+        .top-list {
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+            z-index: 1000;
+            background: rgba(17, 34, 64, 0.95);
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            border: 1px solid #1e4976;
+            font-size: 0.75rem;
+            min-width: 220px;
+            max-height: 40vh;
+            overflow-y: auto;
+        }
+        .top-list h4 { color: #4fc3f7; margin-bottom: 0.5rem; font-size: 0.8rem; }
+        .top-list .row {
+            display: grid;
+            grid-template-columns: 20px 45px 1fr auto;
+            gap: 0.4rem;
+            padding: 0.2rem 0;
+            align-items: center;
+            border-bottom: 1px solid #1e4976;
+            cursor: pointer;
+        }
+        .top-list .row:hover { background: #1a3a5c; }
+        .top-list .rank { color: #78909c; }
+        .top-list .flag { color: #ffaa00; font-family: monospace; }
+        .top-list .val { color: #4fc3f7; text-align: right; }
+        .info-box {
+            position: fixed;
+            top: 5rem;
+            right: 1rem;
+            z-index: 999;
+            background: rgba(17, 34, 64, 0.95);
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            border: 1px solid #1e4976;
+            font-size: 0.85rem;
+            min-width: 240px;
+            display: none;
+        }
+        .info-box.active { display: block; }
+        .info-box h4 { color: #4fc3f7; margin-bottom: 0.5rem; }
+        .info-box .val { color: #ffaa00; font-weight: 600; font-size: 1.2rem; }
+
+        /* Leaflet override */
+        .leaflet-container { background: #0a1628; }
+        .leaflet-tooltip {
+            background: rgba(17, 34, 64, 0.95);
+            color: #e0e6ed;
+            border: 1px solid #1e4976;
+            border-radius: 4px;
+        }
+        .leaflet-tooltip-top:before {
+            border-top-color: #1e4976;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-link">← Back</a>
+
+    <div class="controls">
+        <h3>Country Choropleth</h3>
+        <label>Metric:</label>
+        <div class="metric-tabs">
+            <button class="active" data-metric="fishing" onclick="setMetric('fishing')">Fishing Hours</button>
+            <button data-metric="disabling" onclick="setMetric('disabling')">AIS Disabling</button>
+            <button data-metric="iuu" onclick="setMetric('iuu')">IUU Risk</button>
+        </div>
+        <label>Year:
+            <select id="year-select" onchange="loadData()">
+                <option value="2024" selected>2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+            </select>
+        </label>
+        <p style="font-size: 0.7rem; color: #546e7a; margin-top: 0.5rem;">
+            Hover to see country details. Click for full info.
+        </p>
+    </div>
+
+    <div class="info-box" id="info-box">
+        <h4 id="info-country"></h4>
+        <div id="info-content"></div>
+    </div>
+
+    <div class="legend">
+        <h4 id="legend-title">Fishing Hours (log scale)</h4>
+        <div class="scale" id="legend-scale"></div>
+        <div class="scale-labels">
+            <span id="legend-min">0</span>
+            <span id="legend-max">Max</span>
+        </div>
+    </div>
+
+    <div class="top-list">
+        <h4 id="top-list-title">Top 20 Countries</h4>
+        <div id="top-list-content"></div>
+    </div>
+
+    <div class="loading-overlay" id="loading">Loading world map & data...</div>
+    <div id="map"></div>
+
+    <script>
+        const map = L.map('map', {
+            worldCopyJump: true,
+            minZoom: 2,
+            maxZoom: 6,
+        }).setView([20, 0], 2);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap &copy; CARTO',
+            subdomains: 'abcd'
+        }).addTo(map);
+
+        let geoLayer = null;
+        let countryData = {};
+        let worldGeoJSON = null;
+        let currentMetric = 'fishing';
+        let colorScale = null;
+
+        const METRIC_CONFIG = {
+            fishing: {
+                title: 'Fishing Hours (log scale)',
+                field: 'fishing_hours',
+                colors: ['#000033', '#003366', '#0055aa', '#0088dd', '#4fc3f7', '#ffcc00', '#ff6600', '#cc0000'],
+                api: '/api/fleet/choropleth',
+                secondaryField: 'vessel_count',
+                secondaryLabel: 'Vessels'
+            },
+            disabling: {
+                title: 'AIS Disabling Events',
+                field: 'event_count',
+                colors: ['#1a1a2e', '#3d2645', '#5c2751', '#8b1a4a', '#c72c48', '#ff4444', '#ff8844'],
+                api: '/api/disabling/choropleth',
+                secondaryField: 'avg_gap_hours',
+                secondaryLabel: 'Avg gap (h)'
+            },
+            iuu: {
+                title: 'IUU-listed Encounters',
+                field: 'total_iuu_encounters',
+                colors: ['#0d1a2b', '#3a1a3a', '#5a1a4a', '#8b1a5a', '#c72c48', '#ff4444', '#ffaa00'],
+                api: '/api/iuu/choropleth',
+                secondaryField: 'total_forced_labor_encounters',
+                secondaryLabel: 'Forced labor enc.'
+            }
+        };
+
+        function setMetric(m) {
+            currentMetric = m;
+            document.querySelectorAll('.metric-tabs button').forEach(b => {
+                b.classList.toggle('active', b.dataset.metric === m);
+            });
+            loadData();
+        }
+
+        function buildLegend(colors, min, max) {
+            const scale = document.getElementById('legend-scale');
+            scale.innerHTML = '';
+            colors.forEach(c => {
+                const seg = document.createElement('div');
+                seg.style.flex = '1';
+                seg.style.background = c;
+                scale.appendChild(seg);
+            });
+            document.getElementById('legend-min').textContent = min.toLocaleString();
+            document.getElementById('legend-max').textContent = max.toLocaleString();
+            document.getElementById('legend-title').textContent = METRIC_CONFIG[currentMetric].title;
+        }
+
+        async function loadWorldGeoJSON() {
+            if (worldGeoJSON) return worldGeoJSON;
+            const res = await fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json');
+            worldGeoJSON = await res.json();
+            return worldGeoJSON;
+        }
+
+        async function loadData() {
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('info-box').classList.remove('active');
+
+            const year = document.getElementById('year-select').value;
+            const config = METRIC_CONFIG[currentMetric];
+
+            try {
+                const [geo, dataRes] = await Promise.all([
+                    loadWorldGeoJSON(),
+                    fetch(`${config.api}?year=${year}`)
+                ]);
+                const data = await dataRes.json();
+
+                // Build lookup by flag (ISO3)
+                countryData = {};
+                data.forEach(d => {
+                    if (d.flag) countryData[d.flag] = d;
+                });
+
+                // Compute color scale (log scale for skewed distributions)
+                const values = data.map(d => d[config.field] || 0).filter(v => v > 0);
+                const maxVal = Math.max(...values);
+                const minVal = Math.max(1, Math.min(...values));
+
+                colorScale = d3.scaleSequentialLog()
+                    .domain([minVal, maxVal])
+                    .interpolator(d3.interpolateRgbBasis(config.colors));
+
+                buildLegend(config.colors, Math.round(minVal), Math.round(maxVal));
+
+                // Remove existing layer
+                if (geoLayer) map.removeLayer(geoLayer);
+
+                geoLayer = L.geoJSON(geo, {
+                    style: feature => {
+                        const iso3 = feature.id;
+                        const data = countryData[iso3];
+                        const value = data ? (data[config.field] || 0) : 0;
+                        return {
+                            fillColor: value > 0 ? colorScale(value) : '#1a2b3d',
+                            fillOpacity: 0.85,
+                            color: '#0a1628',
+                            weight: 0.5
+                        };
+                    },
+                    onEachFeature: (feature, layer) => {
+                        const iso3 = feature.id;
+                        const name = feature.properties.name;
+                        const data = countryData[iso3];
+
+                        const val = data ? (data[config.field] || 0) : 0;
+                        const secondaryVal = data ? (data[config.secondaryField] || 0) : 0;
+
+                        layer.bindTooltip(
+                            `<b>${name}</b> (${iso3})<br>` +
+                            `${config.title.split(' (')[0]}: <b>${Math.round(val).toLocaleString()}</b>` +
+                            (data ? `<br>${config.secondaryLabel}: ${Math.round(secondaryVal).toLocaleString()}` : '<br><i>No data</i>'),
+                            { sticky: true }
+                        );
+
+                        layer.on({
+                            mouseover: e => {
+                                e.target.setStyle({ weight: 2, color: '#4fc3f7' });
+                                e.target.bringToFront();
+                            },
+                            mouseout: e => {
+                                geoLayer.resetStyle(e.target);
+                            },
+                            click: e => {
+                                showCountryInfo(iso3, name, data);
+                                map.fitBounds(e.target.getBounds(), { maxZoom: 5 });
+                            }
+                        });
+                    }
+                }).addTo(map);
+
+                renderTopList(data, config);
+
+            } catch (err) {
+                console.error(err);
+                alert('Error loading data. Check console.');
+            } finally {
+                document.getElementById('loading').classList.add('hidden');
+            }
+        }
+
+        function renderTopList(data, config) {
+            const sorted = [...data].sort((a, b) => (b[config.field] || 0) - (a[config.field] || 0)).slice(0, 20);
+            document.getElementById('top-list-title').textContent = `Top 20 by ${config.title.split(' (')[0]}`;
+
+            document.getElementById('top-list-content').innerHTML = sorted.map((d, i) => `
+                <div class="row" onclick="zoomToCountry('${d.flag}')">
+                    <span class="rank">${i + 1}</span>
+                    <span class="flag">${d.flag}</span>
+                    <span></span>
+                    <span class="val">${Math.round(d[config.field] || 0).toLocaleString()}</span>
+                </div>
+            `).join('');
+        }
+
+        function zoomToCountry(iso3) {
+            geoLayer.eachLayer(layer => {
+                if (layer.feature.id === iso3) {
+                    map.fitBounds(layer.getBounds(), { maxZoom: 5 });
+                    showCountryInfo(iso3, layer.feature.properties.name, countryData[iso3]);
+                }
+            });
+        }
+
+        function showCountryInfo(iso3, name, data) {
+            document.getElementById('info-country').textContent = `${name} (${iso3})`;
+            const config = METRIC_CONFIG[currentMetric];
+
+            if (!data) {
+                document.getElementById('info-content').innerHTML = '<i style="color:#78909c">No data available</i>';
+            } else {
+                const val = data[config.field] || 0;
+                const sec = data[config.secondaryField] || 0;
+                document.getElementById('info-content').innerHTML = `
+                    <div class="val">${Math.round(val).toLocaleString()}</div>
+                    <div style="color:#90a4ae; font-size: 0.75rem;">${config.title.split(' (')[0]}</div>
+                    <div style="margin-top: 0.5rem; color: #78909c;">
+                        ${config.secondaryLabel}: <b style="color:#e0e6ed">${Math.round(sec).toLocaleString()}</b>
+                    </div>
+                `;
+            }
+            document.getElementById('info-box').classList.add('active');
+        }
+
+        loadData();
+    </script>
+</body>
+</html>

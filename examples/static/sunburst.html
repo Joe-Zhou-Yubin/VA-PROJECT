@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleet Composition Sunburst</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a1628;
+            color: #e0e6ed;
+            padding: 1.5rem;
+            min-height: 100vh;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .header h1 { color: #4fc3f7; font-size: 1.5rem; }
+        .back-link {
+            color: #4fc3f7;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.4rem 0.8rem;
+            border: 1px solid #1e4976;
+            border-radius: 4px;
+        }
+        .back-link:hover { background: #1a3a5c; }
+        .description {
+            color: #78909c;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+        .controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .controls select {
+            padding: 0.4rem 0.8rem;
+            background: #1a3a5c;
+            border: 1px solid #2e5a8a;
+            color: #e0e6ed;
+            border-radius: 4px;
+        }
+        .controls label { font-size: 0.85rem; color: #78909c; }
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+        }
+        @media (max-width: 1000px) { .main-grid { grid-template-columns: 1fr; } }
+        .chart-card {
+            background: #112240;
+            border: 1px solid #1e4976;
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+        }
+        .chart-card h2 {
+            font-size: 1rem;
+            color: #90a4ae;
+            margin-bottom: 1rem;
+        }
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: #78909c;
+            margin-bottom: 0.5rem;
+            min-height: 1.2em;
+        }
+        .breadcrumb .segment {
+            color: #4fc3f7;
+            cursor: pointer;
+        }
+        .breadcrumb .segment:hover { text-decoration: underline; }
+        .center-label {
+            pointer-events: none;
+            text-anchor: middle;
+        }
+        .center-label .value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            fill: #4fc3f7;
+        }
+        .center-label .name {
+            font-size: 0.9rem;
+            fill: #90a4ae;
+        }
+        .center-label .subtitle {
+            font-size: 0.75rem;
+            fill: #78909c;
+        }
+        .segment-path { cursor: pointer; }
+        .segment-path:hover { stroke: #fff; stroke-width: 2; }
+        .segment-label {
+            fill: #fff;
+            font-size: 10px;
+            pointer-events: none;
+            font-weight: 500;
+        }
+        .info-panel { }
+        .info-panel h3 { color: #4fc3f7; font-size: 0.95rem; margin-bottom: 0.8rem; }
+        .info-panel .stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #1e4976;
+            font-size: 0.85rem;
+        }
+        .info-panel .stat .label { color: #78909c; }
+        .info-panel .stat .value { color: #e0e6ed; font-weight: 600; }
+        .top-list-item {
+            display: grid;
+            grid-template-columns: 20px 1fr auto;
+            gap: 0.5rem;
+            padding: 0.3rem 0;
+            font-size: 0.8rem;
+            border-bottom: 1px solid #1e4976;
+            cursor: pointer;
+        }
+        .top-list-item:hover { background: #1a3a5c; }
+        .top-list-item .color-dot {
+            width: 12px; height: 12px;
+            border-radius: 3px;
+            align-self: center;
+        }
+        .top-list-item .label { color: #e0e6ed; }
+        .top-list-item .value { color: #4fc3f7; text-align: right; }
+        .loading-inline {
+            text-align: center;
+            padding: 3rem;
+            color: #546e7a;
+        }
+        .legend-text {
+            font-size: 0.75rem;
+            color: #78909c;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid #1e4976;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Fleet Composition Sunburst</h1>
+        <a href="/" class="back-link">← Back</a>
+    </div>
+
+    <p class="description">
+        Hierarchical view of global fishing effort: outer ring shows gear types, inner ring shows flag states.
+        Click a segment to zoom in. Reveals which gear types dominate each nation's fishing fleet.
+    </p>
+
+    <div class="controls">
+        <label>Year:
+            <select id="year-select" onchange="loadData()">
+                <option value="2024" selected>2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+            </select>
+        </label>
+        <label>Top N Flags:
+            <select id="topn-select" onchange="loadData()">
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20" selected>20</option>
+                <option value="30">30</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="main-grid">
+        <div class="chart-card">
+            <h2>Interactive Sunburst</h2>
+            <div class="breadcrumb" id="breadcrumb">Click a segment to zoom in</div>
+            <div id="sunburst-container" style="text-align: center;">
+                <div class="loading-inline">Loading...</div>
+            </div>
+        </div>
+
+        <div class="chart-card info-panel">
+            <h3 id="info-title">Overview</h3>
+            <div id="info-stats"></div>
+            <h3 style="margin-top: 1.5rem;">Top Contributors</h3>
+            <div id="top-list"></div>
+            <div class="legend-text">
+                Segments sized by fishing hours. Colors by flag state.
+                Click a country to see its gear composition.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let root = null;
+        let currentNode = null;
+
+        async function loadData() {
+            const year = document.getElementById('year-select').value;
+            const topN = document.getElementById('topn-select').value;
+
+            document.getElementById('sunburst-container').innerHTML = '<div class="loading-inline">Loading...</div>';
+
+            const res = await fetch(`/api/fleet/sunburst?year=${year}&top_n=${topN}&min_hours=1000`);
+            const data = await res.json();
+
+            renderSunburst(data);
+            renderInfoPanel(data);
+        }
+
+        function renderSunburst(data) {
+            const container = document.getElementById('sunburst-container');
+            container.innerHTML = '';
+
+            const size = Math.min(container.clientWidth, 650);
+            const radius = size / 2;
+
+            const svg = d3.select('#sunburst-container')
+                .append('svg')
+                .attr('viewBox', `${-radius} ${-radius} ${size} ${size}`)
+                .attr('width', '100%')
+                .style('max-width', `${size}px`)
+                .style('font', '10px sans-serif');
+
+            const g = svg.append('g');
+
+            const hierarchy = d3.hierarchy(data)
+                .sum(d => d.value || 0)
+                .sort((a, b) => b.value - a.value);
+
+            const partition = d3.partition().size([2 * Math.PI, hierarchy.height + 1]);
+            root = partition(hierarchy);
+            root.each(d => d.current = d);
+            currentNode = root;
+
+            // Color scale: assign a color per top-level flag
+            const flags = root.children ? root.children.map(d => d.data.name) : [];
+            const colorScheme = d3.quantize(d3.interpolateRainbow, flags.length + 1);
+            const flagColor = d3.scaleOrdinal(flags, colorScheme);
+
+            const arc = d3.arc()
+                .startAngle(d => d.x0)
+                .endAngle(d => d.x1)
+                .padAngle(d => Math.min((d.x1 - d.x0) / 2, 0.005))
+                .padRadius(radius * 0.5)
+                .innerRadius(d => d.y0 * radius / (hierarchy.height + 1))
+                .outerRadius(d => Math.max(d.y0 * radius / (hierarchy.height + 1), d.y1 * radius / (hierarchy.height + 1) - 1));
+
+            const path = g.selectAll('path')
+                .data(root.descendants().slice(1))
+                .join('path')
+                .attr('class', 'segment-path')
+                .attr('fill', d => {
+                    // Color by ancestor flag
+                    let ancestor = d;
+                    while (ancestor.depth > 1) ancestor = ancestor.parent;
+                    const base = flagColor(ancestor.data.name);
+                    // Lighten if it's a gear (depth 2)
+                    return d.depth === 1 ? base : d3.color(base).brighter(0.5).formatHex();
+                })
+                .attr('fill-opacity', d => arcVisible(d.current) ? (d.depth === 1 ? 0.9 : 0.7) : 0)
+                .attr('d', d => arc(d.current))
+                .style('cursor', 'pointer');
+
+            path.append('title')
+                .text(d => `${d.ancestors().map(x => x.data.name).reverse().slice(1).join(' → ')}\n${d3.format(',.0f')(d.value)} hours`);
+
+            path.on('click', clicked);
+            path.on('mouseover', function(event, d) {
+                showBreadcrumb(d);
+                highlightPath(d);
+            });
+            path.on('mouseout', function() {
+                document.getElementById('breadcrumb').textContent = currentNode === root ? 'Click a segment to zoom in' : `Zoomed: ${currentNode.data.name}`;
+                d3.selectAll('.segment-path').attr('fill-opacity', d => arcVisible(d.current) ? (d.depth === 1 ? 0.9 : 0.7) : 0);
+            });
+
+            // Center label
+            const centerG = svg.append('g').attr('class', 'center-label');
+            const centerName = centerG.append('text')
+                .attr('class', 'name')
+                .attr('y', -8)
+                .text('Global');
+            const centerValue = centerG.append('text')
+                .attr('class', 'value')
+                .attr('y', 15)
+                .text(d3.format('.2s')(root.value));
+            const centerSubtitle = centerG.append('text')
+                .attr('class', 'subtitle')
+                .attr('y', 35)
+                .text('fishing hours');
+
+            // Add labels
+            const label = g.append('g')
+                .attr('pointer-events', 'none')
+                .attr('text-anchor', 'middle')
+                .style('user-select', 'none')
+                .selectAll('text')
+                .data(root.descendants().slice(1))
+                .join('text')
+                .attr('dy', '0.35em')
+                .attr('fill-opacity', d => +labelVisible(d.current))
+                .attr('transform', d => labelTransform(d.current))
+                .attr('class', 'segment-label')
+                .text(d => d.data.name);
+
+            // Clickable center to reset
+            svg.append('circle')
+                .attr('r', radius / (hierarchy.height + 1) * 0.9)
+                .attr('fill', 'transparent')
+                .style('cursor', 'pointer')
+                .on('click', () => zoomTo(root));
+
+            function arcVisible(d) {
+                return d.y1 <= 3 && d.y0 >= 1 && d.x1 > d.x0;
+            }
+
+            function labelVisible(d) {
+                return d.y1 <= 3 && d.y0 >= 1 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03;
+            }
+
+            function labelTransform(d) {
+                const x = (d.x0 + d.x1) / 2 * 180 / Math.PI;
+                const y = (d.y0 + d.y1) / 2 * radius / (hierarchy.height + 1);
+                return `rotate(${x - 90}) translate(${y},0) rotate(${x < 180 ? 0 : 180})`;
+            }
+
+            function clicked(event, p) {
+                zoomTo(p === currentNode ? root : p);
+            }
+
+            function zoomTo(p) {
+                currentNode = p;
+                centerName.text(p.data.name);
+                centerValue.text(d3.format('.2s')(p.value));
+                document.getElementById('breadcrumb').textContent =
+                    p === root ? 'Click a segment to zoom in' : 'Zoomed: ' + p.ancestors().map(x => x.data.name).reverse().slice(1).join(' → ');
+
+                root.each(d => d.target = {
+                    x0: Math.max(0, Math.min(1, (d.x0 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
+                    x1: Math.max(0, Math.min(1, (d.x1 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
+                    y0: Math.max(0, d.y0 - p.depth),
+                    y1: Math.max(0, d.y1 - p.depth)
+                });
+
+                const t = svg.transition().duration(600);
+
+                path.transition(t)
+                    .tween('data', d => {
+                        const i = d3.interpolate(d.current, d.target);
+                        return t => d.current = i(t);
+                    })
+                    .filter(function(d) { return +this.getAttribute('fill-opacity') || arcVisible(d.target); })
+                    .attr('fill-opacity', d => arcVisible(d.target) ? (d.depth === 1 ? 0.9 : 0.7) : 0)
+                    .attrTween('d', d => () => arc(d.current));
+
+                label.filter(function(d) { return +this.getAttribute('fill-opacity') || labelVisible(d.target); })
+                    .transition(t)
+                    .attr('fill-opacity', d => +labelVisible(d.target))
+                    .attrTween('transform', d => () => labelTransform(d.current));
+
+                // Update info panel
+                if (p === root) {
+                    renderInfoPanel(data);
+                } else if (p.depth === 1) {
+                    renderCountryPanel(p);
+                }
+            }
+
+            function showBreadcrumb(d) {
+                const path = d.ancestors().map(x => x.data.name).reverse().slice(1);
+                document.getElementById('breadcrumb').innerHTML =
+                    path.map((s, i) => `<span class="segment">${s}</span>`).join(' → ') +
+                    ` — <b style="color:#4fc3f7">${d3.format(',.0f')(d.value)}</b> hours`;
+            }
+
+            function highlightPath(d) {
+                const ancestors = new Set(d.ancestors());
+                d3.selectAll('.segment-path').attr('fill-opacity', dd => {
+                    if (!arcVisible(dd.current)) return 0;
+                    return ancestors.has(dd) ? 1 : 0.25;
+                });
+            }
+        }
+
+        function renderInfoPanel(data) {
+            document.getElementById('info-title').textContent = 'Global Overview';
+            const total = data.children.reduce((s, c) => s + c.children.reduce((ss, cc) => ss + cc.value, 0), 0);
+            const flagCount = data.children.length;
+
+            document.getElementById('info-stats').innerHTML = `
+                <div class="stat"><span class="label">Total Fishing Hours</span><span class="value">${d3.format(',.0f')(total)}</span></div>
+                <div class="stat"><span class="label">Countries Shown</span><span class="value">${flagCount}</span></div>
+                <div class="stat"><span class="label">Gear Types</span><span class="value">${new Set(data.children.flatMap(c => c.children.map(cc => cc.name))).size}</span></div>
+            `;
+
+            // Top contributors (flags)
+            const flags = data.children.map(c => ({
+                name: c.name,
+                value: c.children.reduce((s, cc) => s + cc.value, 0)
+            })).sort((a, b) => b.value - a.value);
+
+            const flagColors = d3.quantize(d3.interpolateRainbow, flags.length + 1);
+            document.getElementById('top-list').innerHTML = flags.slice(0, 15).map((f, i) => `
+                <div class="top-list-item">
+                    <div class="color-dot" style="background: ${flagColors[i]}"></div>
+                    <span class="label">${f.name}</span>
+                    <span class="value">${d3.format('.2s')(f.value)}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderCountryPanel(node) {
+            document.getElementById('info-title').textContent = `${node.data.name} Fleet Breakdown`;
+            const total = node.value;
+            const gearCount = node.children ? node.children.length : 0;
+            const topGear = node.children ? node.children.sort((a, b) => b.value - a.value)[0] : null;
+
+            document.getElementById('info-stats').innerHTML = `
+                <div class="stat"><span class="label">Total Hours</span><span class="value">${d3.format(',.0f')(total)}</span></div>
+                <div class="stat"><span class="label">Gear Types</span><span class="value">${gearCount}</span></div>
+                <div class="stat"><span class="label">Dominant Gear</span><span class="value">${topGear ? topGear.data.name : '—'}</span></div>
+            `;
+
+            if (node.children) {
+                document.getElementById('top-list').innerHTML = node.children
+                    .sort((a, b) => b.value - a.value)
+                    .map(c => `
+                        <div class="top-list-item">
+                            <div class="color-dot" style="background: #4fc3f7"></div>
+                            <span class="label">${c.data.name}</span>
+                            <span class="value">${d3.format('.2s')(c.value)} (${(c.value / total * 100).toFixed(1)}%)</span>
+                        </div>
+                    `).join('');
+            }
+        }
+
+        loadData();
+    </script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IUU Risk Profiles - Parallel Coordinates</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a1628;
+            color: #e0e6ed;
+            padding: 1.5rem;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .header h1 { color: #ff6b6b; font-size: 1.5rem; }
+        .back-link {
+            color: #4fc3f7;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.4rem 0.8rem;
+            border: 1px solid #1e4976;
+            border-radius: 4px;
+        }
+        .back-link:hover { background: #1a3a5c; }
+        .description {
+            color: #78909c;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .controls select, .controls input {
+            padding: 0.4rem 0.8rem;
+            background: #1a3a5c;
+            border: 1px solid #2e5a8a;
+            color: #e0e6ed;
+            border-radius: 4px;
+        }
+        .controls label { font-size: 0.85rem; color: #78909c; }
+        .controls button {
+            padding: 0.4rem 1rem;
+            background: #ff6b6b;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .controls button:hover { background: #ee5a5a; }
+        #chart-container {
+            background: #112240;
+            border: 1px solid #1e4976;
+            border-radius: 12px;
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+        .axis text { fill: #90a4ae; font-size: 11px; }
+        .axis line, .axis path { stroke: #2e5a8a; }
+        .axis-label {
+            fill: #e0e6ed;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .line {
+            fill: none;
+            stroke-width: 1.2;
+            opacity: 0.4;
+        }
+        .line:hover {
+            stroke-width: 3;
+            opacity: 1;
+        }
+        .line.highlighted {
+            stroke-width: 2.5;
+            opacity: 0.9;
+        }
+        .tooltip {
+            position: absolute;
+            background: rgba(17, 34, 64, 0.95);
+            border: 1px solid #1e4976;
+            border-radius: 6px;
+            padding: 0.8rem;
+            font-size: 0.8rem;
+            pointer-events: none;
+            display: none;
+            z-index: 100;
+        }
+        .table-section {
+            margin-top: 1.5rem;
+            background: #112240;
+            border: 1px solid #1e4976;
+            border-radius: 12px;
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+        .table-section h2 {
+            color: #90a4ae;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+        th, td {
+            padding: 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid #1e4976;
+        }
+        th { color: #4fc3f7; font-weight: 600; }
+        td { color: #b0bec5; }
+        tr:hover td { background: #1a3a5c; }
+        .risk-high { color: #ff4444; font-weight: 600; }
+        .risk-med { color: #ffaa00; }
+        .risk-low { color: #4fc3f7; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>IUU Risk Vessel Profiles</h1>
+        <a href="/" class="back-link">← Back</a>
+    </div>
+
+    <p class="description">
+        Parallel coordinates chart showing the top 50 highest-risk fishing vessels across multiple behavioral indicators.
+        Each line represents a vessel. Hover to see details. The more indicators a vessel triggers, the higher its composite risk.
+    </p>
+
+    <div class="controls">
+        <label>Year:
+            <select id="year-select">
+                <option value="2024" selected>2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+            </select>
+        </label>
+        <label>Top N:
+            <select id="n-select">
+                <option value="30">30</option>
+                <option value="50" selected>50</option>
+                <option value="100">100</option>
+            </select>
+        </label>
+        <button onclick="loadData()">Update</button>
+    </div>
+
+    <div id="chart-container">
+        <svg id="parallel-chart"></svg>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+
+    <div class="table-section">
+        <h2>Vessel Risk Table</h2>
+        <table id="risk-table">
+            <thead>
+                <tr>
+                    <th>MMSI</th>
+                    <th>Flag</th>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>AIS Gaps (12h+)</th>
+                    <th>AIS Gaps (24h+)</th>
+                    <th>IUU Encounters</th>
+                    <th>Forced Labor Enc.</th>
+                    <th>Spoofing Hours</th>
+                    <th>Risk Score</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script>
+        const dimensions = [
+            { key: 'disabling_over_12_hours', label: 'AIS Gaps\n(12h+)' },
+            { key: 'disabling_over_24_hours', label: 'AIS Gaps\n(24h+)' },
+            { key: 'number_encounters', label: 'Total\nEncounters' },
+            { key: 'number_iuu_listed_encounters', label: 'IUU\nEncounters' },
+            { key: 'number_forced_labor_encounters', label: 'Forced Labor\nEncounters' },
+            { key: 'overlap_hours_multinames', label: 'Spoofing\nHours' },
+            { key: 'average_voyage_duration_hours', label: 'Avg Voyage\n(hours)' },
+            { key: 'risk_score', label: 'Risk\nScore' },
+        ];
+
+        async function loadData() {
+            const year = document.getElementById('year-select').value;
+            const n = document.getElementById('n-select').value;
+
+            const res = await fetch(`/api/iuu/top_risk?year=${year}&n=${n}`);
+            const data = await res.json();
+
+            drawParallelCoords(data);
+            drawTable(data);
+        }
+
+        function drawParallelCoords(data) {
+            const container = document.getElementById('chart-container');
+            const width = Math.max(container.clientWidth - 60, 700);
+            const height = 400;
+            const margin = { top: 50, right: 30, bottom: 20, left: 30 };
+
+            d3.select('#parallel-chart').selectAll('*').remove();
+
+            const svg = d3.select('#parallel-chart')
+                .attr('width', width)
+                .attr('height', height);
+
+            const innerWidth = width - margin.left - margin.right;
+            const innerHeight = height - margin.top - margin.bottom;
+
+            const g = svg.append('g')
+                .attr('transform', `translate(${margin.left},${margin.top})`);
+
+            // Create scales for each dimension
+            const x = d3.scalePoint()
+                .domain(dimensions.map(d => d.key))
+                .range([0, innerWidth]);
+
+            const y = {};
+            dimensions.forEach(dim => {
+                const values = data.map(d => +d[dim.key] || 0);
+                y[dim.key] = d3.scaleLinear()
+                    .domain([0, d3.max(values) || 1])
+                    .range([innerHeight, 0]);
+            });
+
+            // Color by risk score
+            const maxRisk = d3.max(data, d => d.risk_score) || 1;
+            const colorScale = d3.scaleSequential(d3.interpolateYlOrRd)
+                .domain([0, maxRisk]);
+
+            // Draw lines
+            const line = d3.line()
+                .defined(d => d[1] !== null)
+                .curve(d3.curveMonotoneX);
+
+            const tooltip = document.getElementById('tooltip');
+
+            g.selectAll('.line')
+                .data(data)
+                .join('path')
+                .attr('class', 'line')
+                .attr('d', d => {
+                    const points = dimensions.map(dim => [
+                        x(dim.key),
+                        y[dim.key](+d[dim.key] || 0)
+                    ]);
+                    return line(points);
+                })
+                .attr('stroke', d => colorScale(d.risk_score))
+                .on('mouseover', function(event, d) {
+                    d3.select(this).classed('highlighted', true).raise();
+                    tooltip.style.display = 'block';
+                    tooltip.innerHTML = `
+                        <b>MMSI:</b> ${d.mmsi}<br>
+                        <b>Flag:</b> ${d.best_flag || '?'}<br>
+                        <b>Type:</b> ${d.vessel_class || '?'}<br>
+                        <b>Name:</b> ${d.ais_shipname || 'Unknown'}<br>
+                        <b>Risk Score:</b> ${d.risk_score.toFixed(1)}
+                    `;
+                })
+                .on('mousemove', function(event) {
+                    tooltip.style.left = (event.pageX + 10) + 'px';
+                    tooltip.style.top = (event.pageY - 10) + 'px';
+                })
+                .on('mouseout', function() {
+                    d3.select(this).classed('highlighted', false);
+                    tooltip.style.display = 'none';
+                });
+
+            // Draw axes
+            dimensions.forEach(dim => {
+                const axisG = g.append('g')
+                    .attr('class', 'axis')
+                    .attr('transform', `translate(${x(dim.key)},0)`)
+                    .call(d3.axisLeft(y[dim.key]).ticks(5));
+
+                // Axis label
+                axisG.append('text')
+                    .attr('class', 'axis-label')
+                    .attr('y', -15)
+                    .attr('text-anchor', 'middle')
+                    .text(dim.label.replace('\n', ' '));
+            });
+        }
+
+        function drawTable(data) {
+            const tbody = document.querySelector('#risk-table tbody');
+            tbody.innerHTML = data.map(d => {
+                const riskClass = d.risk_score > 15 ? 'risk-high' :
+                                  d.risk_score > 5 ? 'risk-med' : 'risk-low';
+                return `<tr>
+                    <td>${d.mmsi}</td>
+                    <td>${d.best_flag || '?'}</td>
+                    <td>${d.vessel_class || '?'}</td>
+                    <td>${d.ais_shipname || '-'}</td>
+                    <td>${d.disabling_over_12_hours || 0}</td>
+                    <td>${d.disabling_over_24_hours || 0}</td>
+                    <td>${d.number_iuu_listed_encounters || 0}</td>
+                    <td>${d.number_forced_labor_encounters || 0}</td>
+                    <td>${(d.overlap_hours_multinames || 0).toFixed(1)}</td>
+                    <td class="${riskClass}">${d.risk_score.toFixed(1)}</td>
+                </tr>`;
+            }).join('');
+        }
+
+        loadData();
+    </script>
+</body>
+</html>
