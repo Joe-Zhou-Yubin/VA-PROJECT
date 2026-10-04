@@ -1,0 +1,835 @@
+statement,numbers_found,has_percentage,category
+C188 - ILO Work in Fishing Convention No,188,False,fisheries
+Atlantic — three fisheries that together supply 60%,60,True,methodology
+"DWF vessels ever conducted, with over 350 Indonesian",350,False,fleet_operations
+fishers and 80 Filipino fishers interviewed about their,80,False,methodology
+experiences on 249 vessels,249,False,fleet_operations
+"January 2026, or the Fisheries Subsidies Agreement, to",2026,False,methodology
+●EJF interviewed over 430 fishers from Indonesia,430,False,methodology
+70% of these vessels,70,True,fleet_operations
+"shark finning, 53% in the capture of vulnerable",53,True,environment
+"megafauna, and 18% in unauthorised fishing",18,True,fisheries
+●Chinese vessel shark finning rates were 7x,7,False,environment
+higher than Korean vessels and 3,3,False,fleet_operations
+"working conditions on vessels, with over 92% of",92,True,fleet_operations
+compares with 82% for Taiwanese vessels and 16%,82; 16,True,fleet_operations
+vessels conducted shark finning and 66% of vessels,66,True,environment
+"for employment on DWF squid vessels, with 152",152,False,fleet_operations
+Chinese vessels (87% of our sample) having between,87,True,fleet_operations
+8 and 12 indicators of forced labour onboard,8; 12,False,human_rights
+●25 deaths were reported on 20 vessels,25; 20,False,fleet_operations
+●At least nine deaths (36% of total deaths) were,36,True,other
+●Shark finning rates increased by 143% based on,143,True,environment
+from 15 vessels in 2020 to 58 in 2025 – equal to a,15; 2020; 58; 2025,False,fleet_operations
+"cuttlefish worth more than US$9 billion, accounting for",9,False,fisheries
+"Of the roughly 290 known squid species, only 30 to 40",290; 30; 40,False,environment
+7 Two of the three fisheries examined,7,False,methodology
+supply approximately 60% of the global squid catch,60,True,fisheries
+accounts for around 14% of global squid landings; the,14,True,fisheries
+squid) fishery accounts for 42%; and the Northwest,42,True,methodology
+defines Unregulated fishing as either 1) “in the,1,False,fisheries
+"retention, and at least 25 deaths at sea (all on",25,False,other
+"Charter for Fisheries Transparency,12 and outlines a",12,False,methodology
+"as 1998, had already begun to argue that this ‘fishing",1998,False,fisheries
+squid landings in 2023,2023,False,fisheries
+"7% were Argentine shortfin squid, and",7,True,fisheries
+4% comprised various squid species not elsewhere,4,True,environment
+Figure 1: This chart shows the top 10 squid species and their reported landings between 2010 and 2023,1; 10; 2010; 2023,False,environment
+"species - Jumbo flying squid and Argentine shortfin squid - experienced steep declines in 2015 and 2016, respectively",2015; 2016,False,environment
+6% of all reported squid landings in 2023,6; 2023,True,fisheries
+for approximately 60% of all reported global squid landings,60,True,fisheries
+Korea (Argentine shortfin squid) are from 2017 because 2016 represented one of the largest collapses in overall,2017; 2016,False,fisheries
+China (Various squids) figures are also from 2017 as China only started reporting landings from,2017,False,fisheries
+this fishery in 2017,2017,False,methodology
+The global squid market is forecast to grow at a compound annual growth rate (CAGR) of 3,3,False,fisheries
+squid from 2025 to 2035 for major markets,2025; 2035,False,fisheries
+approximately 61% of global squid consumption,61,True,fisheries
+squid & cuttlefish imports in 2024,2024,False,fisheries
+Top 10 most signiﬁcant ﬂag States for reported squid landings by tonnage (2023),10; 2023,False,fisheries
+China’s distant water vessels now account for approximately 92% of all light-luring distant-,92,True,fleet_operations
+water squid fishing effort observed on AIS and 33% of total global squid catch by volume,33,True,fisheries
+China is responsible for an estimated 50–70% of all squid caught in international waters,50; 70,True,fisheries
+34/35 China’s vessels now,34; 35,False,fleet_operations
+account for approximately 92% of all light-luring distant-water squid fishing effort observed on AIS,92,True,fisheries
+Figure 2: Top 10 most significant flag States for reported squid landings by tonnage (2023),2; 10; 2023,False,fleet_operations
+The ‘Distant Water Squid Index’40 —,40,False,fisheries
+A peer-reviewed 2026 study of 198 squid products,2026; 198,False,fisheries
+fishery in the Northwestern Atlantic in the 1970s and,1970,False,methodology
+1980s and the Mexican jumbo squid fishery in the,1980,False,methodology
+squid landings over the years with an almost 25%,25,True,fisheries
+Squid landings between 2015 and 2016,2015; 2016,False,fisheries
+Argentine shortfin squid landings and 21%,21,True,fisheries
+"In 2016 for example, the decline in catches",2016,False,fisheries
+Argentine shortfin squid prices rose by 35% between,35,True,fisheries
+fisheries have accumulated a value of US$ 2,2,False,methodology
+62 This correlation between declining catches,62,False,fisheries
+67 Fishing fleets may seek,67,False,fleet_operations
+"68 In a similar vein, if operators know that a high seas squid population is",68,False,fisheries
+Transparency74 - throughout fishing operations and supply chains,74,False,fisheries
+fishing between 2014 and 2023,2014; 2023,False,fisheries
+February 2026 found the Argentine shortfin squid,2026,False,fisheries
+(contributing 16% of the world’s squid catches) to be,16,True,fisheries
+77 The main FAO fishing,77,False,fisheries
+"caught in fishing area FAO 51iii; however, as the",51,False,fisheries
+84 The fishery falls within,84,False,methodology
+accounting for 42% of global squid landings in 2023,42; 2023,True,fisheries
+"on a Chinese squid vessel, July 2022",2022,False,fleet_operations
+Table 3: Status of regulations in place to deter and prosecute destructive or illegal fishing practices in the three,3,False,fisheries
+The Fisheries Law of the People's Republic of China95 and,95,False,methodology
+the Distant Water Fishery Management Regulation96 are,96,False,methodology
+202299 and introduce the annual squid moratorium,202299,False,fisheries
+"legally binding101 and in the context of high seas fishing,",101,False,fisheries
+of just 59 hours of fishing activity across the designated,59,False,fisheries
+"first six months of 2023 alone, Chinese squid vessels",2023,False,fleet_operations
+"recorded over 330,000 hours of fishing activity","330,000",False,fisheries
+111 Non-Chinese flagged vessel effort also,111,False,fleet_operations
+Plan outline nor MARA's February 2026 fisheries,2026,False,methodology
+"117 As of 2025, 86 squid fishing vessels",117; 2025; 86,False,fleet_operations
+"squid fleet by number of vessels, with 32 vessels",32,False,fleet_operations
+126 Labour protections,126,False,human_rights
+80% of the workforce aboard Korean DWF vessels,80,True,human_rights
+Maybe over 200 sacks [of squid],200,False,fisheries
+"[in a 24 hour period], when the squid was in",24,False,fisheries
+"in 2012, but as of May 2026, no fishing-effort",2012; 2026,False,fisheries
+agreed for squid136 — despite the species’ global,136,False,environment
+"convened in early 2026, nine proposals on squid",2026,False,fisheries
+Global Fishing Watch’s Apparent fishing effort (based on AIS data) by Chinese-flagged vessels in the NWIO between 1st January 2024,1; 2024,False,fleet_operations
+"and 1st March 2026 shows how vessel activity is already pressed up against the EEZ boundaries of Oman, Pakistan and India",1; 2026,False,fleet_operations
+"2026, with two of these being squid jiggers and two",2026,False,fisheries
+of the 231 light seiner vessels operating just north of,231,False,fleet_operations
+147 The number of vessels,147,False,fleet_operations
+fishing in the area has since increased from 30,30,False,fisheries
+vessels in 2015 to 279 vessels in 2019 – an increase of,2015; 279; 2019,False,fleet_operations
+EJF detected fishing activity by at least 361 unique,361,False,fisheries
+71% of the apparent fishing effort reportedly by light,71,True,fisheries
+"seiner vessels, 21% by vessels with multiple gears,",21,True,fleet_operations
+and 8% by squid jiggers,8,True,fisheries
+3% of this fishing effort,3,True,fisheries
+than 300m out from the vessel to encircle schools,300,False,fleet_operations
+"Chinese-flagged squid vessel operating in the NWIO, June 2025",2025,False,fleet_operations
+"a Chinese-flagged light seiner vessel, October 2025",2025,False,fleet_operations
+noted in 2022 that high-seas squid fishing operations,2022,False,fisheries
+SIOFA's 2025 Overview of SIOFA Fisheries report,2025,False,methodology
+"September 2025163, prohibits subsidies for fishing",2025163,False,fisheries
+(2018) estimated that fishing costs in the,2018,False,fisheries
+that 42% of China's fisheries subsidies are allocated to,42,True,methodology
+"its DWF fleet, despite that fleet accounting for only 22%",22,True,fleet_operations
+171 Squid vessel operators are acutely,171,False,fleet_operations
+A 2024 Planet Tracker report found that squid,2024,False,fisheries
+vessels would have a gross profit margin of -10% if,10,True,fleet_operations
+Chinese squid fisheries are so unprofitable (-48%,48,True,methodology
+wrote in 2018 that “54% of high seas fishing,2018; 54,True,fisheries
+have examined the SWA and SEP fleets separately;176/177,176; 177,False,fleet_operations
+70% of the 249 vessels in our study,70; 249,True,fleet_operations
+Table 4: Overview of each of the fisheries covered in this report,4,False,methodology
+multi-gear vessels (18,18,False,fleet_operations
+"Squid jiggers (93%),",93,True,fisheries
+"Squid jiggers (47%),",47,True,fisheries
+"squid saury vessels (36%),",36,True,fleet_operations
+341 vessels recorded,341,False,fleet_operations
+361 vessels between 2020 to,361; 2020,False,fleet_operations
+vessels to 508 in 2025,508; 2025,False,fleet_operations
+406 vessels to 298 in,406; 298,False,fleet_operations
+represented 60% of the world’s squid supply as of 2023,60; 2023,True,fisheries
+across each of the 249 vessels investigated by ﬂag state,249,False,fleet_operations
+Vessels with all 12 forced labour,12,False,human_rights
+9 indicators of forced labour,9,False,human_rights
+"25 deaths were identiﬁed across 20 vessels, all ﬂagged to China",25; 20,False,fleet_operations
+"the three not exclusively dominated by Chinese-flagged vessels: of the 135 SWA vessels, an estimated 48% were",135; 48,True,fleet_operations
+vi India only began recording various squid landings in 2015,2015,False,fisheries
+China’s recorded catches in the region have increased by 219% since they began,219,True,fisheries
+"By 2023, five countries were reporting catches of “various squids NEI” - India (Responsible",2023,False,fisheries
+"squid increased from virtually zero in 2015 to a peak of around 17,500 tonnes in 2019","2015; 17,500; 2019",False,fisheries
+182 Catches declined,182,False,fisheries
+2026 continuing to cite 2021 catch figures,2026; 2021,False,fisheries
+"squid vessel operating in the SEP, August 2025",2025,False,fleet_operations
+"squid vessel operating in the NWIO, June 2025",2025,False,fleet_operations
+sea — 97% of the 431 fishers EJF interviewed reported,97; 431,True,methodology
+The number of Chinese-flagged reefers has grown from 15 vessels in 2020 to 58 in 2025 –,15; 2020; 58; 2025,False,fleet_operations
+"“Over 11,000 tonnes of squid: your distant water","11,000",False,fisheries
+"Between 2020-2025, the SEP was the busiest fishing",2020; 2025,False,fisheries
+7 times higher than the other two fishing,7,False,fisheries
+"Between 2020 and 2025, EJF interviewed fishers from 249 vessels that operated in the NWIO, SEP and SWA",2020; 2025; 249,False,methodology
+Over half of vessels operated in the SWA compared to approximately 30% in the NWIO and 20% in the,30; 20,True,fleet_operations
+"On average, 25% of NWIO vessels were involved in some kind of destructive fishing compared to 19% in the",25; 19,True,fleet_operations
+"of shark bodies whilst at sea) in the NWIO was recorded on 62% of DWF squid vessels, while the capture and",62,True,environment
+killing of vulnerable megafauna was recorded on 66% of vessels,66,True,fleet_operations
+"flagged light seiner vessel operating in the NWIO, January 2025",2025,False,fleet_operations
+Figure 4: Comparison chart showing the stark differences in environmental crime prevalence across the different squid fisheries,4,False,methodology
+Just over 60% of vessels,60,True,fleet_operations
+"a Chinese-flagged light seiner vessel, July 2025",2025,False,fleet_operations
+"a Chinese-flagged light seiner vessel, February 2026",2026,False,fleet_operations
+"a Chinese-flagged light seiner vessel, September 2023",2023,False,fleet_operations
+Table 6: Prevalence of destructive fishing indicators in the NWIO disaggregating for light seiners,6,False,fisheries
+EJF interviewed former fishers from 64 light seiners - representing approximately 28% of the total,64; 28,True,methodology
+202 Fishers reported that 62 vessels,202; 62,False,methodology
+targeted squid as their main target species (96,96,False,environment
+44 vessels also caught “tuna” or specifically,44,False,fleet_operations
+“skipjack tuna” as part of their catch (68,68,False,fisheries
+3% fishers interviewed by EJF also answered “all,3,True,methodology
+kinds of fish” when asked about target species (26 vessels),26,False,environment
+catching tuna is likely to be higher than 70%,70,True,fisheries
+"1,000 fish, all of which appear to be either tuna or tuna-like species that are under the management","1,000",False,environment
+"Interview with a Filipino fisher working onboard a Chinese-flagged light seiner vessel, June 2024",2024,False,methodology
+"For each haul, the fishers reported they could get up to 1-2 tonnes of skipjack or",1; 2,False,methodology
+"kawakawa (Euthynnus affinis204), which equates to about 10-15 tonnes of fish per day",204; 10; 15,False,fisheries
+"This is within the reasonable range of catch since the crew also reported having to prepare 200-1,000","200; 1,000",False,methodology
+This is equivalent to about 5-25 tonnes of fish per day,5; 25,False,fisheries
+205/206 Each frozen fish block was then packed into plastic,205; 206,False,fisheries
+The fishers reported that they would trans-ship 300-450 tonnes of tuna (including small and large,300; 450,False,methodology
+It could take one vessel 17-85 days to accumulate 300-450 tonnes of tuna before trans-,17; 85; 300; 450,False,fleet_operations
+"shipment, assuming the daily catch level ranges between 5-25 tonnes",5; 25,False,fisheries
+"Interview with an Indonesian fisher onboard a Chinese-flagged light seiner squid vessel, November 2025",2025,False,methodology
+The 2024 article describes how a number of light seiner vessels,2024,False,fleet_operations
+"(including the Fu Yuan Yu 8771, which two former fishers interviewed by EJF worked on the year",8771,False,methodology
+"before in 2023) unloaded 560 tonnes of “squid, skipjack tuna (known as “bomb fish” in Chinese -",2023; 560,False,fisheries
+炸弹鱼) and sardines from the Indian Ocean…”207 Both Filipino fishers whom EJF interviewed in 2023,207; 2023,False,methodology
+"a total of “671 tonnes of frozen squid, frozen skipjack tuna…” into port",671,False,fisheries
+208 The vessels are described as,208,False,fleet_operations
+"In 2024, EJF interviewed one former fisher from",2024,False,methodology
+the Fu Yuan Yu 8896 who reported that his vessel targeted mackerel tuna and squid and operated in,8896,False,fleet_operations
+seiner vessels made up 97,97,False,fleet_operations
+3% of industrial fishing effort in the area in 2025,3; 2025,True,fisheries
+fact that the fishing grounds are surrounded by seven coastal countries (See page 26) which depend,26,False,fisheries
+55 of these Chinese vessels were registered,55,False,fleet_operations
+just over 10% of the registered squid jigging fleet in,10,True,fleet_operations
+211 Despite the SEP squid fishery being covered,211,False,methodology
+academic study of 20 major fishing nations found that,20,False,fisheries
+7) also report higher numbers of destructive fishing,7,False,fisheries
+Figure 5: Relationship between forced labour and destructive fishing indicators,5,False,human_rights
+viii Rates of shark finning - the largest sample set - increased by 143%,143,True,environment
+based on whether a vessel was at sea for less than six months or if it was at sea for 13-24 months (Figure 5),13; 24; 5,False,fleet_operations
+viii Vessels under 1 year averaged 0,1; 0,False,fleet_operations
+98 destructive fishing indicators vs,98,False,fisheries
+vessels over 1 year averaging 2,1; 2,False,fleet_operations
+15 indicators of destructive fishing,15,False,fisheries
+labour abuse and forced labour with 80% of fishers,80,True,methodology
+forced labour indicators; and the remaining 20%,20,True,human_rights
+labour indicator rates of 77% and 76% respectively,77; 76,True,human_rights
+"Figure 6: Average prevalence rates for destructive fishing indicators, grouped by fishing trip length",6,False,fisheries
+Table 7: Average number of destructive fishing and forced labour indicators based on grouping vessels by fishing,7,False,human_rights
+The total number of vessels adds up to 242 here because not all fishers interviewed by EJF for this,242,False,methodology
+49 vessels / 71 fishers,49; 71,False,methodology
+*Destructive fishing indicators: The 2,2,False,fisheries
+15 figure covers all vessels at sea for more than 12 months,15; 12,False,fleet_operations
+"only documented four vessels at over 24 months, so the destructive-fishing analysis groups 13–24 and >24 together",24; 13; 24; 24,False,fleet_operations
+analysis preserves the split because EJF interviewed 12 fishers who worked for more than 24 months and the >24-month physical,12; 24; 24,False,methodology
+Figure 7: Relationship between destructive fishing indicators and fishing trip length,7,False,fisheries
+because the sample (n=4 vessels) is too small to report separately,4,False,fleet_operations
+Figure 8: Relationship between forced labour indicators and fishing trip length,8,False,human_rights
+The >24 months group (n=12 fishers) is reported,24; 12,False,methodology
+"Interview with an Indonesian fisher working onboard a Chinese-flagged light seiner vessel operating in the NWIO, July 2022",2022,False,methodology
+"Three squid jiggers photographed in Montevideo port in 2021 - EJF interviews have linked the middle vessel to shark finning, catching",2021,False,methodology
+9 months) but its vessels rarely return to,9,False,fleet_operations
+where in 2019 over 300 foreign vessels entered and,2019; 300,False,fleet_operations
+million fishing trips in 2022 found that time at sea was,2022,False,fisheries
+Out of 431 interviewees the median number,431,False,methodology
+"Table 8: Forced labour indicators identified from EJF’s interviews with crew, separated by fishery",8,False,methodology
+Just 10 of 153 NWIO interviewees experienced fewer than 7 out of 12 indicators during,10; 153; 7; 12,False,methodology
+Table 9: Comparison of the three squid fisheries for prevalence of forced labour,9,False,methodology
+abuse across the study (44%),44,True,human_rights
+"appalling rates of abuse, only 70% of fishers reported",70,True,methodology
+of over 90% in the other two fisheries,90,True,methodology
+"flagged light seiner vessel operating in the NWIO, July 2022",2022,False,fleet_operations
+EJF identified at least 25 deaths occurring on 20,25; 20,False,other
+"deaths from Han Rong 368219), one squid/saury vessel,",368219,False,fleet_operations
+Project documents at least 22 crew members who,22,False,methodology
+vessels and at least 3 aboard South Korean-flagged,3,False,fleet_operations
+squid vessels between 2019 and 2025,2019; 2025,False,fleet_operations
+Table 10: Suspected causes of death as described by interviewees,10,False,methodology
+that at least 9 of the 25 deaths were due to beriberi,9; 25,False,other
+"flagged light seiner vessel operating in the NWIO, May 2025",2025,False,fleet_operations
+Figure 9: Prevalence of destructive fishing practices by flag state as identified per vessel,9,False,fleet_operations
+Rates of shark finning were 7 times,7,False,environment
+Korean vessels and 3,3,False,fleet_operations
+Shark finning was reported on 105 Chinese-flagged,105,False,environment
+3% of Chinese vessels analysed for this,3,True,fleet_operations
+Table 11: Reported rates of destructive fishing practices across the three flag states,11,False,fleet_operations
+Figure 10: Prevalence of forced labour indicators by flag state as reported by interviewees,10,False,methodology
+Table 12: Forced labour indicators as identified through interviews by flag state,12,False,methodology
+of Chinese-flagged vessels had eight or more indicators onboard compared to 70% of Taiwanese vessels and,70,True,fleet_operations
+7% of Korean vessels,7,True,fleet_operations
+Of the 68 vessels in our dataset on which EJF identified extreme cases of abuse (severe,68,False,human_rights
+"physical or sexual abuse, or deaths on board), 96% were flagged to China",96,True,human_rights
+"labour protections to migrant fishers under the 2022 Action Plan for Fisheries and Human Rights, and South",2022,False,methodology
+Table 13: Forced labour frequency across the three flag states,13,False,human_rights
+Vessels with 8 or more,8,False,fleet_operations
+present when fishers work more than 14 hours per,14,False,methodology
+"Chinese-flagged squid vessel operating in the SEP, June 2025",2025,False,fleet_operations
+Out of 53 vessels in our study that,53,False,fleet_operations
+Table 14: Trip length compared with forced labour rates across the three flag states by interviewee,14,False,methodology
+Table 15: Trip length compared with destructive fishing rates across the three flag states by vessel,15,False,fleet_operations
+"As set out on page 43, longer trips correlate with higher rates of both destructive fishing and forced labour,",43,False,human_rights
+Table 16: Percentage of reefer trips of each fishing ground visit important squid landing ports,16,False,fisheries
+"flagged squid jigger operating in the SEP, March 2025",2025,False,fleet_operations
+"hub due to rising labour costs,242 Zhoushan remains",242,False,human_rights
+60% of China’s squid trade,60,True,fisheries
+owns over 15% of the NWIO vessels investigated,15,True,fleet_operations
+249 Sharks discovered onboard,249,False,environment
+400 million (approximately US$ 65 million at the time) in PME’s wholly-owned fishing subsidiary -,400; 65,False,fisheries
+"affiliate Fuzhou Honglong Ocean Fishing (Honglong), Pingtan Fishing controls nearly 100 fishing",100,False,fisheries
+"subsidies to replace 23 old vessels with new trawlers intended for the waters of Indonesia, India and",23,False,fleet_operations
+"254 However, when Indonesia issued a ban on foreign vessels fishing in their EEZ at the end",254,False,fleet_operations
+"of 2014, PME announced plans to replace these vessels with light seiners that would operate in the",2014,False,fleet_operations
+"255 By 2019, PME had registered 59 newly replaced squid",255; 2019; 59,False,fleet_operations
+"jiggers and light seiners with the Fujian provincial government, alongside a further 10 vessels under",10,False,fleet_operations
+tonnes before to an average of 1140 tonnes for light seiners and 1100 tonnes for squid jiggers -,1140; 1100,False,fisheries
+with 125 vessels associated with the company were sanctioned by the U,125,False,fleet_operations
+Supply chain analysis conducted by the Outlaw Ocean Project in 2023 traced PME-caught squid,2023,False,fisheries
+"unique importers or buyers purchasing approximately 22,620 tonnes of squid products from these","22,620",False,fisheries
+EJF’s research identified 58 Chinese-flagged vessels,58,False,fleet_operations
+41% of Taiwanese FIP vessels implicated in either destructive fishing or labour abuses,41,True,human_rights
+Out of 83 Taiwanese-flagged vessels listed on,83,False,fleet_operations
+"Squid Fishery Improvement Project (FIP)268,",268,False,methodology
+least 22 crew members who died or went missing,22,False,methodology
+"vessels between 2019 and 2025, and at least",2019; 2025,False,fleet_operations
+6 additional workers reported injured on six,6,False,methodology
+"sent at least 4,000 tons of squid products to","4,000",False,fisheries
+found that 49% of 198 squid products sampled,49; 198,True,fisheries
+approximately 60% of global squid supply,60,True,fisheries
+"of these factors; for example, all 25 deaths recorded",25,False,other
+across EJF’s dataset of 249 vessels occurred on,249,False,fleet_operations
+labour indicators were recorded in over 90% of,90,True,human_rights
+Charter for Fisheries Transparency278 and,278,False,methodology
+on Work in Fishing (C188)279 and the Cape Town,188; 279,False,fisheries
+of no more than 12 months for vessels operating in,12,False,fleet_operations
+with 358 Indonesian and 80 Filipino fishers,358; 80,False,methodology
+fishers had worked on 249 unique DWF squid vessels,249,False,methodology
+"(flagged to China (174 vessels), Taiwan (40 vessels)",174; 40,False,fleet_operations
+Korea (35 vessels) between 2020 and 2025,35; 2020; 2025,False,fleet_operations
+Intelligence287 to verify vessel AIS transmissions,287,False,fleet_operations
+"rights abuses),290 the dataset behind C4ADS’s Pier",290; 4,False,human_rights
+FAO (2024) FishstatJ - Software for Fishery and Aquaculture,2024,False,methodology
+UN Comtrade (2024) Available trade data for squid & cuttlefish,2024,False,fisheries
+FMI (2025) Squid market size and share forecast outlook 2025,2025; 2025,False,fisheries
+", et al (2015) World Squid Fisheries, https://www",2015,False,methodology
+"et al, (10th March 2023) Fishing through the cracks:",10; 2023,False,fisheries
+10 FAO (2016) FAO Species Catalogue for Fishery Purposes No,10; 2016,False,methodology
+FAO (2026) What is IUU fishing,2026,False,fisheries
+12 Coalition for Global Fisheries Transparency (2024) Global,12; 2024,False,methodology
+net/wp-content/uploads/2024/10/Coalition-for-Fisheries-,2024; 10,False,methodology
+"et al (1998) Fishing Down Marine Food Webs, https://",1998,False,fisheries
+17 FAO (2024) FishstatJ - Software for Fishery and Aquaculture,17; 2024,False,methodology
+18 FAO (2024) FishstatJ - Software for Fishery and Aquaculture,18; 2024,False,methodology
+19 FAO (2005) Review of the state of world marine fishery,19; 2005,False,methodology
+"resources, C2: World squid resources https://www",2,False,fisheries
+20 FMI (2025) Squid market size and share forecast outlook 2025,20; 2025; 2025,False,fisheries
+"26 ReAnIn (2026) Squids market size and share analysis, https://",26; 2026,False,fisheries
+27 FMI (2025) Squid market size and share forecast outlook 2025,27; 2025; 2025,False,fisheries
+30 UN Comtrade (2024) Available trade data for squid & cuttlefish,30; 2024,False,fisheries
+"31 Business Research Insights (2026) Fresh Squid Market Size,",31; 2026,False,fisheries
+com/market-reports/fresh-squid-market-115746,115746,False,fisheries
+32 UN Comtrade (2024) Available trade data for squid & cuttlefish,32; 2024,False,fisheries
+34 FAO (2024) GLOBEFISH Highlights No,34; 2024,False,fisheries
+et al (2013) China’s distant-water fisheries in the 21st,2013; 21,False,methodology
+40 Squid Price Index (n,40,False,fisheries
+41 Squid Price Index (n,41,False,fisheries
+(2014) Analysis of the tenderisation of jumbo squid,2014,False,fisheries
+58 FAO (2024) FishstatJ - Software for Fishery and Aquaculture,58; 2024,False,methodology
+59 FAO (2024) FishstatJ - Software for Fishery and Aquaculture,59; 2024,False,methodology
+"60 FAO (October 2016) Squid landings low and prices skyrocket,",60; 2016,False,fisheries
+61 Merco Press (5th September 2025) Falklands Fisheries Generate,61; 5; 2025,False,methodology
+", et al (2024) Elevating labor concerns in small-",2024,False,human_rights
+63 EJF (2015) Pirates and slaves: How overfishing in Thailand,63; 2015,False,fisheries
+64 Blood and water: Human rights abuse in the global seafood,64,False,human_rights
+"65 CMFRI (2023) Marine Fish Stock Status of India, 2022",65; 2023; 2022,False,fisheries
+Marine%20Fish%20Stock%20Status%20of%20India%20,20; 20; 20; 20; 20,True,fisheries
+72 EJF (2024) Tide of injustice: Exploitation and illegal fishing,72; 2024,False,fisheries
+74 Coalition for Global Fisheries Transparency (2024) Global,74; 2024,False,methodology
+75 GFW (2024) Sustainable fisheries management begins,75; 2024,False,methodology
+76 FAO (2025) Improving information of high seas fisheries,76; 2025,False,methodology
+77 FAO (2025) Improving information of high seas fisheries,77; 2025,False,methodology
+79 FAO (2025) Improving information of high seas fisheries,79; 2025,False,methodology
+80 FAO (2025) Improving information of high seas fisheries,80; 2025,False,methodology
+"2, Myopsid and Oegopsid Squids, https://oceanrep",2,False,fisheries
+82 FAO (2025) Improving information of high seas fisheries,82; 2025,False,methodology
+86 FAO (2024) FishstatJ - Software for Fishery and Aquaculture,86; 2024,False,methodology
+Meetings/02-SC/13th-SC-2025/Squid/SC13-SQ06-Update-of-the-,02; 13; 2025; 13; 06,False,fisheries
+"92 Korean Law Information Center, Distant Water Fisheries",92,False,methodology
+"93 Korean Law Information Center, Distant Water Fisheries",93,False,methodology
+Water Fisheries 2024 (as amended); Act on Wildlife Conservation,2024,False,methodology
+Compliance with the Eastern Pacific Tuna Fisheries (2024 Edition),2024,False,methodology
+"109 Oceana (2023) China engages in fishing ban PR stunt, Oceana,",109; 2023,False,fisheries
+"110 Oceana (2023) China engages in fishing ban PR stunt, Oceana,",110; 2023,False,fisheries
+(2016) China’s distant water fishing fleet growing,2016,False,fleet_operations
+116 AgTechNavigator (2026) China 2026 fisheries agenda: MARA,116; 2026; 2026,False,methodology
+id=4022 (accessed 25 November 2025); Taiwan Squid and,4022; 25; 2025,False,fisheries
+"118 FIsheries Agency of Taiwan, 2026, 農業部核准我國魷釣漁船作",118; 2026,False,methodology
+119 Act for Distant Water Fisheries 2024 (as amended);,119; 2024,False,methodology
+120 Regulations for Fishing Vessels Conducting Squid Jigging,120,False,fleet_operations
+Fishery 2024 (as amended),2024,False,methodology
+charter-for-fisheries-transparency (accessed 12 November 2025),12; 2025,False,methodology
+"125 Korea DWF yearbook (2025) Korea squid vessels statistics,",125; 2025,False,fleet_operations
+"126 Korea Legal Information Centre, Distant Water Fisheries",126,False,methodology
+131 Korea Ministry of Oceans and Fisheries Press release,131,False,methodology
+"134 UNFSA (1982) UN Fish Stocks Agreement, https://www",134; 1982,False,fisheries
+et al (2025) Untangling squid: Regulatory,2025,False,fisheries
+145 Trygg Mat Tracking (2021) Squid fishing in the Northwest,145; 2021,False,fisheries
+"147 Stop Illegal Fishing, Trygg Mat Tracking, and NFDS (2017) Squid",147; 2017,False,fisheries
+148 Trygg Mat Tracking (2021) Squid fishing in the Northwest,148; 2021,False,fisheries
+149 EJF (2026) Fishing effort calculations conducted by EJF,149; 2026,False,fisheries
+151 WCFPC (2012) Study on the methods to mitigate the bycatch,151; 2012,False,environment
+"153 FAO (1976) Fishing manuals: Fishing with light, https://www",153; 1976,False,fisheries
+"157 Stop Illegal Fishing, Trygg Mat Tracking, and NFDS (2017) Squid",157; 2017,False,fisheries
+158 Trygg Mat Tracking (2021) Squid fishing in the Northwest,158; 2021,False,fisheries
+"160 SIOFA (2025) Overview of SIOFA Fisheries 2025, https://siofa",160; 2025; 2025,False,methodology
+org/sites/default/files/files/SIOFA-Fisheries-Overview-2025_,2025,False,methodology
+", et al (2018) The economics of fishing the high seas",2018,False,fisheries
+171 Oceana (2021) China’s fisheries subsidies propel distant-water,171; 2021,False,methodology
+"172 Planet Tracker (2024) Fishful Thinking, https://planet-tracker",172; 2024,False,fisheries
+org/wp-content/uploads/2024/07/Fishful-Thinking,2024; 07,False,fisheries
+"173 WTO (2022) Agreement on fisheries subsidies, https://docs",173; 2022,False,methodology
+"175 Planet Tracker (2024) Fishful Thinking, https://planet-tracker",175; 2024,False,fisheries
+178 TMT (2021) New analysis: Squid fishing Northwest Indian,178; 2021,False,fisheries
+179 EJF (2026) Fishing vessel calculations conducted by EJF,179; 2026,False,fleet_operations
+180 EJF (2026) Fishing vessel calculations conducted by EJF,180; 2026,False,fleet_operations
+181 FAO (2024) FishstatJ - Software for Fishery and Aquaculture,181; 2024,False,methodology
+"186 Global Fishing Watch (2026) Global Fishing Watch Map, https://",186; 2026,False,fisheries
+and Zhoushan Municipal Bureau of Ocean and Fisheries (2021),2021,False,methodology
+"192 Shuliangtec, China Squid Index (2023) Research Report",192; 2023,False,fisheries
+"193 Shuliangtec, China Squid Index (2025) Research Report",193; 2025,False,fisheries
+"194 Shuliangtec, China Squid Index (2023) Research Report",194; 2023,False,fisheries
+195 EJF (2019) Blood and Water: Human rights abuses in the global,195; 2019,False,human_rights
+197 Greenpeace (2020) Choppy Waters: Forced labour and illegal,197; 2020,False,human_rights
+org/southeastasia/publication/3690/choppy-waters-forced-labour-,3690,False,human_rights
+198 EJF (2020) Illegal fishing and human rights abuses in the,198; 2020,False,human_rights
+"199 EJF (2020) Cetacean slaughter, shark finning and human rights",199; 2020,False,environment
+202 EJF (2026) Analysis of fishing effort data from Global Fishing,202; 2026,False,fisheries
+"205 IOTC (2024) Catch and effort data - surface fisheries, https://iotc",205; 2024,False,methodology
+207 CNR (26th June 2024) The first batch of deep-sea fish caught this,207; 26; 2024,False,fisheries
+209 EJF (2026) Fishing effort calculations conducted by EJF,209; 2026,False,fisheries
+(2019) Depredation of purpleback flying squid,2019,False,fisheries
+"211 SPRFMO (2026) Record of Vessels, https://sprfmo",211; 2026,False,fleet_operations
+212 EJF (2015) Pirates and slaves: How overfishing in Thailand,212; 2015,False,fisheries
+", et al (2018) Modern slavery and the race to fish",2018,False,fisheries
+(2022) Fish crimes in the global,2022,False,fisheries
+(2020) DINARA speaks about deceased crew,2020,False,methodology
+(27th January 2026) Death and,27; 2026,False,other
+(2025) Worker Protections at Sea: Climate change and life,2025,False,methodology
+225 LA Times (7th November 2023) They catch squid for the world’s,225; 7; 2023,False,fisheries
+", et al (2026) Death and disposability of Indonesian",2026,False,other
+233 EJF & APIL (2020) Illegal fishing and human rights abuses,233; 2020,False,human_rights
+234 MINREL (2020) Joint declaration concerning fishing by foreign,234; 2020,False,fisheries
+(6th January 2026) ‘Mad fishing’: the super-size,6; 2026,False,fisheries
+com/environment/2026/jan/06/squid-argentina-,2026; 06,False,fisheries
+Principle%20Guidelines%20on%20Combating%20IUU%20,20; 20; 20; 20; 20,True,other
+"(23rd February 2024) As China's squid catch soars,",23; 2024,False,fisheries
+241 Fujian Provincial Bureau of Oceans and Fisheries (2021) Fujian,241; 2021,False,methodology
+242 China Squid Index (2025) The relay race of the processing,242; 2025,False,fisheries
+244 China Squid Index (2025) The relay race of the processing,244; 2025,False,fisheries
+246 https://china-squid,246,False,fisheries
+248 Poseidon (2022) Blue Shark: Economic valuation of the global,248; 2022,False,environment
+wp-content/uploads/sites/18/2022/11/Oceana_BlueShark_Final_,18; 2022; 11,False,environment
+249 Sea Shepherd (2017) Fishing fleet caught red-handed in a dawn,249; 2017,False,fleet_operations
+", et al (2021) International fisheries threaten",2021,False,methodology
+the case of the Fu Yuan Yu Leng 999 reefer vessel seized within,999,False,fleet_operations
+251 Poseidon (2022) Blue Shark: Economic valuation of the global,251; 2022,False,environment
+255 PR Newswire (2020) Twenty fishing vessels from Pingtan,255; 2020,False,fleet_operations
+263 UN Comtrade (2024) Available trade data for squid & cuttlefish,263; 2024,False,fisheries
+264 UN Comtrade (2024) Available trade data for squid & cuttlefish,264; 2024,False,fisheries
+265 UN Comtrade (2024) Available trade data for squid & cuttlefish,265; 2024,False,fisheries
+268 Taiwan FIP (2024) Southwest Atlantic Argentine Shortfin Squid,268; 2024,False,fisheries
+FIP%20vessels%20participate%20list(20241231),20; 20; 20; 20241231,True,fleet_operations
+270 Fish Source (2025) Southwest Atlantic Argentine shortfin,270; 2025,False,fisheries
+"271 Fish Source (2026) Improvement projects, https://www",271; 2026,False,fisheries
+"275 CNFC Overseas Fisheries (2025) 2024 Annual Report, https://",275; 2025; 2024,False,methodology
+"278 Coalition for Global Fisheries Transparency (2024), ‘Global",278; 2024,False,methodology
+"279 ILO (2026) Ratifications of C188 - Work in Fishing Convention,",279; 2026; 188,False,fisheries
+281 FAO 2026) Technical measures to prevent and reduce bycatch,281; 2026,False,environment
+fishery/en/bycatch-mitigation-mammals/5/en,5,False,methodology
+"Crew Labour Standards (CMM 2024-04), https://cmm",2024; 04,False,methodology
+04%20Crew%20Labour%20Standards%20CMM,04; 20; 20; 20; 20,True,methodology
+288 FAO (2024) FishstatJ - Software for Fishery and Aquaculture,288; 2024,False,methodology
+291 C4ADS (2025) Pier Pressure: Distant water squid fleet shifts to,291; 4; 2025,False,fleet_operations
+(29th June 2020) Illegal fishing,29; 2020,False,fisheries
+"Interview with an Indonesian fisher working onboard a Taiwanese-flagged squid/saury vessel operating in the SWA, January 2023",2023,False,methodology
+"Charter for Fisheries Transparency7, to make squid",7,False,methodology
+EJF investigations involving interviews with 77,77,False,methodology
+worked on 60 Chinese-flagged DWF squid fishing,60,False,fleet_operations
+vessels between 2020 and 2025 operating in the,2020; 2025,False,fleet_operations
+60% of vessels allegedly engaged in the finning of,60,True,fleet_operations
+"sharks and disposal of bodies, and 33% of vessels in",33,True,environment
+squid fishing ground (FAO Fishing Area 87) is,87,False,fisheries
+vessels increased by 100% between 2014 and 2024,100; 2014; 2024,True,fleet_operations
+for 163 Chinese-flagged squid vessels utilising,163,False,fleet_operations
+Chilean ports in 2025 found nine vessels that were,2025,False,fleet_operations
+80% of vessels suspected of being involved in,80,True,fleet_operations
+of squid to the global market between 2020 and,2020,False,fisheries
+"hammerhead sharks18), sea lions and swordfish,",18,False,environment
+"squid fishery on the planet, accounting for 42% of",42,True,methodology
+of jumbo squid landed in 2023 were caught within,2023,False,fisheries
+late 1980s and early 1990s with exploratory fishing,1980; 1990,False,fisheries
+25/26 Annual catches,25; 26,False,fisheries
+An explosion of fishing effort of 115% between 2017,115; 2017,True,fisheries
+and 202033 by predominantly Chinese DWF vessels,202033,False,fleet_operations
+35 Reports of illegal fishing intrusions,35,False,fisheries
+EJF conducted interviews with 77 Indonesian and four Filipino fishers,77,False,methodology
+60 Chinese-flagged DWF squid fishing vessels operating in the SEP between 2020 and 2025,60; 2020; 2025,False,fleet_operations
+Various secondary datasets were then combined to give us a consolidated list of 346 “vessels of interest”,346,False,fleet_operations
+Food and Agriculture Organisation (FAO) fishing subareas 87,87,False,fisheries
+"In total, our analysis returned 777 vessel ‘identities’ which corresponded to 676 unique vessels",777; 676,False,fleet_operations
+39 Fishing companies,39,False,fisheries
+"1,225,798 tonnes of jumbo squid were landed in 2023 with Peru, China and Chile representing the three most","1,225,798; 2023",False,fisheries
+significant countries in the fishery for at least the last 25 years,25,False,methodology
+42 Peruvian and Chilean fleets operate exclusively within their Exclusive Economic,42,False,fleet_operations
+"Approximately 2,500-4,500 artisanal vessels, most of","2,500; 4,500",False,fleet_operations
+"which are under 15m in length, fish for jumbo squid",15,False,fisheries
+"in 202351, and the acceptance of the national fishery",202351,False,methodology
+"Upon landing, 92% of Peru’s squid is sent for",92,True,fisheries
+53 The most sought-after squid,53,False,fisheries
+"squid species), China was the recipient of 34% of total",34,True,environment
+Peruvian squid & cuttlefish exports in 2023 followed,2023,False,fisheries
+"jig gear) comprises approximately 1,800 vessels,","1,800",False,fleet_operations
+"55 The fleet landed over 105,000 tonnes","55; 105,000",False,fleet_operations
+of jumbo squid (known as jibia locally) in 2023,2023,False,fisheries
+squid & cuttlefish exports by value in 2023 followed,2023,False,fisheries
+“Giant Squid Law” in 2019,2019,False,fisheries
+rebounds in fishery productivity since 2024 have,2024,False,methodology
+"Ecuador reported 3,028 tonnes of jumbo squid","3,028",False,fisheries
+"62 Aside from squid, Ecuador",62,False,fisheries
+catches 45% of the Eastern Pacific’s tuna landings,45,True,fisheries
+to consume juvenile jumbo squid65 it is possible,65,False,fisheries
+Figure 1: The number of Chinese vessels operating in the SPRFMO area has risen dramatically over the years with a 100%,1; 100,True,fleet_operations
+fishing activity in the SEP with 98,98,False,fisheries
+"fleet dominates, conducting 98",98,False,fleet_operations
+68 China operated a fleet of 528,68; 528,False,fleet_operations
+squid jigging vessels in the SPRFMO area in 2024 -,2024,False,fleet_operations
+a 100% increase in the number of Chinese vessels,100,True,fleet_operations
+"15 Vanuatu-flagged vessels on the list, with five of",15,False,fleet_operations
+these being fuel bunker vessels and 10 of them being,10,False,fleet_operations
+Figure 2: Number of reefer vessels by flag state actively operating in our SEP study area between 2020 and 2025,2; 2020; 2025,False,fleet_operations
+caught jumbo squid (Figure 2),2,False,fisheries
+78 This is because once illicit catches are,78,False,fisheries
+The 346 consolidated fishing vessels of interest in,346,False,fleet_operations
+146 unique reefer vessels between 2020 and 2025,146; 2020; 2025,False,fleet_operations
+"vessels and reefers, 520,000 tonnes of cold storage capacity, a streamlined border control and inspection","520,000",False,fleet_operations
+"In 2020, just under 40% of the reefers which encountered our vessels of interest docked in Zhoushan",2020; 40,True,fleet_operations
+78% of reefers receiving catch from 346 Chinese squid vessels of interest -,78; 346,True,fleet_operations
+"Yun 15 arrived on the SEP fishing grounds in August 2024, GFW recorded 44 encounters, of which 28",15; 2024; 44; 28,False,fisheries
+encounters (64%) were with our vessels of interest,64,True,fleet_operations
+The vessel sailed back to Zhoushan in February 2025,2025,False,fleet_operations
+"According to a news article, this vessel unloaded an astonishing 110,000 tonnes of frozen squid from","110,000",False,fleet_operations
+"3M (US$72,000-432,000) for qualified DWF companies relocating to Zhoushan, compensating vessel","3; 72,000; 432,000",False,fleet_operations
+"3) for every tonne of squid shipped back to Zhoushan, and a one-off reward of",3,False,fisheries
+"RMB 300,000 (US$43,000) for processors whose year-on-year squid processing capacity increases by at","300,000; 43,000",False,fisheries
+"Moreover, fishing companies are also provided with attractive subsidies - Up to RMB 12M (US$1",12; 1,False,fisheries
+5M) through such loans to squid producers,5,False,fisheries
+accounted for 52% of Korea’s total squid imports in,52,True,fisheries
+represented 13% of all squid,13,True,fisheries
+13% of all squid consignments to South Korea in,13,True,fisheries
+with vessels of interest between 2020 and 2025,2020; 2025,False,fleet_operations
+and even unload deceased crew (see page 30),30,False,methodology
+than ten Chinese vessels in 2024 to around 180 in,2024; 180,False,fleet_operations
+Protests in Chile in 2025 by artisanal fishers show,2025,False,methodology
+"squid vessel, May 2025",2025,False,fleet_operations
+entries for 163 Chinese-flagged squid vessels,163,False,fleet_operations
+67 sister vessels (linked by ownership and available,67,False,fleet_operations
+163 vessels (68%) arriving into Chilean ports had,163; 68,True,fleet_operations
+"3%) had dropped off sick crew at ports, while five",3,True,methodology
+vessels (9%) had discharged dead crew at ports,9,True,methodology
+Chinese squid vessel docking into Chilean ports in 2025,2025,False,fleet_operations
+(Interview conducted in December 2024),2024,False,methodology
+"Interview with an Indonesian fisher working on a Chinese squid vessel, May 2025",2025,False,methodology
+edu/live/news/51304-unregulated-fishing-explodes-spells-doom-for-jumbo,51304,False,fisheries
+102 Out of the 777 vessels analysed,102; 777,False,fleet_operations
+"8%) of them also fished in the SWA high seas,",8,True,fisheries
+"Korean vessels followed this route in 2020, with the",2020,False,fleet_operations
+majority of vessels being Chinese-flagged (97,97,False,fleet_operations
+EJF’s investigations found 126 vessels (35,126; 35,False,fleet_operations
+"a Chinese squid vessel, September 2021",2021,False,fleet_operations
+A 2025 report by Chile stated that total squid catches in 2024 had dropped by 52% from,2025; 2024; 52,True,fisheries
+Figure 4: Comparison of apparent fishing hours between the SEP and SWA squid fishing ground,4,False,fisheries
+3 million hours’ worth of fishing activity were,3,False,fisheries
+squid catches in 2024 dropping by 52%,2024; 52,True,fisheries
+of 8 tonnes per vessel day in 2015 to a record low of 2,8; 2015; 2,False,fleet_operations
+"tonnes per vessel day in 2024, despite fishing effort",2024,False,fleet_operations
+111/112 Jumbo squid have been referred to as,111; 112,False,fisheries
+the jumbo squid’s metabolic rate by 31% and activity,31,True,fisheries
+117 Peru’s own jumbo squid fishery has been,117,False,methodology
+event) saw Peruvian squid catches drop by 69,69,False,fisheries
+China introduced a moratorium on squid fishing in the SEP in 2020 in response to concerns from Latin,2020,False,fisheries
+fish in this zone between the 1st September and 30th November,1; 30,False,fisheries
+only 38 total fishing hours recorded on GFW’s platform in 2019,38; 2019,False,fisheries
+"Jumbo Flying Squid (CALAMASUR), February 2025",2025,False,fisheries
+Measure (CMM) for jumbo squid (CMM 18-2020),18; 2020,False,fisheries
+at-sea observers or 5% of fishing days for participating,5,True,fisheries
+introduced a vessel limit number for fleets (671 squid-,671,False,fleet_operations
+squid on the high seas in the nearly 15 years of this,15,False,fisheries
+Almost 60% of vessels were allegedly involved in,60,True,fleet_operations
+30% of vessels were allegedly involved in the,30,True,fleet_operations
+"a Chinese squid vessel, May 2021",2021,False,fleet_operations
+"a Chinese squid vessel, June 2024",2024,False,fleet_operations
+"a Chinese squid vessel, September 2022",2022,False,fleet_operations
+Number of vessels (n=60),60,False,fleet_operations
+Table 1: Statistical summary of alleged illegal fishing infractions on vessels covered in this report,1,False,fleet_operations
+"a Chinese squid vessel, August 2025",2025,False,fleet_operations
+"a Chinese squid vessel, June 2025",2025,False,fleet_operations
+"a Chinese squid vessel, March 2021",2021,False,fleet_operations
+"Outlaw Ocean database, 28 of the 777 vessels (4%)",28; 777; 4,True,fleet_operations
+EJF interviews with 81 fishers working onboard,81,False,methodology
+these 60 vessels reveal a shocking prevalence of,60,False,fleet_operations
+Number of fishers (n=81),81,False,methodology
+Table 2: Statistical summary of alleged labour abuses on vessels covered in this report,2,False,human_rights
+At least 41 deceased crew were,41,False,methodology
+crew had been unloaded from 59 SPRFMO-registered,59,False,methodology
+vessels between 2013 and 2023,2013; 2023,False,fleet_operations
+171 41 of these crew,171; 41,False,methodology
+"(62%) had worked on Chinese-flagged vessels, 14 (21%)",62; 14; 21,True,fleet_operations
+"given for these deaths, including illness (24 cases out",24,False,other
+"a Chinese squid vessel, October 2020",2020,False,fleet_operations
+Fisher A – October 2023 – June 2025 | Fisher B – October 2023 – June 2025,2023; 2025; 2023; 2025,False,methodology
+"Interview with Fisher B, June 2025",2025,False,methodology
+"In 2025, EJF interviewed two Indonesian crew members from Vessel 1",2025; 1,False,methodology
+"Interview with Fisher A, June 2025",2025,False,methodology
+Fisher B estimated that 40 sharks - each weighing,40,False,methodology
+The fishers estimated that between 50 and 60 seals,50; 60,False,methodology
+"Interview with Fisher D, August 2024",2024,False,methodology
+Fisher C – August 2019 – November 2021 | Fisher D – August 2023 – August 2024,2019; 2021; 2023; 2024,False,methodology
+"Between 2023 and 2024, EJF interviewed two Indonesian crew who worked on Vessel 2",2023; 2024; 2,False,methodology
+"worked on the vessel for 27 months from August 2019 to November 2021, while Fisher D was onboard",27; 2019; 2021,False,methodology
+high seas adjacent to Peru’s EEZ in 2020 - when Fisher,2020,False,methodology
+"Interview with Fisher C, March 2023",2023,False,methodology
+Fisher C paid a US$800 security,800,False,methodology
+"deposit, while Fisher D paid US$1,000","1,000",False,methodology
+A beheaded shark onboard Vessel 3,3,False,environment
+"Interview with Fisher G, May 2021",2021,False,methodology
+Fisher G – August 2018 – July 2020,2018; 2020,False,methodology
+"In 2021, EJF interviewed one Indonesian crew member who worked on Vessel 3 for 23 months",2021; 3; 23,False,methodology
+He stated that the vessel typically fished for around 10 months at a time before,10,False,fleet_operations
+The global squid market was valued at US$12,12,False,fisheries
+imports - representing 31% of global squid & cuttlefish,31,True,fisheries
+"through EJF interviews, 24 of these were approved to",24,False,methodology
+Fisher: January 2020,2020,False,methodology
+"Fisher: In the beginning, it took 2 days to complete",2,False,methodology
+"Fisher: Some 200 tons, if I am not mistaken",200,False,methodology
+"a Chinese squid vessel, February 2023",2023,False,fleet_operations
+"In 2021, around 85% of the squid fishing vessels",2021; 85,True,fleet_operations
+"178 Since then, 27 squid fishing",178; 27,False,fisheries
+companies with over 350 squid vessels have become,350,False,fleet_operations
+179 Among our 346 vessels of,179; 346,False,fleet_operations
+"interest, 140 vessels (40",140; 40,False,fleet_operations
+53% of fishers interviewed by EJF,53,True,methodology
+"According to EJF’s interview data, nine fishers (52",52,False,methodology
+of the total interviewed (n=17)) who worked on,17,False,methodology
+3%) under the Zhoushan Squid Co-op,3,True,fisheries
+the 12 vessels implicated in either fisheries or physical,12,False,methodology
+"a Chinese squid vessel, October 2024",2024,False,fleet_operations
+"a Chinese squid vessel, July 2022",2022,False,fleet_operations
+181 CNFC Zhoushan Ocean Fisheries (中水,181,False,methodology
+182 Several squid vessels,182,False,fleet_operations
+"For instance, in 2016, several squid",2016,False,fisheries
+08%) of CNFC Zhoushan Ocean Fisheries,08,True,methodology
+"9% of the total interviewed, n=14) who",9; 14,True,methodology
+"recorded on board two vessels (18%, n=11), where both",18; 11,True,fleet_operations
+"7% of the total vessels with interviews,",7,True,methodology
+"n=11) allegedly engaged in shark finning, and six",11,False,environment
+10 vessels implicated in either fisheries or physical,10,False,methodology
+"a Chinese squid vessel, July 2024",2024,False,fleet_operations
+188 shipments of squid were sent by CNFC to South Korea between 2020 and 2025,188; 2020; 2025,False,fisheries
+2024-04192 which sets standards to protect crew,2024; 04192,False,methodology
+"188 (C188), the 2014 Forced Labour Protocol (P29)193,",188; 188; 2014; 29; 193,False,human_rights
+77 Indonesian and four Philippine fishers were,77,False,methodology
+These fishers had worked on 60 Chinese-,60,False,methodology
+Intelligence196 to verify vessel AIS transmissions,196,False,fleet_operations
+"analysis, including EJF’s interview dataset (60 vessels),",60,False,methodology
+"vessels in 2024,197 the Outlaw Ocean Project Bait-to-","2024,197",False,fleet_operations
+Plate database (280 vessels with alleged IUU fishing,280,False,fleet_operations
+"or human rights abuses),198 the current registry list of",198,False,human_rights
+"report (66 vessels),200 information on force majeure",66; 200,False,human_rights
+arrivals into Peruvian ports (15 vessels)201 and Park,15; 201,False,fleet_operations
+(2023) which provides information on vessel,2023,False,fleet_operations
+a total number of 346 “vessels of interest” either,346,False,fleet_operations
+(FAO) fishing areas 87,87,False,fisheries
+"204 In total, 777 vessel identities were retrieved,",204; 777,False,fleet_operations
+corresponding to 676 unique physical vessels,676,False,fleet_operations
+Fisheries subsidies209,209,False,methodology
+Workers are seen on the deck of a Chinese-flagged squid jigger operating in the SWA in Spring 2025,2025,False,methodology
+"FMI (2025) Squid market size and share forecast outlook 2025 to 2035,",2025; 2025; 2035,False,fisheries
+FAO (2024) FishstatJ - Software for Fishery and Aquaculture Statistical,2024,False,methodology
+org/fishery/en/knowledgebase/150,150,False,methodology
+"et al (June 2023) Ocean predators: Squids, Chinese",2023,False,fisheries
+environment/2020/oct/21/china-squid-fleet-peru-coastguard-fishing,2020; 21,False,fleet_operations
+Coalition for Global Fisheries Transparency (2024) Global Charter,2024,False,methodology
+uploads/2024/10/Coalition-for-Fisheries-Transparency-Global-Charter-,2024; 10,False,methodology
+ITF (2025) Labour exploitation in distant water fishing vessels,2025,False,human_rights
+files/node/resources/files/250212-Squid-Fishing-digital-,250212,False,fisheries
+et al (2015) The biology and ecology of the jumbo squid,2015,False,fisheries
+"Marine Bio (2025) Jumbo/Humboldt Squid, https://www",2025,False,fisheries
+(2020) Evidence of interactions between white sharks and large squids,2020,False,environment
+(December 2010) Preliminary diet analysis of the blue shark,2010,False,environment
+24 FAO (2024) FishstatJ - Software for Fishery and Aquaculture Statistical,24; 2024,False,methodology
+"J, et al, (2015) Main Biological and fishery aspects of the Jumbo",2015,False,methodology
+Meeting-2015/Papers/43aeee3243/SC-03-27-Biological-and-fishery-aspects-,2015; 43; 3243; 03; 27,False,methodology
+28 FAO (2024) FishstatJ - Software for Fishery and Aquaculture Statistical,28; 2024,False,methodology
+", (29th March 2025) The “new blooming” of squid in Chile:",29; 2025,False,fisheries
+info (October 2024) Peruvian superfishing takes the world by,2024,False,fisheries
+UN Comtrade (2025) Trade of cuttlefish and squid by Chile and Peru,2025,False,fisheries
+"et al, (10th March 2023) Fishing through the cracks: The",10; 2023,False,fisheries
+"unregulated nature of global squid fisheries, Science Advances, Volume 9,",9,False,methodology
+"mortality during 2005-2015, Sci",2005; 2015,False,other
+"36 SPRFMO (2026) Record of Vessels, https://sprfmo",36; 2026,False,fleet_operations
+"FAO (2026) Pacific, Southeast (Major Fishing Area 87), https://www",2026; 87,False,fisheries
+org/fishery/en/area/fao:87/en,87,False,methodology
+"38 Global Fishing Watch (2026) Global Fishing Watch Map, https://",38; 2026,False,fisheries
+42 FAO (2024) FishstatJ - Software for Fishery and Aquaculture Statistical,42; 2024,False,methodology
+45 FAO (2024) FishstatJ - Software for Fishery and Aquaculture Statistical,45; 2024,False,methodology
+49 El Peruano (2025) Supreme Decree approving the Fisheries,49; 2025,False,methodology
+(11th March 2025) New fishery management regulation,11; 2025,False,methodology
+regulation-jumbo-flying-squid-rojas-v%C3%A1squez-p60re/,3; 1; 60,True,fisheries
+(20th October 2023) Peruvian jumbo squid fishery FIP,20; 2023,False,methodology
+(1st December 2025) Peru’s jumbo flying squid fishery,1; 2025,False,methodology
+54 UN Comtrade (2025) Trade of cuttlefish and squid by Peru (2022-2024),54; 2025; 2022; 2024,False,fisheries
+"SPRFMO (2024) Annual report of Chile to the SC - Squid, https://www",2024,False,fisheries
+SC12-Doc27-CHL-Annual-Report-of-Chile-to-the-SPRFMO-SC-Squid,12; 27,False,fisheries
+", (29th March 2025) The “new blooming” of squid in",29; 2025,False,fisheries
+UN Comtrade (2025) Trade of cuttlefish and squid by Chile (2022-,2025; 2022,False,fisheries
+"21134: Amends the General Law on Fishing and Aquaculture, in order to",21134,False,fisheries
+et al (October 2024) Productive impact of the squid,2024,False,fisheries
+66 Global Fishing Watch (2022) Analysis of the Southeast Pacific Distant,66; 2022,False,fisheries
+GFW-2022-FA-SQUID2021-,2022; 2021,False,fisheries
+"68 Global Fishing Watch (2025) Global Fishing Watch Map, https://",68; 2025,False,fisheries
+69 SPRFMO (2025) SC13 - SQ 01: Update on Squid Datasets held by the,69; 2025; 13; 01,False,fisheries
+Squid/SC13-SQ01-SEC-Update-of-Squid-Datasets-held-by-the-Secretariat,13; 01,False,fisheries
+70 Global Fishing Watch (2021) Analysis of the Southeast Pacific Distant,70; 2021,False,fisheries
+GFW-2021-FA-SQUID2020-EN-1,2021; 2020; 1,False,fisheries
+SPRFMO (2025) SC13 - SQ 01: Update on Squid Datasets held by the,2025; 13; 01,False,fisheries
+76 EJF (2020) Interviews with Indonesian fishers working on various,76; 2020,False,methodology
+EJF (2023) Crime on the high seas: Illegal fishing and its links to the,2023,False,fisheries
+et al (February 2020) Illicit trade in marine fish catch,2020,False,fisheries
+Zhoushan Municipal Bureau of Ocean and Fisheries (2021) Zhoushan City's,2021,False,methodology
+High-Quality Development Plan for Fisheries during the 14th Five-Year,14,False,methodology
+83 ChinaNews (2024) Zhejiang's Zhoushan Enhances “One Fish” Service,83; 2024,False,fisheries
+"84 Hangchi Zhou, Zhejiang Daily (2025) Witness the journey of a squid",84; 2025,False,fisheries
+85 ChinaNews (2024) Zhejiang's Zhoushan Enhances “One Fish” Service,85; 2024,False,fisheries
+"86 Hangchi Zhou, Zhejiang Daily (2025) Witness the journey of a squid",86; 2025,False,fisheries
+87 Zhejiang Fishery Mutual Insurance Association (2023) To accelerate,87; 2023,False,methodology
+"90 KATI, trade statistics Korea’s squid imports AGCODE 41311 in 2024,",90; 41311; 2024,False,fisheries
+"total squid imports (2024): US$495,414,000 / squid imports from China","2024; 495,414,000",False,fisheries
+"Korea Imported Food Information Maru, 2024 consignments of squid",2024,False,fisheries
+"93 C4ADS (2025) Pier Pressure: Distant water squid fleet shifts to Chile,",93; 4; 2025,False,fleet_operations
+"95 C4ADS (2025) Pier Pressure: Distant water squid fleet shifts to Chile,",95; 4; 2025,False,fleet_operations
+(2025) Chinese Fishing Swarm Raises Alarm in South,2025,False,fisheries
+(2025) Chinese fishing fleet off Chilean coast sparks ire,2025,False,fleet_operations
+100 EJF (2026) Analysis of Global Fishing Watch vessel port entries into,100; 2026,False,fleet_operations
+engaging in IUU fishing and/or human rights abuses (Dataset from 2020 -,2020,False,human_rights
+102 International Transport Workers’ Federation (2025) The Importance,102; 2025,False,methodology
+"104 SPRFMO (2026) Record of Vessels, https://sprfmo",104; 2026,False,fleet_operations
+INTERPOL%20ENS%20Fisheries%20Crime%20Prospectus%202021,20; 20; 20; 20; 202021,True,methodology
+assets/Meetings/02-SC/13th-SC-2025/Squid/SC13-SQ06-Update-of-the-,02; 13; 2025; 13; 06,False,fisheries
+Squid/SC13-SQ06-Update-of-the-SPiCT-applied-to-Dosidicus-gigasin-FAO-,13; 06,False,fisheries
+SC/13th-SC-2025/Plenary/SC13-Doc20-Annual-report-China-Squid,13; 2025; 13; 20,False,fisheries
+110 SPRFMO (2025) SC13 - SQ 01: Update on Squid Datasets held by the,110; 2025; 13; 01,False,fisheries
+"112 MBARI (2007) Humboldt squid on the move, Monterey Bay Aquarium",112; 2007,False,fisheries
+(5th December 2024) Peru’s giant squid fishery facing,5; 2024,False,methodology
+119 Guide to Frozen Foods (2025) Peruvian squid exports to China surge,119; 2025,False,fisheries
+122 Center for Animal Law Studies (8th June 2023) Unregulated fishing,122; 8; 2023,False,fisheries
+127 Global Fishing Watch (2021) Situation Report: Southeast,127; 2021,False,fisheries
+"Pacific Distant Water Squid Fleet, September 2021, GFW, https://",2021,False,fleet_operations
+org/wp-content/uploads/GFW-2021-FA-SQUID-,2021,False,fisheries
+"128 Oceana (2023) China engages in fishing ban PR stunt, Oceana, https://",128; 2023,False,fisheries
+(10th August 2023) China’s moratoriums on fishing do,10; 2023,False,fisheries
+environment/2023/aug/10/china-moratoriums-on-fishing-do-nothing-to-,2023; 10,False,fisheries
+Measures/2025-CMMs/CMM-18-2025-Squid,2025; 18; 2025,False,fisheries
+(14th October 2025) Chinese fishing fleet off Chilean coast,14; 2025,False,fleet_operations
+com/environment/2020/oct/21/china-squid-fleet-peru-coastguard-fishing,2020; 21,False,fleet_operations
+137 Gestion (8th February 2025) Chinese fishing vessels evade Peruvian,137; 8; 2025,False,fleet_operations
+(13th October 2025) Chilean fishermen denounce,13; 2025,False,methodology
+%F0%9F%87%A8%F0%9F%87%B1-news/chilean-fishermen-denounce-,0; 9; 87; 8; 0,True,methodology
+(19th May 2025) China’s distant-water fleet turns toward,19; 2025,False,fleet_operations
+"147 FAO (2026) North Pacific Fisheries Commission, https://www",147; 2026,False,methodology
+Measures/2021-CMMs/CMM-18-2020-Squid-Consequential-12Mar2021,2021; 18; 2020; 12; 2021,False,fisheries
+Measures/2023-CMMs/CMM-18-2023-Squid_29Mar23,2023; 18; 2023; 29; 23,False,fisheries
+overfishing-concerns/6244119,6244119,False,fisheries
+"Fisheries (2024 Edition), https://www",2024,False,methodology
+"158 NOAA (2023) 2023 Shark Finning Report, https://www",158; 2023; 2023,False,environment
+gov/s3/2024-02/2023-Shark-Finning-Report-Congress-with-Appendix,3; 2024; 02; 2023,False,environment
+"Sharks%E2%80%93consolidates-and-replaces-C-05-03,-C-16-04,-",2; 80; 93; 05; 03,True,environment
+"Management of Distant-Water Fisheries 39(9), https://www",39; 9,False,methodology
+Measures/2024-CMMs/CMM-19-2021-Vessel-Markings-1Mar2024-,2024; 19; 2021; 1; 2024,False,fleet_operations
+and-Management-Measures/2025-CMMs/CMM-04-2025-IUU-Vessel-List-,2025; 04; 2025,False,fleet_operations
+167 International Labour Organization (ILO) Special Action Programme,167,False,human_rights
+"to combat Forced Labour (SAP-FL) (2012) ILO indicators of forced labour,",2012,False,human_rights
+168 SPRFMO (2024) Decision 18-2024: Labour Standards on Fishing,168; 2024; 18; 2024,False,human_rights
+Decision-18-2024-Labour-Standards-in-SPRFMO-1Mar2024,18; 2024; 1; 2024,False,human_rights
+169 ITF (2025) Labour exploitation in distant water fishing vessels,169; 2025,False,human_rights
+171 ITF (2025) Labour exploitation in distant water fishing vessels,171; 2025,False,human_rights
+172 ITF (2025) Labour exploitation in distant water fishing vessels,172; 2025,False,human_rights
+"173 FMI (2025) Squid market size and share forecast outlook 2025 to 2035,",173; 2025; 2025; 2035,False,fisheries
+174 UN Comtrade (2025) Trade analysis of global squid and cuttlefish,174; 2025,False,fisheries
+178 Zhoushan Distant Water Fisheries Association (2019) Introduction to,178; 2019,False,methodology
+180 Zhoushan Distant Water Fisheries Association (2021) Ningbo,180; 2021,False,methodology
+"181 CNFC Overseas Fisheries (2025) 2024 Annual Report, https://",181; 2025; 2024,False,methodology
+"183 BBC (2016) Argentina sinks Chinese fishing boat Lu Yan Yuan Yu 010,",183; 2016; 010,False,fisheries
+"189 Coalition for Global Fisheries Transparency (2024), ‘Global Charter",189; 2024,False,methodology
+192 WCFPC 2024) Conservation and Management Measure for Crew,192; 2024,False,methodology
+"Labour Standards (CMM 2024-04), https://cmm",2024; 04,False,human_rights
+files/cmm_attachments/Att%2020_CMM%202024-04%20Crew%20,2020; 202024; 04; 20; 20,True,methodology
+Labour%20Standards%20CMM,20; 20,True,human_rights
+"193 ILO (2026) C29 - Forced Labour Convention, 1930 (No",193; 2026; 29; 1930,False,human_rights
+844 - List of approved high seas fishing,844,False,fisheries
+"199 SPRFMO (2026) Record of vessels, https://sprfmo",199; 2026,False,fleet_operations
+"200 C4ADS (2025) Pier Pressure: Distant water squid fleet shifts to Chile,",200; 4; 2025,False,fleet_operations
+"202 FAO (2026) Pacific, Southeast (Major Fishing Area 87), https://www",202; 2026; 87,False,fisheries
+"206 ILO (2026) Ratifications of C188 - Work in Fishing Convention, 2007",206; 2026; 188; 2007,False,fisheries
+207 IMO (2026) 2012 Cape Town Agreement to enhance fishing,207; 2026; 2012,False,fisheries
+"on a Chinese squid vessel, September 2022",2022,False,fleet_operations
+"on a Chinese squid vessel, June 2025",2025,False,fleet_operations
+"on a Chinese squid vessel, May 2024",2024,False,fleet_operations
+known as Mile 201—hundreds of distant-water vessels operate without adequate oversight,201,False,fleet_operations
+Satellite image of squid jiggers operating at Mile 201 in the Southwest Atlantic – a ‘city of,201,False,fisheries
+1 A blind spot in global fisheries management,1,False,methodology
+"350 squid jigging vessels, mostly from China, South Korea, and Taiwan, operate without regional or",350,False,fleet_operations
+"fishing hours increased by 65% between 2019 and 2024, an increase almost entirely attributable to the",65; 2019; 2024,True,fisheries
+"Chinese squid jigging fleet, which saw an 85% increase in effort over the period",85,True,fleet_operations
+5 The size of the fleet is so,5,False,fleet_operations
+A squid jigging vessel operating in the high seas of the Southwest Atlantic (Mile 201),201,False,fleet_operations
+“The last 10 years have been years with enormous fishing pressure,10,False,fisheries
+"3 Illegal, Unreported and Unregulated (IUU) fishing and human rights abuses on",3,False,human_rights
+"Crew member working on board a Taiwanese squid jigger, interviewed by EJF in June 2023",2023,False,methodology
+"Testimonies collected by EJF from crew members working aboard squid vessels at Mile 201 revealed that,",201,False,methodology
+fishing practices and associated severe labour exploitation (Box 1 and 2):,1; 2,False,human_rights
+"Crew member working on board a Chinese squid jigger, interviewed by EJF in September 2021",2021,False,methodology
+"Crew member working on a Chinese squid jigger, interviewed by EJF in September 2021",2021,False,methodology
+"Crew member working on a Chinese squid jigger, interviewed by EJF in October 2022",2022,False,methodology
+"A 20-year-old Indonesian fisher was deployed for over a year aboard the Fu Yuan Yu 7605, a",20; 7605,False,methodology
+"Two Indonesian fishers, both aged 24 at the time of embarkation, were subjected to severe",24,False,methodology
+"Yuan Yu 286, and Lu Qing Yuan Yu 287 highlighted a pervasive pattern of forced labour, arbitrary",286; 287,False,human_rights
+"Fisher 1 experienced wage withholding for the first six months, with salary",1,False,methodology
+Fisher 2 described how supervisors and captains,2,False,methodology
+Fisher 1 witnessed a Filipino crew member’s death,1,False,methodology
+Fisher 2 also reported the death,2,False,methodology
+Fisher 1’s ordeal was compounded by a forced vessel transfer,1,False,methodology
+1 Spain as a key market for squid,1,False,fisheries
+"was responsible for 65% of all squid imports into the EU, making it the primary gateway for squid into",65,True,fisheries
+"12 Between 2019 and 2023, Spain’s squid supply averaged roughly 179,348 tonnes of squid per","12; 2019; 2023; 179,348",False,fisheries
+"3% of Spain’s total squid imports, equating to around 20,000 tonnes","3; 20,000",True,fisheries
+9% of this squid originates from unregulated high seas fishery targeting,9,True,methodology
+"Argentine shortfin squid,17 particularly those involving Chinese-flagged vessels",17,False,fleet_operations
+"estimated 17% of China’s total catch of Argentine shortfin squid was exported to the EU, with Spain alone",17,True,fisheries
+being the destination of 10% of this catch,10,True,fisheries
+"tonnes of Argentine shortfin squid to Spain during this period, equating to around 9% of Spain’s annual",9,True,fisheries
+"Between 2019 and 2023 Spain reported annual average squid catches of 26,746 tonnes22 from 6","2019; 2023; 26,746; 22; 6",False,fisheries
+"23 Out of these catches, 18,653 tonnes (70% of the total) were caught","23; 18,653; 70",True,fisheries
+The remaining 29% came from FAO Major Fishing areas that lie,29,True,fisheries
+"Central Atlantic (>1%), most likely attributable to fishing within the Spanish EEZ:24",1; 24,True,fisheries
+Table 1: Overview of squid catches reported by Spain by provenance,1,False,fisheries
+"Unlike the squid jigging fleets operating at the Mile 201, this fishing is subject to EU and national",201,False,fleet_operations
+"around 30 Spanish trawlers target hake and shrimp, occasionally catching shortfin squid as part of a",30,False,fisheries
+of the Implementing Regulation28 of the EU IUU Regulation to explicitly include any species or,28,False,environment
+1 FAO Major Fishing Area 41,1; 41,False,fisheries
+"2 Between 2019 and 2024, EJF conducted 169 interviews",2; 2019; 2024; 169,False,methodology
+"110 squid jigging vessels, covering around 20% of the foreign",110; 20,True,fleet_operations
+fleet operating in Mile 201,201,False,fleet_operations
+5 Analysis based on estimated fishing effort data in Global,5,False,fisheries
+"3390/FISHES9060209; Ko, C",3390; 9060209,False,fisheries
+"Reviews in Fisheries Science & Aquaculture, 23(2),",23; 2,False,methodology
+17 This reflects the proportion of catches by Taiwan and,17,False,fisheries
+(2024) ‘Fishery Statistics Vol,2024,False,methodology
+send&id=362:fisheries-statistics-,362,False,methodology
+18 Based on reported landings of Argentine shortfin squid for,18,False,fisheries
+"China in FAO Fishstat (423,607 tonnes) and imports of frozen","423,607",False,fisheries
+21 Regarding the number of Spanish vessels targeting,21,False,fleet_operations
+vessels (98%) are equipped with gear that can potentially,98,True,fleet_operations
+approximately 70% of Spain’s national squid production,70,True,fisheries
+"27 Coalition for Global Fisheries Transparency (2024),",27; 2024,False,methodology
+Coalition-for-Fisheries-Transparency-Global-Charter-2024-,2024,False,methodology

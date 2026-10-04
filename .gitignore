@@ -36,3 +36,24 @@ desktop.ini
 # --- Flask ---
 instance/
 .flaskenv
+
+# --- Tableau processed data (regenerate with prep_tableau_data.py / join_tables.py) ---
+tableau/data/*.csv
+tableau/data/joined/*.csv
+tableau/*.twbx
+
+# --- EJF source PDFs (too large for git, download from ejfoundation.org) ---
+text/EJF/*.pdf
+
+# --- GDELT raw/intermediate data ---
+text/GDELT/*.csv
+text/GDELT/_progress*.json
+text/GDELT/raw/
+
+# --- Report build artifacts ---
+report/**/*.aux
+report/**/*.log
+report/**/*.out
+report/**/*.synctex*
+report/**/*.fls
+report/**/*.fdb_latexmk
