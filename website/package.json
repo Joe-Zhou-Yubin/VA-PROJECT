@@ -1,0 +1,25 @@
+{
+  "name": "ocean-of-words",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "check:browser": "node scripts/check-browser.mjs"
+  },
+  "dependencies": {
+    "@chenglou/pretext": "^0.0.9",
+    "@fontsource/dm-mono": "^5.3.0",
+    "@fontsource/libre-caslon-display": "^5.3.0",
+    "papaparse": "^5.7.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.0",
+    "@types/papaparse": "^5.5.2",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4"
+  }
+}
