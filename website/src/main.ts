@@ -11,6 +11,10 @@ const toggle = document.querySelector<HTMLButtonElement>('#motion-toggle')!;
 const status = document.querySelector<HTMLParagraphElement>('#scene-status')!;
 let ocean: Awaited<ReturnType<typeof startOcean>> | undefined;
 let disposed = false;
+const header = document.querySelector<HTMLElement>('.header')!;
+function updateHeader() { header.classList.toggle('is-scrolled', window.scrollY > 16); }
+window.addEventListener('scroll', updateHeader, { passive: true });
+updateHeader();
 
 function updateMotion(paused: boolean) {
   toggle.setAttribute('aria-pressed', String(paused));
@@ -41,4 +45,4 @@ async function initialize() {
 }
 function onToggle() { ocean?.toggle(); }
 void initialize();
-if (import.meta.hot) import.meta.hot.dispose(() => { disposed = true; ocean?.dispose(); toggle.removeEventListener('click', onToggle); });
+if (import.meta.hot) import.meta.hot.dispose(() => { disposed = true; window.removeEventListener('scroll', updateHeader); ocean?.dispose(); toggle.removeEventListener('click', onToggle); });
