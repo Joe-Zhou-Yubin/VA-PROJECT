@@ -1,0 +1,71 @@
+iso3,country,iuu_score_2025,iuu_score_2023,region,score_change,risk_tier
+CHN,China,3.6,3.65,Asia,-0.05,Very High
+TWN,Taiwan,2.79,2.83,Asia,-0.04,High
+KOR,South Korea,2.45,2.48,Asia,-0.03,Medium
+JPN,Japan,2.21,2.24,Asia,-0.03,Medium
+VNM,Vietnam,2.82,2.85,Asia,-0.03,High
+IDN,Indonesia,2.62,2.67,Asia,-0.05,High
+THA,Thailand,2.68,2.75,Asia,-0.07,High
+MYS,Malaysia,2.55,2.58,Asia,-0.03,High
+PHL,Philippines,2.51,2.54,Asia,-0.03,High
+IND,India,2.48,2.5,Asia,-0.02,Medium
+MMR,Myanmar,2.95,2.98,Asia,-0.03,High
+KHM,Cambodia,2.88,2.91,Asia,-0.03,High
+LKA,Sri Lanka,2.42,2.45,Asia,-0.03,Medium
+NGA,Nigeria,2.85,2.88,Africa,-0.03,High
+GHA,Ghana,2.72,2.75,Africa,-0.03,High
+SEN,Senegal,2.65,2.68,Africa,-0.03,High
+MRT,Mauritania,2.78,2.8,Africa,-0.02,High
+GNB,Guinea-Bissau,2.9,2.93,Africa,-0.03,High
+SLE,Sierra Leone,2.82,2.85,Africa,-0.03,High
+SOM,Somalia,3.15,3.2,Africa,-0.05,Very High
+MDG,Madagascar,2.7,2.73,Africa,-0.03,High
+MOZ,Mozambique,2.68,2.71,Africa,-0.03,High
+TZA,Tanzania,2.58,2.61,Africa,-0.03,High
+KEN,Kenya,2.45,2.48,Africa,-0.03,Medium
+ZAF,South Africa,2.22,2.25,Africa,-0.03,Medium
+ESP,Spain,2.18,2.2,Europe,-0.02,Medium
+PRT,Portugal,2.1,2.12,Europe,-0.02,Medium
+FRA,France,1.85,1.87,Europe,-0.02,Low
+GBR,United Kingdom,1.78,1.8,Europe,-0.02,Low
+NOR,Norway,1.65,1.67,Europe,-0.02,Low
+ISL,Iceland,1.72,1.74,Europe,-0.02,Low
+ITA,Italy,2.05,2.08,Europe,-0.03,Medium
+GRC,Greece,2.15,2.18,Europe,-0.03,Medium
+DEU,Germany,1.7,1.72,Europe,-0.02,Low
+NLD,Netherlands,1.75,1.77,Europe,-0.02,Low
+DNK,Denmark,1.62,1.64,Europe,-0.02,Low
+SWE,Sweden,1.58,1.6,Europe,-0.02,Low
+ROU,Romania,1.46,1.48,Europe,-0.02,Very Low
+POL,Poland,1.68,1.7,Europe,-0.02,Low
+IRL,Ireland,1.72,1.74,Europe,-0.02,Low
+BEL,Belgium,1.75,1.78,Europe,-0.03,Low
+RUS,Russia,2.55,2.58,Europe,-0.03,High
+TUR,Turkey,2.38,2.4,Europe,-0.02,Medium
+USA,United States,1.82,1.84,Americas,-0.02,Low
+CAN,Canada,1.72,1.74,Americas,-0.02,Low
+MEX,Mexico,2.42,2.45,Americas,-0.03,Medium
+BRA,Brazil,2.35,2.38,Americas,-0.03,Medium
+ARG,Argentina,2.28,2.3,Americas,-0.02,Medium
+CHL,Chile,2.05,2.08,Americas,-0.03,Medium
+PER,Peru,2.32,2.35,Americas,-0.03,Medium
+ECU,Ecuador,2.45,2.48,Americas,-0.03,Medium
+COL,Colombia,2.38,2.4,Americas,-0.02,Medium
+VEN,Venezuela,2.72,2.75,Americas,-0.03,High
+PAN,Panama,2.68,2.7,Americas,-0.02,High
+CRI,Costa Rica,2.15,2.18,Americas,-0.03,Medium
+AUS,Australia,1.68,1.7,Oceania,-0.02,Low
+NZL,New Zealand,1.62,1.64,Oceania,-0.02,Low
+PNG,Papua New Guinea,2.72,2.75,Oceania,-0.03,High
+FJI,Fiji,2.48,2.5,Oceania,-0.02,Medium
+LBR,Liberia,2.85,2.88,Africa,-0.03,High
+BLZ,Belize,2.55,2.58,Americas,-0.03,High
+MHL,Marshall Islands,2.18,2.2,Oceania,-0.02,Medium
+VUT,Vanuatu,2.62,2.65,Oceania,-0.03,High
+CMR,Cameroon,2.75,2.78,Africa,-0.03,High
+SAU,Saudi Arabia,2.35,2.38,Asia,-0.03,Medium
+OMN,Oman,2.42,2.45,Asia,-0.03,Medium
+YEM,Yemen,2.95,2.98,Asia,-0.03,High
+IRN,Iran,2.78,2.8,Asia,-0.02,High
+PAK,Pakistan,2.65,2.68,Asia,-0.03,High
+BGD,Bangladesh,2.58,2.61,Asia,-0.03,High
