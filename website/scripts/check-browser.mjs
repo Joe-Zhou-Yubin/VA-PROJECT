@@ -56,7 +56,7 @@ try {
     await page.locator('.header nav a[href="#findings"]').click();
     await page.waitForTimeout(700);
     assert.equal(new URL(page.url()).hash, '#findings');
-    assert.ok(await page.locator('#findings').evaluate(el => Math.abs(el.getBoundingClientRect().top) < 100));
+    assert.ok(await page.locator('#findings').evaluate(el => Math.abs(el.getBoundingClientRect().top - document.querySelector('.header').getBoundingClientRect().height - 16) < 5));
     const cloudLayout = await page.evaluate(() => document.querySelector('#ocean').cloudLayout);
     assert.ok(cloudLayout.length >= 25, 'cloud must contain a useful set of source words');
     const stageBounds = await page.locator('#cloud-stage').boundingBox();
