@@ -33,6 +33,40 @@ The viewer starts with the familiar (a world map) and ends with human testimony.
 
 Build this in Tableau: **New Story → Size 1400×900 → add each dashboard as a story point in order.**
 
+---
+
+### Story Point 0 (Prologue): "How the World Learned to Worry About Fishing"
+
+**Format:** Static image or embedded chart (not a Tableau dashboard). Use `google_ngram_all_terms.png` or `google_ngram_iuu_focus.png` as a floating image on a blank story point, with text overlay.
+
+**Image:** `attachments/google_ngram_all_terms.png` (3-panel faceted chart)
+
+**What it shows:** Google Books Ngram frequency (1970–2019) of 9 fishing-related terms across published literature: books, academic papers, policy documents. Three panels separate the terms by scale and function.
+
+**Panel A — Industry & Policy Terms:**
+- "Aquaculture" dominates at 3+ ppm, peaking around 1995 then gradually declining. This reflects the 1980s–90s boom in fish farming research, when aquaculture was positioned as the solution to overfishing. The post-2000 decline doesn't mean aquaculture shrank; it means the literature moved from establishing the concept to assuming it.
+- "Fisheries management" holds steady at ~0.5 ppm across the entire period, a backbone term in the literature.
+- "Marine conservation" remains very low throughout, suggesting the conservation framing came later and never dominated the fisheries discourse.
+
+**Panel B — Problem Recognition:**
+- "Overfishing" and "bycatch" both peak sharply around 1996, aligning with the UN Fish Stocks Agreement (1995) and the FAO Code of Conduct for Responsible Fisheries. This was the era when the scale of the problem entered mainstream scientific consciousness.
+- "Fish stocks" follows a similar trajectory but peaks slightly later (~1997), reflecting the stock-assessment science that followed the alarm.
+- All three decline after 2000, not because the problems were solved, but because the discourse shifted from documenting the problem to debating responses.
+
+**Panel C — IUU & Enforcement Terms:**
+- "IUU fishing" barely existed in literature before 2001, then rose steadily after the FAO International Plan of Action on IUU Fishing (IPOA-IUU) was adopted that year. It peaks around 2004–2005 and plateaus.
+- "Illegal fishing" follows a similar but slightly earlier curve, peaking around 2005.
+- "Forced labour" (in the fishing context) is a declining legacy term with a different meaning in earlier decades. Its presence here is an artifact; the modern forced-labour-at-sea discourse is primarily post-2015 and lives in reports/news rather than books.
+- Key policy milestones annotated: UN Fish Stocks Agreement (1995), FAO IPOA-IUU (2001), EU IUU Regulation (2009), Port State Measures Agreement entering force (2016).
+
+**The narrative point:** IUU fishing is a concept that barely existed 25 years ago. The policy framework is young. The data we're about to show you covers a period (2020–2024) where the tools to detect IUU behaviour have only just become available at scale. We're looking at a problem the world has only recently learned to measure.
+
+**Companion image (optional):** `google_ngram_iuu_focus.png` — a single-panel version with era shading (Discovery → Alarm → Action) that works well as a presentation opener. The shaded eras tell the story visually: the world spent 1970–1992 discovering the problem, 1992–2005 raising the alarm, and 2005–present building the response. Our project sits in the "Era of Action" — using the data tools that era produced.
+
+**Transition → next:** "That's the literature. Now let's look at what's actually happening on the water."
+
+---
+
 ### Story Point 1: "Where Does the World Fish?"
 
 **Dashboard 1**
@@ -188,23 +222,29 @@ Build this in Tableau: **New Story → Size 1400×900 → add each dashboard as 
 |----------|-------|-------------|
 | Top-left 40% | Sheet 22: IUU Index Validation Scatter | `country_summary` + `iuu_fishing_index` |
 | Top-right 40% | Sheet 23: IUU Index vs Disabling Rate | `country_summary` + `iuu_fishing_index` |
-| Bottom 20% | Sheet 24: GDELT News Volume (or text annotation) | `gdelt_iuu_news_clean` |
+| Bottom 20% | Sheet 24: GDELT News Volume | `gdelt_enriched` or `gdelt_monthly_by_query` |
 
 **Caption:** "Do our risk scores match the experts and the media?"
 
-**Key insight (left scatter):** If the trend line is positive with reasonable R², our GFW-derived composite risk score aligns with the independently published IUU Fishing Index. Outliers are countries the Index flags but our data doesn't (or vice versa), interesting in either direction.
+**Key insight (left scatter):** If the trend line is positive with reasonable R², our GFW-derived composite risk score aligns with the independently published IUU Fishing Index (Poseidon/GI-TOC, 2025 edition — 152 coastal states scored 1–5). China confirmed as the highest-risk country at 3.60; Romania the lowest at 1.46. Outliers where the Index flags a country but our data doesn't (or vice versa) are analytically interesting — they may reflect enforcement gaps or data coverage differences.
 
-**Key insight (right scatter):** Tests whether the IUU Index predicts disabling behaviour specifically.
+**Key insight (right scatter):** Tests whether the IUU Index predicts AIS disabling behaviour specifically. A country with a high IUU Index score that also shows high disabling rates provides strong cross-validation. Countries with high IUU scores but low disabling may use other evasion methods (reflagging, transshipment) not captured by AIS gaps alone.
 
-**Key insight (bottom):** GDELT news volume shows IUU coverage increasing over 2020–2024, but may be geographically biased toward Western/English sources.
+**Key insight (GDELT bottom panel):** The GDELT news corpus (1,539 articles, 2020–2024) provides a media-attention layer:
 
-**If GDELT data is not ready:** Replace Sheet 24 with a text box summarising the intended analysis and noting it as future work.
+- *News volume by query group:* `iuu_fishing` queries dominate (905 articles), with visible spikes in late 2022 and late 2024 corresponding to WTO fisheries subsidies negotiations and major enforcement operations. `dark_fleet` barely registers (8 articles), confirming AIS disabling is a specialist topic that rarely reaches mainstream coverage.
+- *Topic prevalence by year:* 2022 was the peak year for China-related IUU coverage (~140 articles), likely driven by the WTO fisheries subsidies debate and high-profile enforcement actions. IUU and enforcement coverage is more stable across years, suggesting a steady baseline of reporting rather than event-driven spikes.
+- *China mention share:* Spiked to 31.2% of all IUU articles in 2022, then dropped to 5.1% by 2024. The decline doesn't indicate improvement — it indicates media attention shifted elsewhere. This is itself an insight: news coverage is a lagging, attention-driven indicator, not a real-time risk measure.
+- *Topic co-occurrence:* "Seized" and "enforcement" correlate moderately (seizures are enforcement outcomes). "China" and "labor" show weak negative correlation, suggesting articles about China focus on fleet behaviour, while forced-labour coverage focuses on non-China contexts. "AIS" topics correlate loosely with everything — a niche cross-cutting term.
+- *Precision caveat:* Title-level keyword matching produces false positives. A precision check sample (`gdelt_precision_check.csv`, 132 articles) is provided for hand-labelling. Reported precision should be included in the final report methodology.
 
-**Transition → next (optional final point):** "Behind the data are real people."
+**If presenting:** Show the GDELT news volume chart and note: "The world's attention to IUU fishing is growing, but it's uneven — dominated by English-language Western sources, and spiking around policy events rather than tracking actual risk geography. The news tells us what the world knows. Our AIS data tells us what's actually happening."
+
+**Transition → next:** "Behind the data are real people."
 
 ---
 
-### Story Point 9 (Optional): "Voices from the Fleet"
+### Story Point 9: "Voices from the Fleet"
 
 **Dashboard 8**
 
@@ -218,9 +258,19 @@ Build this in Tableau: **New Story → Size 1400×900 → add each dashboard as 
 
 **Caption:** "What 430 fishers told EJF about life on distant-water vessels"
 
-**Key insight:** Chinese-flagged vessels dominate violence mentions. The most common bigrams are "high seas", "forced labour", "distant water". This qualitative layer gives human context to the quantitative risk indicators.
+**Chart-by-chart insights:**
 
-**Closing narration:** "The AIS data shows us where vessels go and what they do. The risk indicators tell us who is suspicious. The news tells us what the world knows. And the testimonies tell us what the fishers experienced. Together, these four layers make the invisible visible."
+**EJF Word Cloud / Top Bigrams:** "High seas" (141) and "jumbo squid" (134) anchor the domain context. "Chinese flagged" (93) and "forced labour" (91) are the 4th and 5th most common bigrams, confirming these two concepts are central to the EJF narrative. "Indonesian fisher" and "interview Indonesian" appearing in the top 25 reflects that the interviewees are predominantly Indonesian crew working on foreign-flagged vessels — they are the workers, not the operators. "Southwest Atlantic" and "Indian Ocean" locate the geographic focus. The colour coding separates abuse terms (red: forced labour, rights abuses, destructive fishing), IUU terms (orange: IUU fishing), and neutral domain terms (blue: high seas, squid fishing, fishing vessels).
+
+**Themes by Flag State:** Chinese-flagged vessels lead every theme category (56 of 65 flagged testimonies). Wildlife is the dominant theme (24 mentions), likely reflecting shark finning and bycatch descriptions. Death (14) and violence (12) are both substantial. Conditions (14) and transshipment (9) complete the picture. Korean-flagged vessels appear disproportionately in violence and conditions relative to their small sample (4 testimonies, 2+ theme mentions each), suggesting concentrated severity. Taiwanese vessels appear mostly in wildlife and violence. Wages is comparatively low across all flags, suggesting the abuse described is more physical than financial.
+
+**Sentiment Scatter:** Almost every testimony sits below zero (negative sentiment), as expected for abuse accounts. The main cluster (0–500 words, -5 to 0 sentiment) represents individual interview excerpts. Longer quotes that dip further negative (-3 to -5) are the more detailed, emotionally charged accounts. Bubble size (negative word count) makes the most disturbing testimonies visually prominent. Note: testimonies over 500 words are filtered out as they are likely entire report sections extracted as single quotes rather than individual statements.
+
+**Testimonies by Year:** Chinese-flagged vessels dominate every year, ramping sharply from 2021 onward and peaking at ~19 in 2025. Taiwanese and Korean vessels only appear from 2023–2025, suggesting EJF expanded its investigation scope in recent cycles. The pre-2021 period (1–2 testimonies per year) is thin. Important caveat for narration: the growth reflects EJF's investigation intensity, not necessarily worsening conditions. But the consistency of themes across years suggests the conditions are structural, not episodic.
+
+**The narrative point:** The AIS data shows us where vessels go and what they do. The risk indicators tell us who is suspicious. The news tells us what the world knows. And the testimonies tell us what the fishers experienced. Together, these four layers make the invisible visible. The shift from quantitative dashboards to human testimony is the strongest close to the presentation.
+
+**Closing narration (to read aloud):** Pick one quote from `ejf_testimonies.csv` — suggested: *"When we refused to fish, we got scolded and physically abused. We were kicked and hit."* (Indonesian fisher, Chinese-flagged vessel, 2022). Read it over the dashboard. Then: "This is what the data looks like from the deck of a squid jigger."
 
 ---
 
@@ -258,11 +308,13 @@ Set these up in each dashboard via **Dashboard → Actions**.
 
 ## Presentation Tips
 
-1. **Start with the map.** Everyone understands a world map. Let the audience orient before introducing risk metrics.
-2. **Use the COVID dip** as a timestamp anchor. "See this dip in 2020? That's when the world locked down. Watch what happens after."
-3. **Demo one vessel live.** Type an MMSI into Dashboard 5 during the presentation. Pick one with a dramatic risk profile in advance.
-4. **End with a quote.** Pull one EJF testimony and read it aloud over Dashboard 8. The shift from data to human voice is the strongest way to close.
-5. **Keep each story point to 2 minutes.** 8 points × 2 min = 16 minutes. That leaves room for Q&A in a 20-minute slot.
+1. **Open with the Ngram chart.** Show the 50-year arc of IUU as a concept before any AIS data. "This problem barely had a name 25 years ago."
+2. **Then go to the map.** Everyone understands a world map. Let the audience orient before introducing risk metrics.
+3. **Use the COVID dip** as a timestamp anchor. "See this dip in 2020? That's when the world locked down. Watch what happens after."
+4. **Demo one vessel live.** Type an MMSI into Dashboard 5 during the presentation. Pick one with a dramatic risk profile in advance.
+5. **Bridge with the news.** "The experts agree with our data [IUU Index scatter]. The media is paying attention [GDELT chart]. But the coverage is uneven and attention-driven."
+6. **End with a quote.** Pull one EJF testimony and read it aloud over Dashboard 8. The shift from data to human voice is the strongest way to close.
+7. **Keep each story point to 90 seconds.** 10 points × 90s = 15 minutes. That leaves room for Q&A in a 20-minute slot.
 
 ---
 
@@ -272,12 +324,35 @@ Set these up in each dashboard via **Dashboard → Actions**.
 |------|----------|--------|
 | `GFW_IUU_Fishing_final.twbx` | `tableau/final/` | Build from this guide |
 | `proposal.tex` + `sample-base.bib` | `tableau/final/` | Updated with feedback |
-| `attachments/*.png` | `tableau/final/attachments/` | Figures for the report |
-| `TABLEAU_BUILD.md` | `tableau/final/` | Sheet-by-sheet build instructions |
-| `STORY_FLOW.md` | `tableau/final/` | This file |
-| `iuu_fishing_index.csv` | `datasets/` | External validation data |
-| `ejf_*.csv` | `text/EJF/` | Fisher testimony data |
-| `gdelt_iuu_news_clean.csv` | `text/GDELT/` | News data (when complete) |
+| **Attachments (charts)** | `tableau/final/attachments/` | |
+| `google_ngram_all_terms.png` | attachments/ | 3-panel Ngram faceted chart |
+| `google_ngram_iuu_focus.png` | attachments/ | Single-panel IUU focus with era shading |
+| `gdelt_news_volume.png` | attachments/ | GDELT article volume over time |
+| `gdelt_topics_by_year.png` | attachments/ | Topic prevalence grouped bars |
+| `gdelt_china_and_cooccurrence.png` | attachments/ | China mention trend + correlation matrix |
+| `ejf_themes_by_flag.png` | attachments/ | Testimony themes by vessel flag |
+| `ejf_top_bigrams.png` | attachments/ | Top 25 bigrams colour-coded |
+| `ejf_sentiment_scatter.png` | attachments/ | Sentiment vs quote length |
+| `ejf_testimonies_by_year.png` | attachments/ | Testimonies over time by flag |
+| `AIS Disabling Map.png` | attachments/ | Tableau AIS disabling map export |
+| `Fleet Composition by Country.png` | attachments/ | Tableau fleet composition export |
+| `Monthly Fishing Trend.png` | attachments/ | Tableau monthly trend export |
+| **Tableau-ready CSVs** | `tableau/final/data/` | |
+| `gdelt_enriched.csv` | data/ | 1,539 articles with domain + source country |
+| `gdelt_monthly_by_query.csv` | data/ | Monthly article counts by query group |
+| `gdelt_yearly_topics.csv` | data/ | Yearly topic flag aggregates |
+| `gdelt_title_word_freq.csv` | data/ | Top 200 words from GDELT titles |
+| `gdelt_precision_check.csv` | data/ | 132 articles sampled for hand-labelling |
+| `google_ngram_iuu.csv` | data/ | 9 terms × 70 years (1950–2019) |
+| `ejf_testimonies.csv` | data/ | 111 fisher testimonies with themes |
+| `ejf_word_freq.csv` | data/ | 500 word frequencies |
+| `ejf_bigram_freq.csv` | data/ | 300 bigram frequencies |
+| `iuu_fishing_index.csv` | data/ | 70 country IUU Index scores |
+| **Build guides** | `tableau/final/` | |
+| `TABLEAU_BUILD.md` | tableau/final/ | Sheet-by-sheet build instructions |
+| `STORY_FLOW.md` | tableau/final/ | This file |
+| `text_viz.ipynb` | tableau/final/ | Jupyter notebook (generates all above) |
+| `run_text_viz.py` | tableau/final/ | Script version of the notebook |
 
 ---
 
