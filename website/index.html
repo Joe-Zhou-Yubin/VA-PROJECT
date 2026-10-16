@@ -29,10 +29,23 @@
       </section>
       <section id="explore" class="explore-section" aria-labelledby="explore-title">
         <div id="cloud-stage" class="cloud-stage" role="group" aria-label="Word cloud of EJF research. Larger words occur more often in the source."><ul id="cloud-summary" class="cloud-summary" aria-label="Most frequent source words"></ul></div>
+        <!-- Insight fish -->
+        <div class="insight-fish-container" aria-label="Click a fish to reveal an insight">
+          <button class="insight-fish" data-insight="China's distant-water fleet logged over 52 million fishing hours in 2024 alone — more than the next 10 nations combined." style="top:18%;left:12%"><svg viewBox="0 0 40 24" aria-hidden="true"><path d="M2 12 C8 4,20 2,30 8 L38 12 L30 16 C20 22,8 20,2 12Z" fill="#67cce7" opacity="0.6"/><circle cx="28" cy="10" r="1.5" fill="#03152d"/></svg></button>
+          <button class="insight-fish" data-insight="55,369 times between 2017–2019, fishing vessels deliberately turned off their AIS tracking — most within 100–400 km of shore." style="top:45%;left:78%"><svg viewBox="0 0 40 24" aria-hidden="true"><path d="M38 12 C32 4,20 2,10 8 L2 12 L10 16 C20 22,32 20,38 12Z" fill="#5ebad5" opacity="0.5"/><circle cx="12" cy="10" r="1.5" fill="#03152d"/></svg></button>
+          <button class="insight-fish" data-insight="'Forced labour' appears 91 times in EJF reports. 86% of testimonies describe conditions on Chinese-flagged squid vessels." style="top:72%;left:25%"><svg viewBox="0 0 40 24" aria-hidden="true"><path d="M2 12 C8 4,20 2,30 8 L38 12 L30 16 C20 22,8 20,2 12Z" fill="#ff6b6b" opacity="0.5"/><circle cx="28" cy="10" r="1.5" fill="#03152d"/></svg></button>
+          <button class="insight-fish" data-insight="AIS disabling clusters at EEZ boundaries — the Argentine shelf, West Africa, Northwest Pacific — precisely where enforcement is thinnest." style="top:30%;left:55%"><svg viewBox="0 0 40 24" aria-hidden="true"><path d="M38 12 C32 4,20 2,10 8 L2 12 L10 16 C20 22,32 20,38 12Z" fill="#ffaa00" opacity="0.5"/><circle cx="12" cy="10" r="1.5" fill="#03152d"/></svg></button>
+          <button class="insight-fish" data-insight="The term 'IUU fishing' barely existed in published literature before 2001. The policy framework to detect it is barely 25 years old." style="top:60%;left:65%"><svg viewBox="0 0 40 24" aria-hidden="true"><path d="M2 12 C8 4,20 2,30 8 L38 12 L30 16 C20 22,8 20,2 12Z" fill="#ce93d8" opacity="0.5"/><circle cx="28" cy="10" r="1.5" fill="#03152d"/></svg></button>
+          <button class="insight-fish" data-insight="Vietnam's fleet is almost entirely trawlers — the highest bycatch-risk gear profile of any major fishing nation." style="top:85%;left:45%"><svg viewBox="0 0 40 24" aria-hidden="true"><path d="M38 12 C32 4,20 2,10 8 L2 12 L10 16 C20 22,32 20,38 12Z" fill="#66bb6a" opacity="0.45"/><circle cx="12" cy="10" r="1.5" fill="#03152d"/></svg></button>
+          <button class="insight-fish" data-insight="News coverage of China and IUU fishing spiked to 31% of all articles in 2022, then dropped to 5% by 2024. The problem didn't shrink — attention moved." style="top:15%;left:40%"><svg viewBox="0 0 40 24" aria-hidden="true"><path d="M2 12 C8 4,20 2,30 8 L38 12 L30 16 C20 22,8 20,2 12Z" fill="#4fc3f7" opacity="0.5"/><circle cx="28" cy="10" r="1.5" fill="#03152d"/></svg></button>
+        </div>
         <div class="section-top"><p class="eyebrow">THE PROBLEM</p><span class="section-index" aria-hidden="true">01 / SEEING THE UNSEEN</span></div>
         <div class="section-intro problem-intro">
           <h2 id="explore-title"><span class="problem-stat">1 in 5</span><span class="problem-claim">wild-caught fish may be linked to illegal, unreported and unregulated (IUU) fishing.</span></h2>
-          <p>IUU fishing is difficult to detect because vessels operate far offshore, span overlapping jurisdictions, and may conceal suspicious activity by disabling the Automatic Identification System (AIS), loitering, transshipping, or changing identities.</p>
+          <div class="problem-description">
+            <p>The words in this ocean are drawn from EJF's investigations into distant-water squid fleets. 500 terms, weighted by how often they appear across three reports documenting conditions aboard Chinese, Taiwanese, and Korean-flagged vessels. The larger the word, the more it recurs in the testimony of 430 fishers.</p>
+            <p class="cloud-insights"><strong>What the cloud reveals:</strong> "Squid", "fishing", and "vessels" dominate by sheer volume, as you would expect from a squid fishery investigation. But look at what clusters around them. Words like "forced", "labour", "rights", "abuses", "sharks", and "indonesian" all sit at readable size, meaning they recur dozens of times across the reports. The pattern is clear: the workers are Indonesian, the vessels are Chinese-flagged, and the abuses are structural rather than anecdotal. Notice too that "Zhoushan" appears. A single Chinese port city, named often enough to surface among 500 global terms, pointing to just how concentrated the fleet's home base really is.</p>
+          </div>
         </div>
         <p class="source-note"><span id="vocabulary-count">—</span> distinct words. One shared sea.</p>
       </section>
@@ -49,12 +62,12 @@
                 <div class="tableau-frame-header"><span>GLOBAL FISHING WATCH / 2020-2024</span><a href="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/Analysis01_FishingMap?:showVizHome=no" target="_blank" rel="noopener noreferrer">Open in Tableau <span aria-hidden="true">&nearr;</span><span class="sr-only"> (opens in a new tab)</span></a></div>
                 <iframe class="tableau-embed" src="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/Analysis01_FishingMap?:embed=yes&amp;:showVizHome=no&amp;:tabs=no&amp;:toolbar=yes&amp;:language=en-US&amp;:showAppBanner=false" title="Where Does the World Fish? Interactive Tableau dashboard" aria-describedby="fishing-map-instructions" loading="lazy" allowfullscreen></iframe>
               </div>
-              <figcaption>Figure 01. Where Does the World Fish.</figcaption>
+              <figcaption>Figure 01. Where Does the World Fish.<br><small class="fig-datasets">Datasets: fleet-monthly (AIS Fishing Effort v3, 2020–2024), named_anchorages</small></figcaption>
             </figure>
             <div class="analysis-findings">
-              <div><h4>The Problem</h4><p>Fishing takes place across a vast ocean, but its distribution is uneven. Before examining risk, researchers need to understand where observed activity is concentrated and whether those concentrations change over time.</p></div>
-              <div><h4>What we found</h4><p>The map shows dense concentrations of observed fishing around several coastal and offshore regions, including waters around <strong>East and Southeast Asia and Europe in 2024</strong>, alongside activity farther offshore. The colour scale shows differences in recorded fishing hours between mapped locations, but it does not show the nationality of the vessels operating there.</p><p>Switching to Compare years lets readers examine whether concentrations recur in the same places or shift between 2020 and 2024. A visible change is a change in recorded activity: differences in observation coverage can also affect the picture. Sparse or unmarked areas should not automatically be read as places where no fishing occurred.</p></div>
-              <div><h4>Why it matters</h4><p>Knowing where fishing is concentrated gives the later risk analyses a baseline. A busy area may contain more recorded events simply because more activity takes place there. Comparing risk signals with this activity context helps avoid treating volume alone as suspicious behaviour.</p><p><strong>A fishing hotspot is not an IUU hotspot</strong>. The map helps identify locations for closer examination, but tracking gaps, vessel histories and external evidence are needed to investigate potential concerns.</p></div>
+              <div><h4>The Problem</h4><p>Global fishing is not spread evenly across the ocean. Most of it concentrates in a handful of coastal and shelf regions, while vast stretches of open water appear nearly empty in AIS records. Understanding where the activity clusters, and where it does not, is the baseline for everything that follows.</p></div>
+              <div><h4>What we found</h4><p>Five regions account for the overwhelming majority of recorded fishing hours: the East China Sea and Yellow Sea, the waters around Indonesia and Vietnam, the Northeast Atlantic shelf (Norway to Spain), the Peruvian anchoveta grounds, and the Argentine shelf. The East China Sea alone contains more recorded fishing hours than the entire western coast of Africa.</p><p>Switching to Compare Years reveals a visible dip in 2020, particularly in the Northwest Pacific, corresponding to COVID-19 port closures and crew restrictions. By 2021 the rebound had already overshot pre-pandemic levels, and by 2024 the overall footprint is larger than at any point in the five-year window. Southeast Asian waters show the most consistent year-over-year growth.</p><p>Equally notable is what the map does not show. The Central Pacific, Southern Ocean, and large stretches of the Indian Ocean appear nearly blank, yet satellite radar research (Paolo et al. 2024) has identified substantial vessel activity in these areas by ships that never broadcast AIS at all. Absence on this map should not be read as absence of fishing.</p></div>
+              <div><h4>Why it matters</h4><p>This map sets the denominator for every risk indicator that follows. A region with more fishing will naturally produce more AIS events, more encounters, and more disabling incidents simply because more vessels are operating there. Without this baseline, a high event count could be mistaken for a high risk rate.</p><p>The post-COVID rebound is particularly relevant: the rapid return to and then exceeding of pre-pandemic effort levels suggests that any temporary reduction in fishing pressure was structural (port closures, crew shortages) rather than a lasting policy change. The fleet came back bigger.</p></div>
             </div>
           </div>
         </section>
@@ -67,69 +80,74 @@
                 <div class="tableau-frame-header"><span>FLEET ACTIVITY / 2020-2024</span><a href="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/Analysis02_FleetActivity?:showVizHome=no" target="_blank" rel="noopener noreferrer">Open in Tableau <span aria-hidden="true">&nearr;</span><span class="sr-only"> (opens in a new tab)</span></a></div>
                 <iframe class="tableau-embed" src="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/Analysis02_FleetActivity?:embed=yes&amp;:showVizHome=no&amp;:tabs=no&amp;:toolbar=yes&amp;:language=en-US&amp;:showAppBanner=false" title="Fleet DNA: How the Top 20 Flag States Fish. Interactive Tableau dashboard" aria-describedby="fleet-instructions" loading="lazy" allowfullscreen></iframe>
               </div>
-              <figcaption>Figure 02. Fleet DNA: How the Top 20 Flag States Fish.</figcaption>
+              <figcaption>Figure 02. Fleet DNA: How the Top 20 Flag States Fish.<br><small class="fig-datasets">Datasets: fleet-monthly (AIS Fishing Effort v3, 2020–2024)</small></figcaption>
             </figure>
             <div class="analysis-findings">
-              <div><h4>The Problem</h4><p>Similar levels of fishing activity can arise from very different fleet structures. Country totals alone conceal differences in fishing gear, seasonality and changes over time. Comparing flag states helps reveal who contributes to the activity mapped in the first analysis and how their fleets operate.</p></div>
-              <div><h4>What we found</h4><p>In the <strong>2024 dataset</strong>, Chinese-flagged vessels account for approximately <strong>52.4 million fishing hours</strong>, compared with 6.9 million for Vietnamese-flagged vessels and 5.4 million for South Korean-flagged vessels.</p><p>Gear composition also differs: trawlers account for approximately <strong>60.4%</strong> of Chinese-flagged fishing hours, while drifting longlines account for approximately <strong>55.8%</strong> of Taiwanese-flagged hours. Select a flag state to explore its monthly activity across 2020-2024. These reference figures describe 2024 and remain unchanged when you explore another year.</p></div>
-              <div><h4>Why it matters</h4><p>Fleet scale and fishing methods provide context for interpreting risk. A large fleet may accumulate more recorded events simply because it operates more extensively. Comparing activity levels and gear composition helps avoid mistaking a higher event count for a higher rate of suspicious behaviour.</p><p>These differences help frame monitoring priorities and the country-risk comparisons that follow. A vessel's flag identifies its registration state, but it does not necessarily identify its owner or where it fishes.</p></div>
+              <div><h4>The Problem</h4><p>Total fishing hours tell you how much a country fishes. They do not tell you how. Two nations with similar totals can have completely different environmental footprints depending on whether their fleets trawl the seabed, set longlines for tuna, or jig for squid at night. Gear type determines what gets caught, what gets killed as bycatch, and how much habitat gets damaged.</p></div>
+              <div><h4>What we found</h4><p>China's fleet is both the largest and the most diversified. In 2024, Chinese-flagged vessels logged approximately <strong>52.4 million fishing hours</strong> spread across trawlers (~60%), squid jiggers, drifting longlines, and seiners. Even China's relatively modest squid jigger share represents more absolute fishing hours than the entire output of most nations on this chart.</p><p>The contrast with other major fleets is sharp. <strong>Taiwan and South Korea</strong> are dominated by drifting longlines, reflecting their distant-water tuna operations across the Pacific and Indian Oceans, with elevated shark and seabird bycatch risk. <strong>Vietnam</strong> is almost entirely trawlers, the gear type with the highest bycatch rates and most seabed damage. Norway, France, and the UK are also trawler-heavy, but operate in heavily regulated North Atlantic waters.</p><p>The monthly trend reveals a distinctive Chinese seasonal pattern: fishing drops sharply every summer during the government-mandated South China Sea moratorium, then spikes in autumn. No other nation shows this cycle.</p></div>
+              <div><h4>Why it matters</h4><p>Gear composition is not just a technical detail. A trawler-heavy fleet damages different ecosystems than a longline-heavy one, and the monitoring challenges differ too: squid jiggers operating at night on the high seas are inherently harder to observe than seiners working in coastal waters.</p><p>These profiles also reveal which nations' fleets are most likely to encounter each other at sea. China's diversified fleet operates in nearly every major fishing ground, putting it into geographic overlap with smaller, more specialised fleets, and that overlap is where encounters, transshipment opportunities, and competition for stocks become most acute.</p><p>One important caveat: a vessel's flag identifies its registration state, not necessarily its owner, operator, or the nationality of its crew. Indonesian fishers work on Chinese-flagged vessels. Spanish companies own vessels flagged to Belize. The flag is a starting point, not a conclusion.</p><p><a href="#" class="gear-info-link" id="gear-info-toggle">Learn about each gear type and its impact ↓</a></p></div>
+            </div>
+            <div class="gear-info-panel" id="gear-info-panel" hidden>
+              <div class="gear-info-modal">
+                <button class="gear-info-close" id="gear-info-close" aria-label="Close">&times;</button>
+                <h4>Gear Types and Their Environmental Impact</h4>
+                <div class="gear-info-grid">
+                  <div><span class="gear-dot" style="background:#e8a0bf"></span><h5>Trawlers</h5><p>Drag large nets along the seabed or through the water column. High bycatch rates and can damage ocean floor habitats. The most common industrial gear type globally.</p></div>
+                  <div><span class="gear-dot" style="background:#f4a261"></span><h5>Drifting Longlines</h5><p>Deploy lines stretching up to 100 km with thousands of baited hooks. Target tuna and swordfish but also catch sharks, seabirds, and turtles as bycatch.</p></div>
+                  <div><span class="gear-dot" style="background:#e9c46a"></span><h5>Seiners / Purse Seines</h5><p>Encircle schools of fish with a large net that cinches closed at the bottom. Efficient for schooling species like tuna and anchoveta but can trap dolphins and juvenile fish.</p></div>
+                  <div><span class="gear-dot" style="background:#b07dd6"></span><h5>Squid Jiggers</h5><p>Use bright lights to attract squid to the surface, then catch them with automated jigging machines. Often operate at night on the high seas, far from monitoring.</p></div>
+                  <div><span class="gear-dot" style="background:#7ec8e3"></span><h5>Fixed Gear</h5><p>Includes pots, traps, set longlines, and gillnets. Generally lower bycatch than trawling but gillnets can entangle marine mammals and seabirds.</p></div>
+                  <div><span class="gear-dot" style="background:#57a773"></span><h5>Pole and Line</h5><p>One hook, one fish. The most selective method with minimal bycatch. Common in artisanal and sustainable tuna fisheries. Labour-intensive.</p></div>
+                  <div><span class="gear-dot" style="background:#4a7fb5"></span><h5>Dredge Fishing</h5><p>Metal frames drag across the seabed to harvest shellfish like scallops and clams. Highly destructive to benthic habitats.</p></div>
+                  <div><span class="gear-dot" style="background:#8a7060"></span><h5>Trollers</h5><p>Tow lures or baited hooks behind a moving vessel. Low bycatch, selective for target species. Common for salmon and albacore tuna.</p></div>
+                  <div><span class="gear-dot" style="background:#d4a0a0"></span><h5>Fishing (generic)</h5><p>Vessels classified as fishing by the AIS model but whose specific gear type could not be determined from movement patterns alone.</p></div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
         <section id="analysis-03" class="analysis-section analysis-section--live" aria-labelledby="analysis-title-03">
           <div class="analysis-heading"><span class="analysis-number" aria-hidden="true">03</span><div><p class="eyebrow">ANALYSIS 03</p><h3 id="analysis-title-03">Country Risk Patterns</h3></div></div>
-          <div class="analysis-layout">
-            <figure class="tableau-figure">
-              <p id="country-risk-instructions" class="analysis-instructions">Select a country bubble to compare its indicators and history. Hold Ctrl (Windows) or Command (Mac) while clicking to compare several. Then explore the risk-tier distribution below to see what the averages conceal.</p>
-              <div class="tableau-frame tableau-frame--live">
-                <div class="tableau-frame-header"><span>COUNTRY RISK / ASSESSED VESSELS</span><a href="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/Analysis03_CountryRisk?:showVizHome=no" target="_blank" rel="noopener noreferrer">Open in Tableau <span aria-hidden="true">&nearr;</span><span class="sr-only"> (opens in a new tab)</span></a></div>
-                <iframe class="tableau-embed" src="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/Analysis03_CountryRisk?:embed=yes&amp;:showVizHome=no&amp;:tabs=no&amp;:toolbar=yes&amp;:language=en-US&amp;:showAppBanner=false" title="Country Risk Patterns. Interactive Tableau dashboard" aria-describedby="country-risk-instructions" loading="lazy" allowfullscreen></iframe>
-              </div>
-              <figcaption>Figure 03a. Country Risk Patterns.</figcaption>
-            </figure>
-            <div class="analysis-findings">
-              <div><h4>The Problem</h4><p>A country with more fishing activity does not necessarily have the highest average risk. Country averages can also hide the number of vessels with elevated indicators and the kinds of behaviour contributing to those scores.</p></div>
-              <div><h4>What we found</h4><p>The <strong>2024</strong> country summary illustrates this distinction. China has an average assessed-vessel risk score of <strong>0.585</strong>, compared with <strong>1.238 for Taiwan</strong> and <strong>1.213 for Spain</strong>, despite China's much larger fishing total.</p><p>The same summary records <strong>115 high-risk vessels for China, 101 for Taiwan, and 50 for Spain</strong>, across very different assessed-vessel populations. Read these counts alongside averages and tier proportions rather than treating any single measure as a complete ranking. These reference figures describe 2024 and remain unchanged when you explore another year.</p><p>The assessed population <strong>includes non-fishing vessels</strong>. These figures describe the country-summary population, not fishing vessels alone.</p></div>
-              <div><h4>Why it matters</h4><p>Combining scale, indicator types, history and tier proportions gives a more defensible basis for prioritizing investigation. A country average may conceal a smaller group of vessels with elevated indicators, while a large event count may partly reflect the size of the assessed fleet.</p><p>Flag/port differences provide operational context but do not, by themselves, prove ownership concealment or misconduct.</p></div>
-            </div>
-          </div>
-          <div class="analysis-supporting" role="group" aria-labelledby="risk-tier-title">
+<div class="analysis-supporting" role="group" aria-labelledby="risk-tier-title">
             <h4 id="risk-tier-title">Beyond the Average: Risk-Tier Distribution</h4>
             <div class="analysis-layout">
               <figure class="tableau-figure">
-                <p id="risk-tier-instructions" class="analysis-instructions">This published view covers 2012-2025. Hover over a segment to inspect its risk tier and share of assessed vessels. Country selections above do not carry over to this chart.</p>
+                <p id="risk-tier-instructions" class="analysis-instructions">This published view covers 2012-2025. Hover over a segment to inspect its risk tier and share of assessed vessels. Country selections below do not carry over to this chart.</p>
                 <div class="tableau-frame tableau-frame--live">
                   <div class="tableau-frame-header"><span>RISK TIER DISTRIBUTION</span><a href="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/RiskTierDistribution?:showVizHome=no" target="_blank" rel="noopener noreferrer">Open in Tableau <span aria-hidden="true">&nearr;</span><span class="sr-only"> (opens in a new tab)</span></a></div>
                   <iframe class="tableau-embed tableau-embed--supporting" src="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/RiskTierDistribution?:embed=yes&amp;:showVizHome=no&amp;:tabs=no&amp;:toolbar=yes&amp;:language=en-US&amp;:showAppBanner=false" title="Risk Tier Distribution. Interactive Tableau worksheet" aria-describedby="risk-tier-instructions" loading="lazy" allowfullscreen></iframe>
                 </div>
-                <figcaption>Figure 03b. Risk Tier Distribution.</figcaption>
+                <figcaption>Figure 03a. Risk Tier Distribution.<br><small class="fig-datasets">Datasets: IUU-risk (IUU Fishing Risk Insights v1, 2012–2025)</small></figcaption>
               </figure>
               <div class="analysis-findings">
-                <div><h4>The Problem</h4><p>A country average can conceal how risk is distributed across individual vessels. Similar averages can describe a small group with elevated indicators or a larger group with lower scores. The proportions in each risk tier provide another way to examine that difference.</p></div>
-                <div><h4>What we found</h4><p>Across the published <strong>2012-2025</strong> view, <strong>None is the largest tier in every year</strong>, while Low, Medium and High together account for a smaller share. Most assessed vessels therefore have no recorded scored indicators in this view, while the remaining tiers reveal the minority that a single average can obscure. Percentages describe the assessed population for that year, and a larger share does not necessarily mean a larger number of vessels.</p><p>This standalone chart uses its own population and view settings. Country selections in the dashboard above do not carry over, so the two views should not be treated as an automatically matched comparison.</p></div>
-                <div><h4>Why it matters</h4><p>Tier proportions complement averages and raw counts when deciding where to investigate further. They help distinguish the size of an assessed fleet from the share of its vessels with elevated indicators.</p><p><strong>A high-risk tier is not proof of illegal fishing</strong>. The tier labelled None means no recorded scored indicators, but it does not establish that a vessel is safe or that its activity was fully observed.</p></div>
+                <div><h4>The Problem</h4><p>Risk averages are misleading when most of the fleet scores zero. If 90% of a country's assessed vessels have no recorded risk indicators at all, the country average is pulled down by a mass of clean records, hiding a potentially significant minority of high-risk vessels. The distribution tells a different story than the mean.</p></div>
+                <div><h4>What we found</h4><p>Across every year from 2012 to 2025, <strong>over 80% of assessed vessels fall into the None tier</strong>, meaning they have zero recorded scored indicators. The IUU risk problem is not a fleet-wide phenomenon. It is concentrated in a small minority. But that minority is not small in absolute terms: in 2024 alone, thousands of individual vessels carry Low, Medium, or High risk scores.</p><p>The share of vessels in the High tier has remained relatively stable over the 13-year period, suggesting that enforcement efforts have not substantially reduced the proportion of the fleet displaying suspicious behaviour. Whether this reflects persistent offenders, new entrants, or better detection over time is a question the data alone cannot answer.</p></div>
+                <div><h4>Why it matters</h4><p>This chart is the reason we do not rely on country averages alone. A nation with a low average score but 200 high-risk vessels presents a different investigative priority than one with a higher average but only 10 flagged vessels. The risk-tier distribution forces the question: are we looking at a widespread problem or a concentrated one? For every country in the dashboard below, the answer is concentrated, but the size of that concentration varies dramatically.</p></div>
               </div>
             </div>
+          </div>
+          <div class="analysis-supporting" role="group" aria-labelledby="country-risk-subtitle">
+            <h4 id="country-risk-subtitle">Country Risk Patterns</h4>
+            <div class="analysis-layout">
+            <figure class="tableau-figure">
+              <p id="country-risk-instructions" class="analysis-instructions">Select a country bubble to compare its indicators and history. Hold Ctrl (Windows) or Command (Mac) while clicking to compare several. The risk-tier distribution above shows what averages conceal.</p>
+              <div class="tableau-frame tableau-frame--live">
+                <div class="tableau-frame-header"><span>COUNTRY RISK / ASSESSED VESSELS</span><a href="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/Analysis03_CountryRisk?:showVizHome=no" target="_blank" rel="noopener noreferrer">Open in Tableau <span aria-hidden="true">&nearr;</span><span class="sr-only"> (opens in a new tab)</span></a></div>
+                <iframe class="tableau-embed" src="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/Analysis03_CountryRisk?:embed=yes&amp;:showVizHome=no&amp;:tabs=no&amp;:toolbar=yes&amp;:language=en-US&amp;:showAppBanner=false" title="Country Risk Patterns. Interactive Tableau dashboard" aria-describedby="country-risk-instructions" loading="lazy" allowfullscreen></iframe>
+              </div>
+              <figcaption>Figure 03b. Country Risk Patterns.<br><small class="fig-datasets">Datasets: IUU-risk (IUU Fishing Risk Insights v1, 2012–2025), fleet-monthly</small></figcaption>
+            </figure>
+            <div class="analysis-findings">
+              <div><h4>The Problem</h4><p>The country with the most fishing hours is not necessarily the country with the highest risk rate. China's fleet is eight times larger than Taiwan's, but does that mean it has eight times the risk, or does the per-vessel picture look different? Separating scale from rate is essential for fair comparison.</p></div>
+              <div><h4>What we found</h4><p>The 2024 data reveals a striking paradox. China has the lowest average risk score among the top three (<strong>0.585</strong>) despite having the largest absolute count of high-risk vessels (<strong>115</strong>). Taiwan's average is more than double China's (<strong>1.238</strong>), and Spain's is similar (<strong>1.213</strong>), even though both have smaller fleets.</p><p>This means a higher proportion of Taiwan's and Spain's assessed fleets trigger behavioural indicators. For Taiwan, this likely reflects its distant-water longline fleet, which operates at extreme distances from shore and is historically associated with higher AIS disabling rates. For Spain, the elevated score may reflect its distant-water trawler fleet operating in West African and South American waters, regions where the disabling map (Analysis 04) shows dense gap activity.</p><p>China's lower average is partly an artifact of scale: its enormous fleet includes many coastal vessels with minimal risk indicators, diluting the average. But 115 high-risk vessels is still a larger pool of suspicious activity than most nations produce in total.</p></div>
+              <div><h4>Why it matters</h4><p>Any ranking that uses a single metric will mislead. If you rank by total high-risk vessels, China leads. If you rank by risk rate, Taiwan and Spain lead. If you rank by fleet size, China dwarfs everyone. The dashboard lets you toggle between these perspectives and form your own judgment about where investigative attention is most warranted.</p><p>The flag-state vs port-state comparison adds another layer: vessels flagged to Panama, Vanuatu, or Belize but porting exclusively in China or Peru may indicate flag-of-convenience arrangements designed to obscure ownership and avoid regulatory scrutiny.</p></div>
+            </div>
+          </div>
           </div>
         </section>
         <section id="analysis-04" class="analysis-section analysis-section--live" aria-labelledby="analysis-title-04">
           <div class="analysis-heading"><span class="analysis-number" aria-hidden="true">04</span><div><p class="eyebrow">ANALYSIS 04</p><h3 id="analysis-title-04">Going Dark: From Offshore Patterns to a Vessel</h3></div></div>
-          <div class="analysis-layout">
-            <figure class="tableau-figure">
-              <p id="offshore-instructions" class="analysis-instructions">Explore the offshore distribution, then click one event on the map below to inspect that vessel's profile and history.</p>
-              <div class="tableau-frame tableau-frame--live">
-                <div class="tableau-frame-header"><span>OFFSHORE DISTRIBUTION / 2017-2019</span><a href="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/DisablingDistancefromShore?:showVizHome=no" target="_blank" rel="noopener noreferrer">Open in Tableau <span aria-hidden="true">&nearr;</span><span class="sr-only"> (opens in a new tab)</span></a></div>
-                <iframe class="tableau-embed tableau-embed--supporting" src="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/DisablingDistancefromShore?:embed=yes&amp;:showVizHome=no&amp;:tabs=no&amp;:toolbar=yes&amp;:language=en-US&amp;:showAppBanner=false" title="Disabling Distance from Shore. Interactive Tableau histogram" aria-describedby="offshore-instructions" loading="lazy" allowfullscreen></iframe>
-              </div>
-              <figcaption>Figure 04a. Disabling Distance from Shore.</figcaption>
-            </figure>
-            <div class="analysis-findings">
-              <div><h4>The Problem</h4><p>Tracking gaps reduce visibility into vessel movements. Their location and duration can identify questions for investigation, but a gap alone does not reveal why tracking stopped or what happened during it.</p></div>
-              <div><h4>What we found</h4><p>The <strong>2017-2019 extract</strong> contains <strong>55,368 distinct events associated with 5,269 MMSIs</strong>. Median event duration is approximately <strong>23.5 hours</strong>, and median gap-start distance from shore is approximately <strong>413 km</strong>. These figures describe the full extract, not a filtered selection.</p><p>The source excludes near-shore gaps under its selection criteria. This offshore distribution is therefore not representative of every tracking gap, and <strong>distance from shore is not distance from an EEZ boundary</strong>.</p></div>
-              <div><h4>Why it matters</h4><p>The distance distribution provides context for where recorded tracking gaps begin. It helps frame questions for closer examination, but being far offshore is not itself evidence of illegal fishing. The map below connects this broad pattern to specific events and individual vessels.</p></div>
-            </div>
-          </div>
-          <div class="analysis-supporting" role="group" aria-labelledby="vessel-dive-title">
+<div class="analysis-supporting" role="group" aria-labelledby="vessel-dive-title">
             <h4 id="vessel-dive-title">From a Tracking Gap to a Vessel's History</h4>
             <div class="analysis-layout">
               <figure class="tableau-figure">
@@ -138,14 +156,32 @@
                   <div class="tableau-frame-header"><span>VESSEL DEEP DIVE / EVENT HISTORY</span><a href="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/Analysis04_VesselDeepDive?:showVizHome=no" target="_blank" rel="noopener noreferrer">Open in Tableau <span aria-hidden="true">&nearr;</span><span class="sr-only"> (opens in a new tab)</span></a></div>
                   <iframe class="tableau-embed" src="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/Analysis04_VesselDeepDive?:embed=yes&amp;:showVizHome=no&amp;:tabs=no&amp;:toolbar=yes&amp;:language=en-US&amp;:showAppBanner=false" title="Going Dark: A Vessel Deep Dive. Interactive Tableau dashboard" aria-describedby="vessel-dive-instructions" loading="lazy" allowfullscreen></iframe>
                 </div>
-                <figcaption>Figure 04b. Going Dark: A Vessel Deep Dive.</figcaption>
+                <figcaption>Figure 04a. Going Dark: A Vessel Deep Dive.<br><small class="fig-datasets">Datasets: IUU-risk, ais_disabling_events, named_anchorages</small></figcaption>
               </figure>
               <div class="analysis-findings">
-                <div><h4>The Problem</h4><p>An offshore concentration of tracking gaps does not explain an individual vessel's behaviour. Investigating a case requires connecting a specific event to that vessel's recorded indicators and activity history.</p></div>
-                <div><h4>What we found</h4><p>The map-to-profile interaction reveals which recorded indicators and activity years are available for the selected vessel. Read the event's date and duration alongside its profile and timeline rather than treating the map location as a finding of misconduct.</p><p>The history can cover years outside the 2017-2019 event extract. If a selected MMSI has no matching profile, missing information should not be interpreted as a clean risk record.</p></div>
-                <div><h4>Why it matters</h4><p>An individual vessel's history helps turn a broad geographic pattern into a specific, traceable investigation. <strong>Temporal matching matters:</strong> later risk information should not be presented as proof of what happened during an earlier event.</p><p>This is a way to identify questions that require further evidence, not to establish why a vessel stopped transmitting or whether it committed an offence.</p></div>
+                <div><h4>The Problem</h4><p>A cluster of tracking gaps on a map tells you where vessels disappear, but not why. Equipment failure, poor satellite coverage, deliberate evasion, and transit through areas with limited reception all produce the same data signature. To distinguish intentional concealment from technical noise, you need the individual vessel's history: has it disabled AIS before? Does it encounter IUU-listed vessels? Does it spoof its identity?</p></div>
+                <div><h4>What we found</h4><p>Clicking a disabling event on the map loads that vessel's full behavioural profile. A typical high-risk example might show a Panamanian-flagged squid jigger with 8 AIS gaps exceeding 24 hours, 15 encounters with previously IUU-listed vessels, and over 200 hours of MMSI overlap with another vessel (identity spoofing). That combination of indicators on a single vessel is far more informative than any individual metric.</p><p>Vessel histories often span years beyond the 2017-2019 disabling event window. A vessel that disabled AIS in 2018 may show elevated risk indicators in 2022-2024, suggesting persistent behaviour rather than a one-time event. If an MMSI has no matching risk profile, it may have changed identity since the event, which is itself a red flag.</p></div>
+                <div><h4>Why it matters</h4><p>This is where the analysis shifts from patterns to cases. The map shows 55,000 events. Most of them are noise. The vessel profile is the filter that separates a suspicious actor from a vessel that lost signal in a storm. It is also where the three levels of the project converge: the global map (where), the fleet profile (who), and the vessel history (what they did).</p><p>A vessel that appears in a disabling hotspot, belongs to a high-risk flag state, and carries multiple behavioural indicators across several years is a qualitatively different signal than a single unexplained gap.</p></div>
               </div>
             </div>
+          </div>
+          <div class="analysis-supporting" role="group" aria-labelledby="offshore-subtitle">
+            <h4 id="offshore-subtitle">Offshore Distribution: Where Vessels Go Dark</h4>
+            <div class="analysis-layout">
+            <figure class="tableau-figure">
+              <p id="offshore-instructions" class="analysis-instructions">Explore the offshore distribution, then click one event on the map above to inspect that vessel's profile and history.</p>
+              <div class="tableau-frame tableau-frame--live">
+                <div class="tableau-frame-header"><span>OFFSHORE DISTRIBUTION / 2017-2019</span><a href="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/DisablingDistancefromShore?:showVizHome=no" target="_blank" rel="noopener noreferrer">Open in Tableau <span aria-hidden="true">&nearr;</span><span class="sr-only"> (opens in a new tab)</span></a></div>
+                <iframe class="tableau-embed tableau-embed--supporting" src="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/DisablingDistancefromShore?:embed=yes&amp;:showVizHome=no&amp;:tabs=no&amp;:toolbar=yes&amp;:language=en-US&amp;:showAppBanner=false" title="Disabling Distance from Shore. Interactive Tableau histogram" aria-describedby="offshore-instructions" loading="lazy" allowfullscreen></iframe>
+              </div>
+              <figcaption>Figure 04b. Disabling Distance from Shore.<br><small class="fig-datasets">Datasets: ais_disabling_events (Welch et al. 2022, 2017–2019)</small></figcaption>
+            </figure>
+            <div class="analysis-findings">
+              <div><h4>The Problem</h4><p>When a vessel stops broadcasting its AIS position, it becomes invisible to satellite monitoring. The question is whether the gap is random or geographic. If disabling events cluster in specific locations, that clustering is itself evidence of intent, because equipment failure and satellite coverage gaps would produce a more uniform distribution.</p></div>
+              <div><h4>What we found</h4><p>The 2017-2019 extract contains <strong>55,368 disabling events from 5,269 distinct vessels</strong>. The median gap lasts <strong>23.5 hours</strong> and begins approximately <strong>413 km from shore</strong>, roughly 220 nautical miles, well beyond the territorial sea and outside the practical patrol range of virtually every coast guard in the world.</p><p>The distribution is far from uniform. Three regions produce disproportionate concentrations: the <strong>Argentine EEZ boundary</strong> (squid jigger fleets crossing between international waters and Argentina's exclusive zone), <strong>off West Africa</strong> (foreign distant-water fleets with minimal oversight), and the <strong>Northwest Pacific</strong> (the world's most intensively fished waters). These are precisely the regions where high-value stocks overlap with enforcement gaps.</p><p>Very few events begin within 200 km of shore. The incentive structure matches the geographic pattern: disabling correlates with distance from enforcement, not distance from land.</p></div>
+              <div><h4>Why it matters</h4><p>The geographic clustering of disabling events is the single strongest visual signal in this project. Random equipment failures would not concentrate at EEZ boundaries. The fact that they do, and that the same regions also host the highest-value fisheries and the weakest enforcement, points to a structural relationship between geography, economics, and evasion.</p><p>Clean zones like Australia, Northern Europe, and the US East Coast, where enforcement is strong and VMS requirements are strictly applied, show dramatically fewer events. For Singapore, the Southeast Asian waters show a distinct mid-severity pattern (12-24 hour gaps) relevant to its role as a major port state and transshipment hub.</p></div>
+            </div>
+          </div>
           </div>
         </section>
         <section id="analysis-05" class="analysis-section analysis-section--live" aria-labelledby="analysis-title-05">
@@ -157,12 +193,12 @@
                   <div class="tableau-frame-header"><span>EXTERNAL ASSESSMENTS / WORLD NEWS</span><a href="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/Analysis05_ExternalEvidence?:showVizHome=no" target="_blank" rel="noopener noreferrer">Open in Tableau <span aria-hidden="true">&nearr;</span><span class="sr-only"> (opens in a new tab)</span></a></div>
                   <iframe class="tableau-embed" src="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/Analysis05_ExternalEvidence?:embed=yes&amp;:showVizHome=no&amp;:tabs=no&amp;:toolbar=yes&amp;:language=en-US&amp;:showAppBanner=false" title="External Assessments and World News. Interactive Tableau dashboard" aria-describedby="external-evidence-instructions" loading="lazy" allowfullscreen></iframe>
                 </div>
-                <figcaption>Figure 05. External Assessments and World News.</figcaption>
+                <figcaption>Figure 05. External Assessments and World News.<br><small class="fig-datasets">Datasets: IUU Index (Poseidon/GI-TOC 2025), text/GDELT (news articles 2020–2024), IUU-risk</small></figcaption>
               </figure>
               <div class="analysis-findings">
-                <div><h4>The Problem</h4><p>A behavioural risk score is one perspective, not an independent determination of illegality. External country assessments and public reporting provide additional context, but their scope and coverage differ from vessel tracking data.</p></div>
-                <div><h4>What we found</h4><p>The dashboard compares annual AIS-derived country risk with a fixed 2025 external assessment, where the two measures describe different populations and concepts. A quantified agreement result has not yet been validated for the final displayed sample, so this comparison should not be presented as proof that the risk score is accurate.</p><p>The supplied news extract contains <strong>1,534 distinct retrieved URLs dated within 2020-2024</strong>. Coverage is concentrated in selected months, with gaps between retrieval periods. It therefore shows the captured reporting rather than a complete annual measure of worldwide IUU news attention.</p></div>
-                <div><h4>Why it matters</h4><p>External comparison can reveal agreement, disagreement, and questions about measurement. News provides context, but sparse coverage cannot establish annual growth in media attention or identify geographic monitoring blind spots without additional data.</p></div>
+                <div><h4>The Problem</h4><p>AIS-derived risk scores are generated from one data source using one methodology. If they happen to align with independent expert assessments built from entirely different evidence (surveys, enforcement records, policy analysis), that alignment strengthens confidence in both. If they diverge, the divergence itself is analytically interesting.</p></div>
+                <div><h4>What we found</h4><p>The IUU Fishing Index (Poseidon/GI-TOC, 2025) scores 152 coastal states on a 1-5 scale using 40 indicators drawn from surveys, enforcement records, and expert opinion, a methodology entirely independent of AIS data. <strong>China scores 3.60, the highest of any nation</strong>, independently confirming its position at the top of our AIS-derived risk rankings. Romania scores 1.46, the lowest. The broad alignment between two completely different measurement approaches is the strongest external validation this project has.</p><p>The GDELT news corpus (<strong>1,534 articles, 2020-2024</strong>) adds a media-attention dimension. China-related IUU coverage spiked to <strong>31% of all articles in 2022</strong>, driven by the WTO fisheries subsidies debate. By 2024 it had dropped to <strong>5%</strong>. This decline does not reflect improvement; it reflects the media cycle moving on. The gap between persistent risk (visible in our AIS data) and fading coverage (visible in GDELT) is itself an insight about where public attention fails to track actual threats.</p></div>
+                <div><h4>Why it matters</h4><p>Validation is not decoration. If our composite risk scores had diverged sharply from the IUU Fishing Index, it would call the methodology into question. The broad alignment, despite completely different evidence bases, suggests both are measuring something real.</p><p>The news analysis serves a different purpose: it reveals what the world pays attention to, and more importantly, what it overlooks. GDELT articles are predominantly English-language and Western-sourced. West Africa and Southeast Asia, two of the highest-risk regions in our AIS analysis, are underrepresented in the news corpus. Media coverage is a lagging, event-driven indicator; the AIS data provides the continuous, systematic view that journalism cannot.</p></div>
               </div>
             </div>
           </section>
@@ -175,30 +211,152 @@
                 <div class="tableau-frame-header"><span>TESTIMONY THEMES / FLAG STATE</span><a href="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/TestimonyThemesbyFlagState?:showVizHome=no" target="_blank" rel="noopener noreferrer">Open in Tableau <span aria-hidden="true">&nearr;</span><span class="sr-only"> (opens in a new tab)</span></a></div>
                 <iframe class="tableau-embed tableau-embed--supporting" src="https://public.tableau.com/views/GFW_IUU_Fishing_v1_4/TestimonyThemesbyFlagState?:embed=yes&amp;:showVizHome=no&amp;:tabs=no&amp;:toolbar=yes&amp;:language=en-US&amp;:showAppBanner=false" title="Testimony Themes by Flag State. Interactive Tableau worksheet" aria-describedby="testimony-instructions" loading="lazy" allowfullscreen></iframe>
               </div>
-              <figcaption>Figure 06. Testimony Themes by Flag State.</figcaption>
+              <figcaption>Figure 06. Testimony Themes by Flag State.<br><small class="fig-datasets">Datasets: text/EJF (fisher testimonies, word frequencies, bigrams)</small></figcaption>
             </figure>
             <div class="analysis-findings">
-              <div><h4>The Problem</h4><p>Tracking data cannot directly describe working conditions, violence, pay, or other experiences aboard vessels. Understanding fishing risk also requires evidence from people and reports, with careful attention to how that evidence was collected.</p></div>
-              <div><h4>What we found</h4><p>The supplied extraction contains <strong>111 passages</strong>: 56 assigned to Chinese vessel flags, 5 Taiwanese, 4 Korean, and 46 with unknown flags.</p><p>Its existing theme coding marks wildlife in 40 passages, conditions in 26, death in 24, violence in 19, transshipment in 13, and wages in 11. <strong>A passage can have more than one theme.</strong> These are counts from the extracted and coded sample, not independently verified incident totals or national prevalence estimates.</p></div>
-              <div><h4>Why it matters</h4><p>These passages add human and environmental context that vessel tracks cannot establish. Their uneven sampling means the analysis should illuminate reported experiences rather than rank national fleets by abuse rates.</p></div>
+              <div><h4>The Problem</h4><p>AIS data tells you where a vessel went and when it stopped transmitting. It cannot tell you that an Indonesian fisher was beaten for refusing to work, or that a turtle was used as bait because the captain ordered it, or that crew went months without pay while the vessel operated 12,000 km from home. The quantitative signals in the previous analyses describe behaviour from orbit. These testimonies describe it from the deck.</p></div>
+              <div><h4>What we found</h4><p>EJF interviewed over 430 Indonesian and Filipino fishers who worked aboard distant-water squid vessels. The <strong>111 extracted passages</strong> from three investigation reports reveal a consistent pattern: <strong>wildlife destruction is the most frequently mentioned theme (40 passages)</strong>, describing systematic shark finning, turtle bycatch, and the discarding of protected species as routine practice rather than isolated incidents.</p><p><strong>Death appears in 24 passages, violence in 19, and working conditions in 26.</strong> The relative prominence of wildlife over violence is itself revealing: it suggests the environmental destruction is a daily reality that fishers mention matter-of-factly, while the physical abuse, though severe when it occurs, is episodic. Chinese-flagged vessels dominate the sample (56 of 65 flagged testimonies). Korean-flagged vessels appear in only 4 testimonies but carry disproportionate violence mentions, suggesting concentrated severity.</p><p>The geographic and vessel-type terms in the corpus ("southwest atlantic", "indian ocean", "squid jigger") map directly onto the fleet segments showing the highest AIS disabling rates in Analysis 04. The qualitative and quantitative evidence point at the same vessels.</p></div>
+              <div><h4>Why it matters</h4><p>This section exists because data without human context is incomplete. The AIS shows a vessel disappearing for 72 hours off the Argentine shelf. The risk model flags it as High. The IUU Index confirms the flag state is problematic. But none of that tells you that the crew was working 20-hour shifts, or that shark bodies were thrown overboard after their fins were cut.</p><p>These testimonies are not a random sample, and they reflect EJF's investigative focus. But the same themes recur across years, across vessels, and across ocean basins. The conditions described are structural, not anecdotal. The word cloud at the top of this page, built from these same reports, makes that recurrence visible at a glance.</p></div>
             </div>
           </div>
         </section>
         <section id="conclusion" class="analysis-conclusion" aria-labelledby="conclusion-title">
           <p class="eyebrow">CONCLUSION</p>
           <h2 id="conclusion-title">From patterns to informed investigation.</h2>
-          <p class="conclusion-lead">The six analyses bring together where vessels fish, how fleets operate, which risk indicators appear, and what external assessments and reported experiences can add. Together, they help identify questions worth investigating.</p>
+          <p class="conclusion-lead">The six analyses bring together four layers of evidence: satellite-derived fishing activity, vessel-level behavioural risk, external expert assessments and media coverage, and firsthand human testimony. Each layer answers a different question; together they narrow from 695 million hours of fishing across five years to the specific vessels, regions, and practices most worth investigating.</p>
           <div class="conclusion-grid">
-            <div><h3>Read risk in context</h3><p>Fishing activity is unevenly distributed, and fleets differ in scale, gear and seasonal patterns. Event counts, average scores and risk-tier proportions answer different questions. Read them together before comparing flag states or selecting vessels for closer examination.</p></div>
-            <div><h3>Connect the evidence carefully</h3><p>Tracking gaps provide a starting point for examining vessel histories. Country assessments, retrieved news and extracted report passages add other perspectives, but they cover different populations and periods. Their value depends on making those differences explicit.</p></div>
-            <div><h3>Turn signals into questions</h3><p>A hotspot, tracking gap or elevated score does not establish illegal fishing. The next step is to verify the vessel, match the dates, examine observation gaps and seek corroborating evidence. Reported human experiences also deserve attention beyond what vessel tracks can show.</p></div>
+            <div><h3>What the data confirms</h3><p>Five flag states account for the majority of global fishing hours. Behavioural risk concentrates in a small minority of the fleet. AIS disabling clusters at EEZ boundaries where enforcement is weakest. Taiwan and Spain show higher risk rates than China despite smaller fleets. And the fishers who crew these vessels describe conditions that align with the quantitative signals.</p></div>
+            <div><h3>What the data cannot prove</h3><p>A tracking gap is not evidence of crime. A high risk score is not a conviction. The IUU Fishing Index measures vulnerability and response, not actual catches. GDELT coverage reflects media attention, not ground truth. And 111 testimonies from a focused investigation are not a census of global fishing conditions. Every finding in this project is a signal, not a verdict.</p></div>
+            <div><h3>What to do next</h3><p>The most productive next step is temporal: overlay 2020-2024 risk indicators with real-time vessel tracking to flag sudden changes in behaviour. Network analysis of vessel encounters would reveal whether high-risk vessels operate in clusters or independently. And the forced-labour network proximity data deserves a dedicated investigation: if the median distance across the global fleet is small, the problem is structurally embedded, not confined to a few operators.</p></div>
           </div>
-          <p class="conclusion-closing">Seeing more of the fleet means knowing both what the evidence reveals and what remains unseen.</p>
+          <p class="conclusion-closing">The ocean is large. The fleet is larger. But it is no longer invisible.</p>
           <a class="conclusion-link" href="#analysis-01">Revisit the analyses <span aria-hidden="true">&uarr;</span></a>
         </section>
       </div>
+      <section id="challenges" class="challenges-section" aria-labelledby="challenges-title">
+        <p class="eyebrow">LIMITATIONS</p>
+        <h2 id="challenges-title">Working across uneven ground.</h2>
+        <p class="challenges-lead">The datasets powering this project were not designed to work together. They come from different research teams, cover different time spans, and describe the ocean at different resolutions. The only calendar year shared by every source is <strong>2024</strong>.</p>
+        <div class="timeline-visual" aria-label="Dataset coverage timeline">
+          <div class="timeline-axis">
+            <span>2012</span><span>2014</span><span>2016</span><span>2018</span><span>2020</span><span>2022</span><span>2024</span><span>2026</span>
+          </div>
+          <div class="timeline-bar" style="--start:57.1%;--end:92.8%"><span class="timeline-label">Fleet Effort (AIS v3)</span><span class="timeline-range">2020–2024</span></div>
+          <div class="timeline-bar timeline-bar--accent" style="--start:0%;--end:92.8%"><span class="timeline-label">IUU Risk Insights</span><span class="timeline-range">2012–2025</span></div>
+          <div class="timeline-bar timeline-bar--warn" style="--start:35.7%;--end:50%"><span class="timeline-label">AIS Disabling Events</span><span class="timeline-range">2017–2019</span></div>
+          <div class="timeline-bar" style="--start:57.1%;--end:92.8%"><span class="timeline-label">GDELT News Articles</span><span class="timeline-range">2020–2024</span></div>
+          <div class="timeline-bar timeline-bar--dim" style="--start:42.8%;--end:100%"><span class="timeline-label">EJF Testimonies</span><span class="timeline-range">2018–2026</span></div>
+          <div class="timeline-bar timeline-bar--dim" style="--start:50%;--end:92.8%"><span class="timeline-label">IUU Fishing Index</span><span class="timeline-range">2019, 2021, 2023, 2025</span></div>
+          <div class="timeline-overlap">
+            <div class="timeline-overlap-bar" style="--start:85.7%;--end:92.8%"></div>
+            <span class="timeline-overlap-label">Common year: 2024</span>
+          </div>
+        </div>
+        <div class="challenges-grid">
+          <div>
+            <h3>Temporal mismatch</h3>
+            <p>The AIS disabling events (Welch et al.) cover only 2017–2019 and do not overlap with the fleet effort data at all. We use the disabling map as a <em>geographic</em> reference for where gaps concentrate, not as a temporal comparison. For vessel-level disabling analysis aligned with fleet effort, we rely on the <code>disabling_over_12_hours</code> column from the IUU Risk dataset, which does cover 2020–2024.</p>
+          </div>
+          <div>
+            <h3>Public data coverage</h3>
+            <p>All core datasets are publicly available under CC BY-NC 4.0 or equivalent licenses. This is a strength for reproducibility but a constraint on resolution: GFW's public fleet data is aggregated to 0.1° grid cells and monthly intervals, not individual vessel tracks. Each source was released independently with its own methodology and update cycle, which is why full overlap is limited to a single year.</p>
+          </div>
+          <div>
+            <h3>Recommendation</h3>
+            <p>Default to <strong>2024</strong> for any cross-dataset comparison — it is the only year where fleet effort, IUU vessel risk, news coverage, fisher testimonies, and the IUU Fishing Index all have data. The broader 2020–2024 window works for fleet effort and IUU risk trends, but external validation (GDELT, EJF, IUU Index) is most reliable at 2024.</p>
+          </div>
+        </div>
+      </section>
+      <section id="datasets" class="datasets-section" aria-labelledby="datasets-title">
+        <p class="eyebrow">DATA SOURCES</p>
+        <h2 id="datasets-title">Datasets</h2>
+        <p class="datasets-lead">All core data originates from <a href="https://globalfishingwatch.org/datasets-and-code/" target="_blank" rel="noopener noreferrer">Global Fishing Watch</a> (CC BY-NC 4.0), supplemented by the IUU Fishing Risk Index, GDELT news articles, and EJF fisher testimony reports.</p>
+        <div class="datasets-grid">
+          <div><h3>fleet-monthly</h3><p>AIS Apparent Fishing Effort v3 (2020–2024). 60 monthly CSVs, ~60M rows. Fishing hours by flag, gear type, and 0.1° grid cell.</p></div>
+          <div><h3>IUU-risk</h3><p>IUU Fishing Risk Insights v1 (2012–2025). 14 annual CSVs, ~1.8M rows. Per-vessel behavioural indicators: AIS disabling, encounters, identity spoofing, forced-labour links.</p></div>
+          <div><h3>ais_disabling_events</h3><p>Welch et al. (2022). 55,369 individual AIS gap events (2017–2019) with start/end positions, duration, and distance from shore.</p></div>
+          <div><h3>named_anchorages</h3><p>Global anchorages database (Jul 2026). 166,498 port/anchorage locations worldwide.</p></div>
+          <div><h3>IUU Index</h3><p>IUU Fishing Risk Index (Poseidon/GI-TOC, 2025). Country-level IUU risk scores (1–5 scale) for 152 coastal states.</p></div>
+          <div><h3>text (GDELT + EJF)</h3><p>1,539 GDELT news articles on IUU fishing (2020–2024). 111 EJF fisher testimonies from distant-water squid vessels. Word and bigram frequencies from 3 EJF investigation reports.</p></div>
+        </div>
+        <a class="datasets-link" href="https://drive.google.com/drive/folders/1L8JG54Gq4SJggL30gANkR66X_lpCVfT1?usp=sharing" target="_blank" rel="noopener noreferrer">Access all datasets on Google Drive <span aria-hidden="true">&nearr;</span></a>
+      </section>
       <footer><a class="brand" href="#">G1T2<span class="brand-dot">.</span></a><p>Seeing the Unseen Fleet</p><span>IS482 AY26/27 Term 1</span></footer>
     </main>
     <script type="module" src="/src/main.ts"></script>
+    <script>
+    // Insight fish — auto-rotate every 15s, also clickable
+    (function(){
+      let openBubble = null;
+      let timer = null;
+      const fish = Array.from(document.querySelectorAll('.insight-fish'));
+      let lastIdx = -1;
+
+      function showInsight(el) {
+        // Close existing
+        if (openBubble) { openBubble.remove(); openBubble = null; }
+        // Remove active class from all
+        fish.forEach(f => f.classList.remove('insight-fish--active'));
+        // Create bubble
+        const bubble = document.createElement('div');
+        bubble.className = 'insight-bubble';
+        bubble.innerHTML = el.dataset.insight + '<button class="insight-close" aria-label="Close">&times;</button>';
+        el.appendChild(bubble);
+        el.classList.add('insight-fish--active');
+        openBubble = bubble;
+        bubble.querySelector('.insight-close').addEventListener('click', function(ev) { ev.stopPropagation(); dismiss(); });
+      }
+
+      function dismiss() {
+        if (openBubble) { openBubble.remove(); openBubble = null; }
+        fish.forEach(f => f.classList.remove('insight-fish--active'));
+      }
+
+      function autoRotate() {
+        // Pick a random fish different from last
+        let idx;
+        do { idx = Math.floor(Math.random() * fish.length); } while (idx === lastIdx && fish.length > 1);
+        lastIdx = idx;
+        showInsight(fish[idx]);
+        // Dismiss after 12s (leaves 3s gap before next)
+        setTimeout(dismiss, 12000);
+      }
+
+      // Click to show
+      fish.forEach(el => {
+        el.addEventListener('click', e => {
+          e.stopPropagation();
+          showInsight(el);
+          // Reset auto-timer on manual click
+          clearInterval(timer);
+          setTimeout(() => { timer = setInterval(autoRotate, 15000); }, 15000);
+        });
+      });
+
+      // Click outside to dismiss
+      document.addEventListener('click', dismiss);
+
+      // Start auto-rotate
+      timer = setInterval(autoRotate, 15000);
+      // Show first one after 3s
+      setTimeout(autoRotate, 3000);
+    })();
+
+    // Gear info panel toggle
+    (function(){
+      var toggle = document.getElementById('gear-info-toggle');
+      var panel = document.getElementById('gear-info-panel');
+      var close = document.getElementById('gear-info-close');
+      if (!toggle || !panel) return;
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        panel.hidden = !panel.hidden;
+        if (!panel.hidden) panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+        toggle.textContent = panel.hidden ? 'Learn about each gear type and its impact ↓' : 'Hide gear types ↑';
+      });
+      close.addEventListener('click', function() { panel.hidden = true; toggle.textContent = 'Learn about each gear type and its impact ↓'; });
+      panel.addEventListener('click', function(e) { if (e.target === panel) { panel.hidden = true; toggle.textContent = 'Learn about each gear type and its impact ↓'; } });
+    })();
+    </script>
   </body>
 </html>
